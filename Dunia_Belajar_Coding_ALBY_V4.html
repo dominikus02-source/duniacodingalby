@@ -1,2 +1,2364 @@
 <!DOCTYPE html>
-<!-- placeholder -->
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dunia Belajar Coding ALBY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#33283D;--ink2:#6B5E75;--paper:#FBF3E4;--card:#FFFDF6;--coral:#FF7A45;--sun:#FFC531;--leaf:#3DAE5B;--teal:#12B5A5;--sky:#3E8DDD;--rose:#E85D75;--violet:#7C5CE0;--night:#3B3B6D;--sand:#F3E4C8;--line:rgba(51,40,61,.14);--sh:0 5px 0 var(--ink);--sh2:0 4px 0 var(--ink)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Nunito',sans-serif;color:var(--ink);background:var(--paper);background-image:radial-gradient(rgba(51,40,61,.055) 1.6px,transparent 1.6px);background-size:26px 26px;min-height:100vh;font-size:16px;line-height:1.5}
+h1,h2,h3,h4{font-family:'Baloo 2',cursive;line-height:1.15}
+button{font-family:inherit;cursor:pointer;color:inherit}
+input,textarea,select{font-family:inherit;color:var(--ink)}
+img,svg{display:block}
+#app{max-width:1100px;margin:0 auto;padding:18px 16px 130px}
+.ic{width:1.25em;height:1.25em;flex:none}
+.hide{display:none!important}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Baloo 2';font-weight:700;font-size:17px;border:3px solid var(--ink);border-radius:16px;background:#fff;box-shadow:var(--sh);padding:11px 20px;min-height:52px;transition:transform .08s,box-shadow .08s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--ink)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 var(--ink)}
+.btn:disabled{opacity:.45;pointer-events:none}
+.btn-coral{background:var(--coral);color:#fff}.btn-sun{background:var(--sun)}.btn-leaf{background:var(--leaf);color:#fff}.btn-teal{background:var(--teal);color:#fff}
+.btn-sm{min-height:42px;padding:7px 14px;font-size:15px;border-radius:13px;box-shadow:var(--sh2)}
+.btn-icon{width:48px;height:48px;padding:0;border-radius:14px}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:22px;box-shadow:0 6px 0 var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;border:2.5px solid var(--ink);border-radius:999px;padding:5px 13px;font-weight:800;font-size:13.5px;background:#fff;box-shadow:0 3px 0 var(--ink)}
+.tag{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:4px 12px;font-weight:800;font-size:12.5px;border:2.5px solid var(--ink);background:var(--sun)}
+.topbar{display:flex;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.avatar-wrap{position:relative;width:64px;height:64px;flex:none}
+.avatar-badge{position:absolute;right:-6px;bottom:-4px;background:var(--sun);border:2.5px solid var(--ink);border-radius:999px;width:26px;height:26px;display:flex;align-items:center;justify-content:center}
+.avatar-badge .ic{width:14px;height:14px}
+.hello h1{font-size:clamp(24px,4vw,34px)}
+.hello p{color:var(--ink2);font-weight:700;font-size:14px}
+.xp-wrap{margin-left:auto;display:flex;align-items:center;gap:12px;background:#fff;border:3px solid var(--ink);border-radius:999px;padding:7px 16px 7px 8px;box-shadow:var(--sh2)}
+.xp-bar{width:min(150px,32vw);height:14px;border:2.5px solid var(--ink);border-radius:999px;background:#EFE4CE;overflow:hidden}
+.xp-fill{height:100%;background:var(--leaf);border-radius:999px;transition:width .6s cubic-bezier(.34,1.56,.64,1)}
+.xp-num{font-family:'Baloo 2';font-weight:800;font-size:15px;white-space:nowrap}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:center;padding:0 10px;pointer-events:none}
+.nav-inner{pointer-events:auto;display:flex;align-items:flex-end;gap:6px;background:#fff;border:3px solid var(--ink);border-radius:22px 22px 0 0;border-bottom:none;padding:8px 12px 10px}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:2px;border:none;background:none;font-family:'Baloo 2';font-weight:700;font-size:12px;color:var(--ink2);padding:4px 12px;border-radius:12px;min-width:64px}
+.nav-btn .ic{width:24px;height:24px}
+.nav-btn.on{color:var(--ink);background:var(--sun);border:2.5px solid var(--ink)}
+.nav-fab{width:72px;height:72px;margin:-26px 8px 0;border-radius:999px;background:var(--coral);color:#fff;border:3.5px solid var(--ink);box-shadow:0 6px 0 var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-family:'Baloo 2';font-weight:800;font-size:11.5px}
+.nav-fab:active{transform:translateY(4px)}
+.nav-fab .ic{width:26px;height:26px}
+.hero-card{display:flex;gap:18px;align-items:center;padding:22px;position:relative;overflow:hidden;cursor:pointer}
+.hero-band{position:absolute;inset:0;opacity:.16}
+.hero-ico{width:84px;height:84px;border-radius:24px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;flex:none;background:#fff;box-shadow:var(--sh2);position:relative}
+.hero-ico .ic{width:44px;height:44px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+.sec-title{display:flex;align-items:center;gap:10px;font-size:20px;margin:26px 0 12px}
+.sec-title .ic{color:var(--coral)}
+.hscroll{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 10px}
+.badge-card{flex:none;width:112px;text-align:center;padding:14px 8px;border:3px solid var(--ink);border-radius:18px;background:#fff;box-shadow:var(--sh2)}
+.badge-card.locked{opacity:.4;filter:grayscale(1)}
+.badge-ico{width:52px;height:52px;margin:0 auto 6px;border-radius:999px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center}
+.badge-card h4{font-size:13px}.badge-card small{font-size:10.5px;color:var(--ink2);font-weight:700}
+.kiko-bubble-home{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;margin-top:22px}
+.kiko-mini{width:58px;flex:none;animation:float 3.2s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.map-wrap{position:relative;padding:10px 0 30px}
+.map-line{position:absolute;inset:0;pointer-events:none;z-index:0}
+.world-node{position:relative;z-index:1;display:flex;gap:16px;align-items:center;margin:0 0 34px;width:min(520px,100%);cursor:pointer;border:3px solid var(--ink);border-radius:24px;background:#fff;box-shadow:0 6px 0 var(--ink);padding:14px 18px;transition:transform .12s}
+.world-node:hover{transform:translateY(-3px)}
+.world-orb{width:78px;height:78px;border-radius:999px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;flex:none;box-shadow:inset 0 -6px 0 rgba(0,0,0,.14)}
+.world-orb .ic{width:38px;height:38px;color:#fff}
+.world-node h3{font-size:19px}
+.world-node p{font-size:13.5px;color:var(--ink2);font-weight:700}
+.world-locked{opacity:.55}
+.lock-ribbon{position:absolute;top:-12px;right:14px;background:var(--ink);color:#fff;font-family:'Baloo 2';font-weight:700;font-size:12px;padding:4px 12px;border-radius:999px;display:flex;gap:5px;align-items:center}
+.prog-mini{height:10px;border:2.5px solid var(--ink);border-radius:999px;background:#EFE4CE;overflow:hidden;width:130px;margin-top:5px}
+.prog-mini i{display:block;height:100%;background:var(--leaf)}
+.world-head{display:flex;align-items:center;gap:18px;padding:20px;border-radius:24px;border:3px solid var(--ink);box-shadow:0 6px 0 var(--ink);color:#fff;margin-bottom:22px}
+.world-head .ic{width:52px;height:52px}
+.mission-row{display:flex;gap:14px;align-items:center;padding:14px 16px;border:3px solid var(--ink);border-radius:20px;background:#fff;box-shadow:var(--sh2);margin-bottom:14px;cursor:pointer;transition:transform .1s}
+.mission-row:hover{transform:translateX(4px)}
+.mission-row.locked{opacity:.5;cursor:not-allowed}
+.mission-row.done{background:#EFFBF1}
+.mnode{width:52px;height:52px;border-radius:999px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Baloo 2';font-weight:800;font-size:19px;flex:none;background:var(--sand)}
+.mission-row.done .mnode{background:var(--leaf);color:#fff}
+.mission-row.boss .mnode{background:var(--sun)}
+.mstars{display:flex;gap:2px}
+.mstars .ic{width:17px;height:17px;color:#D9CBAE}
+.mstars .ic.f{color:var(--sun)}
+.brief-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:18px;margin-top:18px}
+@media(max-width:860px){.brief-grid{grid-template-columns:1fr}}
+.story-card{padding:20px}
+.story-card p{font-size:15.5px;font-weight:600}
+.kiko-panel{padding:16px;display:flex;flex-direction:column;gap:12px}
+.bubble{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:12px 15px;font-weight:700;font-size:14.5px}
+.bubble.tip{background:#FFF6D6}
+.play-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}
+@media(max-width:980px){.play-grid{grid-template-columns:1fr}}
+.stage{padding:14px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.stage-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stage-head h3{font-size:18px;margin-right:auto}
+.board-holder{background:var(--sand);border:3px solid var(--ink);border-radius:18px;padding:10px;overflow:auto;display:flex;justify-content:center;position:relative}
+.runbar{display:flex;gap:10px;flex-wrap:wrap}
+.blk{display:inline-flex;align-items:center;gap:8px;font-family:'Baloo 2';font-weight:700;font-size:15.5px;border:3px solid var(--ink);border-radius:14px;padding:9px 14px;box-shadow:var(--sh2);min-height:48px}
+button.blk:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
+.blk .x{width:22px;height:22px;border-radius:8px;border:2px solid var(--ink);background:#fff;display:flex;align-items:center;justify-content:center;margin-left:2px}
+.blk .x .ic{width:12px;height:12px}
+.program-box{border:3px solid var(--ink);border-radius:18px;padding:12px;background:#F8F1E2;min-height:74px;display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start}
+.emptymsg,.looptip{font-weight:800;color:var(--ink2);font-size:13.5px;font-style:italic}
+.loopbox{border:3px dashed var(--violet);border-radius:16px;padding:8px 10px;background:#F3EDFC}
+.loopbox.active{background:#FFF3C2;border-style:solid}
+.loop-head{display:flex;align-items:center;gap:8px;font-family:'Baloo 2';font-weight:700;font-size:14.5px;margin-bottom:6px}
+.loop-head .stepper{display:flex;align-items:center;gap:4px;border:2.5px solid var(--ink);border-radius:10px;background:#fff;padding:1px 4px}
+.loop-head .stepper button{border:none;background:none;font-family:'Baloo 2';font-weight:800;font-size:16px;width:22px}
+.loop-kids{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;border-radius:12px;padding:4px}
+.loop-kids.empty{background:repeating-linear-gradient(45deg,#EDE3FA 0 8px,transparent 8px 16px)}
+.palette{display:flex;gap:10px;flex-wrap:wrap}
+.mentor-fail{animation:shake .45s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
+.hint-steps{display:flex;flex-direction:column;gap:8px}
+.hint-step{background:#fff;border:2.5px solid var(--ink);border-radius:14px;padding:10px 13px;font-weight:700;font-size:14px;animation:popin .3s}
+@keyframes popin{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.seg{display:inline-flex;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--sh2);flex-wrap:wrap}
+.seg button{border:none;background:none;font-family:'Baloo 2';font-weight:700;font-size:14px;padding:9px 14px;min-height:44px;border-right:2.5px solid var(--line)}
+.seg button:last-child{border-right:none}
+.seg button.on{background:var(--sun)}
+.rule-card{border:3px solid var(--ink);border-radius:18px;background:#fff;padding:14px 16px;box-shadow:var(--sh2)}
+.rule-card h4{font-size:15.5px;margin-bottom:9px;display:flex;gap:8px;align-items:center}
+.rule-card h4 .ic{color:var(--teal)}
+.gm-canvas-wrap{position:relative;border:3px solid var(--ink);border-radius:18px;overflow:hidden}
+.gm-hud{position:absolute;top:10px;left:12px;right:12px;display:flex;gap:10px;color:#fff;font-family:'Baloo 2';font-weight:800;font-size:17px;text-shadow:0 2px 0 rgba(0,0,0,.4)}
+.gm-over{position:absolute;inset:0;background:rgba(51,40,61,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:#fff;text-align:center;padding:20px}
+.field{display:block;margin-bottom:12px}
+.field label{display:block;font-weight:800;font-size:13.5px;margin-bottom:5px}
+.field input[type=text],.field input:not([type]){width:100%;border:3px solid var(--ink);border-radius:14px;padding:10px 13px;font-size:15px;font-weight:700;background:#fff}
+.swatches{display:flex;gap:8px;flex-wrap:wrap}
+.swatch{width:44px;height:44px;border-radius:12px;border:3px solid var(--ink);box-shadow:var(--sh2)}
+.swatch.on{outline:4px solid var(--sun)}
+.sticker-pick{display:flex;gap:8px;flex-wrap:wrap}
+.sticker-pick .swatch{display:flex;align-items:center;justify-content:center;background:#fff}
+.sticker-pick .swatch .ic{width:26px;height:26px}
+.story-view{border:3px solid var(--ink);border-radius:20px;overflow:hidden;box-shadow:var(--sh2);position:relative;min-height:250px;display:flex;flex-direction:column;justify-content:flex-end}
+.story-view .scene{position:absolute;inset:0;width:100%;height:100%}
+.story-view .dialog{position:relative;margin:14px;background:#fff;border:3px solid var(--ink);border-radius:16px;padding:12px 15px;font-weight:800;font-size:16px}
+.story-choices{position:relative;display:flex;gap:10px;margin:0 14px 14px;flex-wrap:wrap}
+.kartu{border:3px solid var(--ink);border-radius:22px;padding:26px 20px;text-align:center;box-shadow:0 7px 0 var(--ink);min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.kartu .pesan{font-size:19px;font-weight:800;font-family:'Baloo 2';line-height:1.35}
+.kartu .untuk{font-weight:800;font-size:14px;opacity:.75}
+.web-frame{width:100%;height:330px;border:3px solid var(--ink);border-radius:16px;background:#fff}
+.code-view{background:var(--night);color:#EAF2FF;border:3px solid var(--ink);border-radius:16px;padding:16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.7;overflow:auto;white-space:pre;text-align:left}
+.slotline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:800;font-size:15.5px;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:10px 14px;margin-bottom:9px;box-shadow:var(--sh2)}
+.slotline .kw{color:var(--violet)}
+.slotline select{border:2.5px solid var(--ink);border-radius:10px;padding:5px 8px;font-weight:800;font-size:14.5px;background:var(--sun);min-height:40px}
+.varbox{display:inline-flex;flex-direction:column;align-items:center;border:3px solid var(--ink);border-radius:16px;background:var(--sun);padding:10px 22px;box-shadow:var(--sh2)}
+.varbox b{font-family:'Baloo 2';font-size:34px;line-height:1}
+.varbox small{font-weight:800;font-size:12px}
+.creation-card{border:3px solid var(--ink);border-radius:20px;background:#fff;box-shadow:var(--sh2);overflow:hidden}
+.creation-top{height:110px;display:flex;align-items:center;justify-content:center;border-bottom:3px solid var(--ink)}
+.creation-top .ic{width:46px;height:46px;color:#fff}
+.creation-body{padding:13px 15px}
+.creation-body h4{font-size:16px}
+.creation-body small{color:var(--ink2);font-weight:700}
+.creation-acts{display:flex;gap:8px;margin-top:10px}
+.studio-card{cursor:pointer;border:3px solid var(--ink);border-radius:22px;background:#fff;box-shadow:0 6px 0 var(--ink);padding:20px;transition:transform .12s}
+.studio-card:hover{transform:translateY(-4px)}
+.studio-ico{width:64px;height:64px;border-radius:18px;border:3px solid var(--ink);display:flex;align-items:center;justify-content:center;margin-bottom:12px;box-shadow:var(--sh2)}
+.studio-ico .ic{width:32px;height:32px;color:#fff}
+.parent-tab{display:inline-flex;border:3px solid var(--ink);border-radius:14px;overflow:hidden;background:#fff;box-shadow:var(--sh2);margin-bottom:18px;flex-wrap:wrap}
+.parent-tab button{border:none;background:none;font-family:'Baloo 2';font-weight:700;padding:10px 16px;min-height:46px;border-right:2.5px solid var(--line);font-size:14.5px}
+.parent-tab button.on{background:var(--sun)}
+.mastery-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.mastery-row span{width:170px;font-weight:800;font-size:13.5px;flex:none}
+.mastery-bar{flex:1;height:15px;border:2.5px solid var(--ink);border-radius:999px;background:#EFE4CE;overflow:hidden}
+.mastery-bar i{display:block;height:100%;background:var(--teal)}
+.daybar{display:flex;align-items:flex-end;gap:6px;height:70px}
+.daybar div{flex:1;background:var(--sky);border:2.5px solid var(--ink);border-radius:6px 6px 0 0;min-height:4px;position:relative}
+.daybar span{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:10px;font-weight:800;color:var(--ink2)}
+.curr-list{columns:2;column-gap:26px}
+@media(max-width:700px){.curr-list{columns:1}}
+.curr-list li{break-inside:avoid;margin-bottom:6px;font-size:13.5px;font-weight:600;list-style:none;padding-left:20px;position:relative}
+.curr-list li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;border-radius:3px;background:var(--coral);border:2px solid var(--ink)}
+.overlay{position:fixed;inset:0;background:rgba(51,40,61,.66);z-index:100;display:flex;align-items:center;justify-content:center;padding:18px;animation:fadein .25s}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.ov-card{background:var(--card);border:3.5px solid var(--ink);border-radius:26px;box-shadow:0 9px 0 var(--ink);max-width:480px;width:100%;padding:26px 22px;text-align:center;animation:popin .35s cubic-bezier(.34,1.56,.64,1);max-height:92vh;overflow:auto}
+.big-stars{display:flex;justify-content:center;gap:8px;margin:12px 0}
+.big-stars .ic{width:46px;height:46px;color:#DCD0B4}
+.big-stars .ic.f{color:var(--sun);filter:drop-shadow(0 3px 0 var(--ink));animation:starpop .5s cubic-bezier(.34,1.7,.64,1) both}
+.big-stars .ic.f:nth-child(2){animation-delay:.15s}
+.big-stars .ic.f:nth-child(3){animation-delay:.3s}
+@keyframes starpop{from{transform:scale(0) rotate(-40deg)}to{transform:scale(1)}}
+.toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-family:'Baloo 2';font-weight:700;padding:11px 20px;border-radius:14px;z-index:120;opacity:0;transition:all .3s;pointer-events:none;border:3px solid #fff;max-width:88vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:150}
+.conf-bit{position:absolute;will-change:transform}
+.splash{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:20px}
+.splash h1{font-size:clamp(38px,7vw,62px)}
+.splash h1 em{font-style:normal;color:var(--coral);text-shadow:3px 3px 0 var(--ink)}
+.splash .sub{font-weight:800;color:var(--ink2);max-width:430px}
+.wiggle{animation:wig 2.6s ease-in-out infinite}
+@keyframes wig{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.pre-reader .story-card,.pre-reader .bubble,.pre-reader .mission-row p{font-size:20px!important;line-height:1.65}
+.pre-reader .btn{min-height:62px;font-size:20px!important}
+.pre-reader .world-node{min-height:92px}
+.pre-reader .hint-step{font-size:19px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.robot-wrap{transition:transform .34s ease}
+.robot-rot{transition:transform .3s ease}
+#errbox{position:fixed;top:0;left:0;right:0;z-index:999;background:#C0392B;color:#fff;padding:12px 16px;font-weight:800;font-size:14px;display:none}
+
+/* ====== PEMBESARAN TULISAN UNTUK ALBY ====== */
+body{font-size:17.5px;line-height:1.6}
+.btn{font-size:18.5px!important;min-height:56px}
+.btn-sm{font-size:16.5px!important;min-height:48px}
+.blk{font-size:17px;min-height:52px}
+.chip{font-size:14.5px!important}
+.tag{font-size:14px}
+.bubble{font-size:17px}
+.hint-step{font-size:16.5px}
+.story-card p{font-size:18.5px!important;font-weight:700}
+.story-card h2{font-size:clamp(25px,4vw,35px)!important}
+.story-card h3{font-size:21px!important}
+#briefstory{font-size:19.5px!important;line-height:1.7}
+.hero-card h2{font-size:clamp(22px,4vw,32px)!important}
+.hero-card p{font-size:17.5px!important}
+.hero-card p:last-child{font-size:15px!important}
+.world-head h2{font-size:clamp(25px,4vw,34px)!important}
+.world-node h3{font-size:22px}
+.world-node p{font-size:15.5px}
+.mission-row b{font-size:19px!important}
+.mission-row p{font-size:14.5px!important}
+.mnode{font-size:21px}
+.sec-title h3{font-size:24px}
+.stage-head h3{font-size:22px!important}
+.hello h1{font-size:clamp(27px,4.6vw,42px)}
+.hello p{font-size:16px}
+.xp-num{font-size:16.5px}
+.splash h1{font-size:clamp(44px,8vw,74px)}
+.splash .sub{font-size:19px}
+.badge-card h4{font-size:14.5px}
+.badge-card small{font-size:12px}
+.studio-card h3{font-size:22px!important}
+.studio-card p{font-size:15.5px!important}
+.rule-card h4{font-size:17.5px!important}
+.field label{font-size:15.5px}
+.field input{font-size:17px!important}
+.seg button{font-size:16px!important}
+.slotline{font-size:17px}
+.slotline select{font-size:15.5px}
+.varbox b{font-size:40px}
+.kartu .pesan{font-size:22px}
+.story-view .dialog{font-size:18px}
+.code-view{font-size:14.5px}
+.emptymsg,.looptip{font-size:15.5px}
+.ov-card h2{font-size:29px!important}
+.ov-card h3{font-size:21px!important}
+.ov-card p{font-size:17.5px!important}
+.big-stars .ic{width:52px;height:52px}
+.toast{font-size:17px}
+.nav-btn{font-size:13.5px}
+.nav-fab{font-size:12.5px}
+.gm-hud{font-size:19px}
+.creation-body h4{font-size:17px}
+.creation-body small{font-size:12.5px}
+.curr-list li{font-size:15px}
+.mastery-row span{width:190px;font-size:15px}
+.parent-tab button{font-size:15.5px}
+</style>
+</head>
+<body>
+<div id="errbox"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.5V20h11v-9.5"/></symbol>
+<symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18.5 8 6l4 7 3-4.5L21 18.5z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 2.8l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.1l6.1-.7z"/></symbol>
+<symbol id="i-medal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9.5" r="5"/><path d="M9 13.8 7 21l5-2.8L17 21l-2-7.2"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5h16V20H4z"/><path d="M4 8.5 6 4.5h12l2 4"/><path d="M10 12.5h4"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="12" height="9" rx="2.5"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M8 5.5v13l11-6.5z"/></symbol>
+<symbol id="i-stop" viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="7" width="10" height="10" rx="2"/></symbol>
+<symbol id="i-redo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 5l-7 7 7 7"/></symbol>
+<symbol id="i-vol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4z"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6"/></symbol>
+<symbol id="i-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4z"/><path d="M17 9.5l4.5 5M21.5 9.5l-4.5 5"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9.5 7V4.5h5V7M7 7l1 13h8l1-13"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 10 18 19.5 7"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.2 2"/></symbol>
+<symbol id="i-tree" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 6.5 11H9L4.5 17h15L15 11h2.5z"/><path d="M12 17v4"/></symbol>
+<symbol id="i-house" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20v-8l8-6 8 6v8h-5v-5h-6v5z"/></symbol>
+<symbol id="i-pad" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="9" rx="4.5"/><path d="M8 10.8v3.4M6.3 12.5h3.4"/><circle cx="15.3" cy="11.3" r=".9" fill="currentColor"/><circle cx="17.8" cy="13.7" r=".9" fill="currentColor"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4.5h13.5V19H8.2A3.2 3.2 0 0 0 5 22z"/><path d="M18.5 14.5H8.2A3.2 3.2 0 0 0 5 17.7"/></symbol>
+<symbol id="i-app" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="7.5" y="3" width="9" height="18" rx="2.5"/><path d="M10.8 17.8h2.4"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.8 2.7 2.8 14.3 0 17M12 3.5c-2.8 2.7-2.8 14.3 0 17"/></symbol>
+<symbol id="i-planet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="5.8"/><ellipse cx="12" cy="12" rx="9.6" ry="3.4" transform="rotate(-18 12 12)"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></symbol>
+<symbol id="i-egg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 3.5c3.8 0 6.5 4.7 6.5 9.2a6.5 6.5 0 0 1-13 0C5.5 8.2 8.2 3.5 12 3.5z"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24" fill="currentColor"><path d="M13 3 5.5 13.5H11L10 21l7.5-10.5H13z"/></symbol>
+<symbol id="i-tool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4.2 4.2 0 0 0-5.8 5.2L4 16.4 7.6 20l4.9-4.9a4.2 4.2 0 0 0 5.2-5.8L15 12l-2.6-.4L12 9z"/></symbol>
+<symbol id="i-bulb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 17.5h5M10.5 21h3"/><path d="M12 3.5a6 6 0 0 1 3.4 10.9c-.7.5-.9 1-.9 1.6h-5c0-.6-.2-1.1-.9-1.6A6 6 0 0 1 12 3.5z"/></symbol>
+<symbol id="i-note" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18.5V6l9-2v12.5"/><circle cx="6.8" cy="18.5" r="2.3"/><circle cx="15.8" cy="16.5" r="2.3"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7.2-4.6-9-9a4.9 4.9 0 0 1 9-2.4A4.9 4.9 0 0 1 21 11c-1.8 4.4-9 9-9 9z"/></symbol>
+<symbol id="i-brush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l4 4L8.5 19.5 4 20l.5-4.5z"/><path d="M13 7l4 4"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 7 4 12l4.5 5"/><path d="M15.5 7 20 12l-4.5 5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 2.7v5.5c0 4.6-3.2 8-7.5 9.8-4.3-1.8-7.5-5.2-7.5-9.8V5.7z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V4"/><path d="M6 5h11l-2.5 3.5L17 12H6"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.4 1.6 5.4 4.9 5.4 8.8L15 15H9l-2.4-3.2C6.6 7.9 8.6 4.6 12 3z"/><circle cx="12" cy="9.5" r="1.7"/><path d="M9 15l-1.8 4.3 3.2-1.4M15 15l1.8 4.3-3.2-1.4"/></symbol>
+<symbol id="i-aright" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6.5 19 12l-6 5.5"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+</defs></svg>
+
+<div id="app"></div>
+<div id="fx"></div>
+
+<script>
+"use strict";
+/* ============ PENJAG ERROR ============ */
+function showFatal(msg){
+  var b=document.getElementById('errbox');
+  if(b){ b.style.display='block'; b.textContent='Ups, ada gangguan teknis: '+msg+' — kirimkan teks ini ke pengembang.'; }
+}
+window.addEventListener('error', function(e){ showFatal(e.message); });
+window.addEventListener('unhandledrejection', function(e){
+  var r=e.reason; showFatal(r&&r.message?r.message:String(r));
+});
+
+/* ============ UTIL ============ */
+function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+function esc(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}); }catch(e){ return iso; } }
+function ic(n,st){ return '<svg class="ic" style="'+(st||'')+'"><use href="#i-'+n+'"/></svg>'; }
+function uid(){ return Math.random().toString(36).slice(2,9); }
+
+/* ============ AUDIO ============ */
+var AC=null, muted=false;
+function ac(){ if(!AC){ try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } return AC; }
+function tone(f,dur,type,vol,when){
+  var c=ac(); if(!c||muted) return;
+  dur=dur||.18; type=type||'sine'; vol=vol||.16; when=when||0;
+  try{
+    var o=c.createOscillator(), g=c.createGain();
+    o.type=type; o.frequency.value=f;
+    g.gain.setValueAtTime(.0001, c.currentTime+when);
+    g.gain.exponentialRampToValueAtTime(vol, c.currentTime+when+.02);
+    g.gain.exponentialRampToValueAtTime(.0001, c.currentTime+when+dur);
+    o.connect(g); g.connect(c.destination);
+    o.start(c.currentTime+when); o.stop(c.currentTime+when+dur+.05);
+  }catch(e){}
+}
+var NOTES={do:262,re:294,mi:330,sol:392,la:440};
+var sfx={
+  click:function(){ tone(620,.07,'square',.08); },
+  pop:function(){ tone(880,.09,'sine',.14); tone(1320,.08,'sine',.08,.05); },
+  good:function(){ tone(523,.12); tone(659,.12,'sine',.16,.1); },
+  fail:function(){ tone(300,.2,'triangle',.14); tone(220,.28,'triangle',.14,.14); },
+  win:function(){ [523,659,784,1047].forEach(function(f,i){ tone(f,.22,'triangle',.18,i*.13); }); },
+  levelup:function(){ [392,523,659,784,1047].forEach(function(f,i){ tone(f,.2,'square',.1,i*.11); }); }
+};
+document.addEventListener('pointerdown', function(){ ac(); }, {once:true});
+
+/* ============ KARAKTER ============ */
+function robotSVG(size){
+  size=size||72;
+  return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 26 30">'
+  +'<line x1="13" y1="1" x2="13" y2="4.6" stroke="#33283D" stroke-width="2"/>'
+  +'<circle cx="13" cy="1.8" r="2" fill="#FFC531" stroke="#33283D" stroke-width="1.6"/>'
+  +'<rect x="2" y="4.5" width="22" height="19" rx="8" fill="#FF7A45" stroke="#33283D" stroke-width="1.8"/>'
+  +'<rect x="4.2" y="6.6" width="17.6" height="12.4" rx="5.4" fill="#33283D"/>'
+  +'<circle cx="7" cy="9" r="3" fill="#fff"/><circle cx="19" cy="9" r="3" fill="#fff"/>'
+  +'<circle cx="7.8" cy="9.4" r="1.4" fill="#33283D"/><circle cx="19.8" cy="9.4" r="1.4" fill="#33283D"/>'
+  +'<path d="M9 15.5c1.6 2 6.4 2 8 0" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/>'
+  +'<rect x=".5" y="11" width="2.6" height="5.5" rx="1.3" fill="#FFC531" stroke="#33283D" stroke-width="1.4"/>'
+  +'<rect x="22.9" y="11" width="2.6" height="5.5" rx="1.3" fill="#FFC531" stroke="#33283D" stroke-width="1.4"/>'
+  +'<rect x="6.5" y="25.5" width="4.6" height="3.6" rx="1.8" fill="#33283D"/>'
+  +'<rect x="14.9" y="25.5" width="4.6" height="3.6" rx="1.8" fill="#33283D"/>'
+  +'<rect x="9" y="20.5" width="8" height="5" rx="2" fill="#12B5A5" stroke="#33283D" stroke-width="1.5"/></svg>';
+}
+function kikoSVG(size){
+  size=size||64;
+  return '<svg class="kiko-mini" width="'+size+'" height="'+size+'" viewBox="0 0 30 30">'
+  +'<line x1="7" y1="7" x2="4" y2="4" stroke="#33283D" stroke-width="2" stroke-linecap="round"/>'
+  +'<line x1="23" y1="7" x2="26" y2="4" stroke="#33283D" stroke-width="2" stroke-linecap="round"/>'
+  +'<circle cx="4" cy="4" r="1.7" fill="#FFC531" stroke="#33283D" stroke-width="1.4"/>'
+  +'<circle cx="26" cy="4" r="1.7" fill="#FFC531" stroke="#33283D" stroke-width="1.4"/>'
+  +'<rect x="4" y="6" width="22" height="18" rx="8" fill="#12B5A5" stroke="#33283D" stroke-width="1.8"/>'
+  +'<rect x="6.5" y="8.5" width="17" height="12" rx="5" fill="#33283D"/>'
+  +'<circle cx="11.5" cy="13" r="2.6" fill="#8FE8DC"/><circle cx="18.5" cy="13" r="2.6" fill="#8FE8DC"/>'
+  +'<circle cx="11.5" cy="13.4" r="1.1" fill="#33283D"/><circle cx="18.5" cy="13.4" r="1.1" fill="#33283D"/>'
+  +'<path d="M11 16.8c2.4 1.8 5.6 1.8 8 0" stroke="#8FE8DC" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>';
+}
+
+/* ============ STATE ============ */
+var KEY='alby_dunia_v3';
+var DEFAULT={name:'Alby',xp:0,missions:{},mastery:{},masteryEvidence:{},badges:[],creations:[],days:{},sound:true,seen:false,retries:0,placement:{done:false,score:0,startWorld:1,reader:true},activity:{last:0,lastTick:0,activeMinutes:0}};
+var S=loadState();
+function loadState(){
+  try{
+    var raw=localStorage.getItem(KEY);
+    if(raw){ var o=JSON.parse(raw); for(var k in DEFAULT){ if(o[k]===undefined) o[k]=DEFAULT[k]; } return o; }
+  }catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT));
+}
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+/* Aktivitas nyata: waktu hanya dihitung ketika ALBY benar-benar berinteraksi. */
+function markActivity(){
+  var now=Date.now();
+  if(!S.activity) S.activity={last:0,lastTick:0,activeMinutes:0};
+  S.activity.last=now;
+  if(!S.activity.lastTick) S.activity.lastTick=now;
+}
+document.addEventListener('pointerdown',markActivity,{passive:true});
+document.addEventListener('keydown',markActivity,{passive:true});
+document.addEventListener('input',markActivity,{passive:true});
+document.addEventListener('change',markActivity,{passive:true});
+setInterval(function(){
+  if(document.visibilityState!=='visible') return;
+  var now=Date.now();
+  if(!S.activity) S.activity={last:now,lastTick:now,activeMinutes:0};
+  var tick=S.activity.lastTick||now;
+  var elapsed=Math.max(0,now-tick);
+  S.activity.lastTick=now;
+  if(S.activity.last && now-S.activity.last<=90000){
+    var mins=elapsed/60000;
+    S.activity.activeMinutes=(S.activity.activeMinutes||0)+mins;
+    var d=todayStr();
+    S.days[d]=(S.days[d]||0)+mins;
+    save();
+  }
+},60000);
+document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden') save(); });
+window.addEventListener('beforeunload',save);
+markActivity();
+
+/* ============ LEVEL / XP / MASTERY / LENCANA ============ */
+var LEVELS=[
+  {name:'Pemula',min:0,icon:'egg'},
+  {name:'Penjelajah',min:150,icon:'map'},
+  {name:'Pemecah Masalah',min:400,icon:'bolt'},
+  {name:'Pembuat',min:750,icon:'tool'},
+  {name:'Pencipta',min:1200,icon:'rocket'},
+  {name:'Ahli Coding',min:1800,icon:'bulb'}
+];
+function levelIdx(){ var i=0; LEVELS.forEach(function(l,k){ if(S.xp>=l.min) i=k; }); return i; }
+function addXP(n,silent){
+  var before=levelIdx();
+  S.xp+=n; save();
+  if(!silent) toast('+'+n+' XP');
+  var after=levelIdx();
+  if(after>before){
+    sfx.levelup();
+    showOverlay(robotSVG(96)
+      +'<h2 style="font-size:26px;margin:8px 0 2px">Naik Level!</h2>'
+      +'<div class="tag" style="margin:6px 0 14px">'+ic(LEVELS[after].icon)+' '+LEVELS[after].name+'</div>'
+      +'<p style="font-weight:700;color:var(--ink2)">Kemampuan codingmu makin kuat, '+esc(S.name)+'!</p>'
+      +'<button class="btn btn-coral" style="margin-top:16px" onclick="A.closeOverlay()">'+ic('check')+' Siap!</button>');
+  } else updateTopbarXP();
+}
+var CONCEPTS={seq:'Urutan',dir:'Arah & orientasi',pattern:'Pola',cause:'Sebab & akibat',algo:'Algoritma',loop:'Perulangan (loop)',event:'Kejadian (event)',sound:'Suara & nada',debug:'Debugging',cond:'Kondisi (jika…maka)',game:'Logika game',story:'Bercerita',vars:'Variabel',app:'Aplikasi',ui:'Antarmuka',html:'HTML',js:'JavaScript',create:'Berkarya'};
+function addMastery(list,amt,evidence){
+  evidence=evidence||{};
+  list.forEach(function(c){
+    var before=Number(S.mastery[c]||0);
+    S.mastery[c]=Math.min(100,before+amt);
+    if(!S.masteryEvidence[c]) S.masteryEvidence[c]={successes:0,failures:0,hints:0,variations:0,lastAt:null};
+    S.masteryEvidence[c].successes+=(evidence.successes||0);
+    S.masteryEvidence[c].failures+=(evidence.failures||0);
+    S.masteryEvidence[c].hints+=(evidence.hints||0);
+    S.masteryEvidence[c].variations+=(evidence.variations||0);
+    S.masteryEvidence[c].lastAt=new Date().toISOString();
+  });
+  save();
+}
+function masteryLabel(v){
+  v=Number(v||0);
+  if(v<20) return 'Belum kenal';
+  if(v<40) return 'Mulai memahami';
+  if(v<60) return 'Sedang berkembang';
+  if(v<80) return 'Cukup menguasai';
+  if(v<95) return 'Menguasai';
+  return 'Mandiri';
+}
+var BADGES=[
+  {id:'first',name:'Langkah Pertama',icon:'flag',desc:'Selesaikan misi pertama',cond:function(){ return doneCount()>=1; }},
+  {id:'maze',name:'Pemecah Labirin',icon:'tree',desc:'Tuntaskan Tantangan Besar Dunia 1',cond:function(){ return isDone('w1m6'); }},
+  {id:'loop',name:'Penakluk Loop',icon:'redo',desc:'Tuntaskan Desa Coding',cond:function(){ return isDone('w2m5'); }},
+  {id:'bug',name:'Detektif Bug',icon:'bulb',desc:'Perbaiki program yang salah urutan',cond:function(){ return isDone('w2m4'); }},
+  {id:'gamer',name:'Pembuat Game',icon:'pad',desc:'Tuntaskan Planet Game',cond:function(){ return isDone('w3m3'); }},
+  {id:'writer',name:'Pendongeng',icon:'book',desc:'Tuntaskan Lembah Cerita',cond:function(){ return isDone('w4m2'); }},
+  {id:'web',name:'Penjelajah Web',icon:'globe',desc:'Tuntaskan Pulau Web',cond:function(){ return isDone('w6m2'); }},
+  {id:'coder',name:'Penjelajah Kode',icon:'code',desc:'Tuntaskan Galaksi JavaScript',cond:function(){ return isDone('w7m2'); }},
+  {id:'grit',name:'Pantang Menyerah',icon:'bolt',desc:'Coba lagi 5 kali setelah gagal',cond:function(){ return (S.retries||0)>=5; }},
+  {id:'stars15',name:'Kolektor Bintang',icon:'star',desc:'Kumpulkan 15 bintang misi',cond:function(){ return totalStars()>=15; }},
+  {id:'perfect',name:'Sempurna!',icon:'medal',desc:'Raih 3 bintang di 5 misi',cond:function(){ return Object.keys(S.missions).filter(function(k){ return S.missions[k].stars===3; }).length>=5; }},
+  {id:'creator',name:'Sang Pencipta',icon:'brush',desc:'Simpan 3 karya di museum',cond:function(){ return S.creations.length>=3; }}
+];
+function checkBadges(){
+  var fresh=[];
+  BADGES.forEach(function(b){
+    if(S.badges.indexOf(b.id)<0 && b.cond()){ S.badges.push(b.id); fresh.push(b); }
+  });
+  if(fresh.length) save();
+  return fresh;
+}
+
+/* ============ DATA DUNIA & MISI ============ */
+var WORLDS=[
+  {id:1,name:'Hutan Logika',sub:'Urutan, arah, pola & algoritma pertama',color:'#3DAE5B',icon:'tree',boss:'w1m6'},
+  {id:2,name:'Desa Coding',sub:'Blok, perulangan, suara & debugging',color:'#F2B01E',icon:'house',boss:'w2m5'},
+  {id:3,name:'Planet Game',sub:'Jadilah pembuat game!',color:'#12B5A5',icon:'pad',boss:'w3m3'},
+  {id:4,name:'Lembah Cerita',sub:'Coding untuk bercerita',color:'#E85D75',icon:'book',boss:'w4m2'},
+  {id:5,name:'Kota Aplikasi',sub:'Buat aplikasi kecil pertamamu',color:'#7C5CE0',icon:'app',boss:'w5m2'},
+  {id:6,name:'Pulau Web',sub:'HTML, CSS & halaman pribadimu',color:'#3E8DDD',icon:'globe',boss:'w6m2'},
+  {id:7,name:'Galaksi JavaScript',sub:'Dari blok ke kode asli',color:'#3B3B6D',icon:'planet',boss:'w7m2'},
+  {id:8,name:'Kota Creator',sub:'Laboratorium Karya: karya bebas ALBY',color:'#FF7A45',icon:'spark',boss:null}
+];
+var M={};
+function def(m){ M[m.id]=m; }
+
+/* ---- DUNIA 1 ---- */
+def({id:'w1m1',world:1,type:'grid',title:'Jalan Pulang Pertama',xp:50,concepts:['seq','algo'],
+  story:'Alby robot kecil baru pertama kali terbangun di Hutan Logika. Rumahnya ada di ujung jalan. Bantu Alby pulang dengan memberi instruksi satu per satu. Komputer bekerja persis seperti itu: mengikuti urutan yang kita tulis!',
+  goal:'Buat Alby sampai ke rumah.',grid:{rows:['R...H'],facing:0},palette:['fwd'],
+  intro:'Halo! Aku Kiko, mentor codingmu. Komputer melakukan perintah satu per satu sesuai urutan. Coba beri Alby instruksi MAJU!',
+  hints:['Hitung: ada berapa petak dari Alby sampai rumah?','Setiap petak butuh satu blok MAJU.','Tekan blok MAJU sebanyak 4 kali.','Susun 4 blok MAJU, lalu tekan Jalankan.'],
+  success:'Kamu baru saja membuat program pertamamu: sebuah URUTAN instruksi. Itu dasar dari semua kode di dunia!',
+  challenge:'Coba tekan Jalankan saat program masih kosong. Apa yang terjadi? Itu bagian dari belajar!'});
+def({id:'w1m2',world:1,type:'grid',title:'Belok di Bawah Pohon',xp:50,concepts:['seq','dir'],
+  story:'Jalan ke rumah Alby berbelok. Robot harus tahu cara BERPUTAR. PutarKanan membuat Alby menghadap ke kanan dari arah badannya sendiri.',
+  goal:'Belok di tempat yang tepat agar sampai ke rumah.',grid:{rows:['..T.','R...','...H'],facing:0},palette:['fwd','left','right'],
+  intro:'Maju saja tidak cukup sekarang. Menurutmu, kapan Alby harus berputar?',
+  hints:['Maju dulu sampai ujung jalan.','Gunakan PUTARKANAN saat sudah di ujung.','MAJU 3 kali, PUTARKANAN, lalu MAJU sekali lagi.','Urutannya: MAJU, MAJU, MAJU, PUTARKANAN, MAJU.'],
+  success:'Keren! Kamu menggabungkan gerakan dan arah. Itu disebut orientasi — penting untuk semua robot!',
+  challenge:'Bisakah kamu menemukan urutan blok PALING pendek untuk sampai ke rumah?'});
+def({id:'w1m3',world:1,type:'grid',title:'Pola Bintang',xp:50,concepts:['pattern','seq'],
+  story:'Ada bintang berserakan di jalur dengan pola tertentu. Alby otomatis mengambil bintang yang dilewatinya. Amati polanya, lalu tulis programmu!',
+  goal:'Ambil semua bintang dan sampai ke rumah.',grid:{rows:['R*.*.*H'],facing:0},palette:['fwd'],
+  intro:'Lihat baik-baik jalurnya. Pola bintangnya berulang, tapi programmu tetap harus maju sampai akhir!',
+  hints:['Ada berapa petak dari awal sampai rumah?','Bintang boleh dilewati — Alby otomatis mengambilnya saat lewat.','Total ada 6 petak yang harus dilalui.','Tekan MAJU 6 kali, lalu Jalankan.'],
+  success:'Semua bintang terkumpul! Kamu tadi membaca POLA — otak komputermu makin tajam.',
+  challenge:'Kalau jalurnya 10 petak, berapa blok MAJU yang kamu butuhkan?'});
+def({id:'w1m4',world:1,type:'grid',title:'Petak Panah Ajaib',xp:50,concepts:['cause','seq'],
+  story:'Ada petak berpanah di jalan! Petak panah punya kekuatan: siapa pun yang menginjaknya akan diputar mengikuti arah panah. Itulah SEBAB dan AKIBAT.',
+  goal:'Gunakan petak panah untuk sampai ke rumah.',grid:{rows:['....','Rv..','.H..'],facing:0},palette:['fwd'],
+  intro:'Petak panah akan memutar Alby secara otomatis. Perhatikan ke mana panahnya mengarah!',
+  hints:['Panahnya mengarah ke bawah. Alby akan menghadap bawah setelah menginjaknya.','Alby cukup MAJU terus — panah yang akan memutarnya.','Rumah ada tepat di bawah petak panah.','Coba tekan MAJU 2 kali saja. Ajaib, kan?'],
+  success:'Itulah sebab-akibat: satu kejadian (menginjak panah) menyebabkan kejadian lain (Alby berputar). Game bekerja dengan cara yang sama!',
+  challenge:'Bagaimana kalau panahnya mengarah ke kiri? Bayangkan dulu jalannya, baru ceritakan.'});
+def({id:'w1m5',world:1,type:'grid',title:'Tombol dan Gerbang',xp:50,concepts:['cause','algo'],
+  story:'Gerbang batu menghalangi jalan! Ada tombol merah di jalur. Ketika Alby menginjak tombol, gerbang akan terbuka. Rencanakan urutanmu dengan baik.',
+  goal:'Tekan tombolnya, lalu lewati gerbang ke rumah.',grid:{rows:['....','RSGH','....'],facing:0},palette:['fwd'],
+  intro:'Gerbang tertutup menahan jalan. Apa yang harus terjadi DULU sebelum gerbang terbuka?',
+  hints:['Cari petak tombol merah (S) di jalur.','Alby harus MENGINJAK tombol dulu dengan MAJU.','Setelah tombol ditekan, gerbang terbuka — maju saja terus.','MAJU 3 kali: ke tombol, ke gerbang yang sudah terbuka, lalu ke rumah.'],
+  success:'Kamu membuat RENCANA: sebab dulu, akibat kemudian. Itu inti dari algoritma!',
+  challenge:'Ceritakan ke orang di sekitarmu: apa sebabnya dan apa akibatnya di misi ini?'});
+def({id:'w1m6',world:1,type:'grid',boss:true,title:'SELAMATKAN SI KUCING',xp:100,concepts:['algo','dir','seq'],
+  story:'Misi besar! Si Kucing tersesat di labirin dan hanya Alby yang bisa menemuinya. Labirin ini butuh rencana panjang: maju, berputar, maju lagi. Berpikirlah dulu sebelum menekan Jalankan!',
+  goal:'Bawa Alby sampai ke Si Kucing.',grid:{rows:['R....','.#.#.','.C..*'],facing:0},palette:['fwd','left','right'],
+  intro:'Ini tantangan terbesar di Hutan Logika. Tarik napas, lihat labirinnya, dan rencanakan langkahmu.',
+  hints:['Rencanakan dulu: Alby lewat atas, turun, lalu jalan ke kiri menuju kucing.','Bagian 1: MAJU 4 kali sampai ujung kanan, lalu PUTARKANAN.','Bagian 2: MAJU 2 kali (ambil bintangnya), lalu PUTARKANAN lagi.','Bagian akhir: MAJU 3 kali sampai Si Kucing. Selamatkan dia!'],
+  success:'SI KUCING SELAMAT! Kamu baru saja menyusun algoritma 11 langkah. Itu pekerjaan programmer sungguhan!',
+  challenge:'Tanpa melihat papan, bisakah kamu menjelaskan jalurmu dengan kata-kata kepada orang tua atau temanmu?'});
+
+/* ---- DUNIA 2 ---- */
+def({id:'w2m1',world:2,type:'grid',title:'Lompat 5 Kali!',xp:50,concepts:['loop'],
+  story:'Di depan Alby ada lima lubang! Menyusun blok LOMPAT lima kali bisa, tapi programmer pintar punya trik: blok ULANGI. Tulis sekali, ulangi berkali-kali!',
+  goal:'Buat Alby melompati semua lubang dengan blok ULANGI.',grid:{rows:['RO.O.O.O.OH'],facing:0},palette:['jump','loop'],
+  intro:'Ini blok ULANGI. Klik dia, lalu isi bagian dalamnya dengan blok LOMPAT. Atur angkanya menjadi 5!',
+  hints:['Klik blok ULANGI, lalu klik LOMPAT supaya masuk ke dalamnya.','Atur angka ULANGI menjadi 5 dengan tombol plus.','Isi loop cukup satu blok: LOMPAT.','ULANGI 5 kali berisi LOMPAT — lalu tekan Jalankan!'],
+  success:'Itulah PERULANGAN (loop): satu instruksi kecil, dipakai berkali-kali. Semua game dan animasi hidup dari loop!',
+  challenge:'Kalau ada 10 lubang, apa satu-satunya yang perlu kamu ubah pada programmu?'});
+def({id:'w2m2',world:2,type:'grid',title:'Tangga Ajaib',xp:50,concepts:['loop','pattern'],
+  story:'Jalan ke rumah berbentuk tangga berulang: maju, belok, maju, belok balik… Pola yang sama terus terjadi. Waktunya loop yang isinya lebih dari satu blok!',
+  goal:'Naiki tangganya dengan SATU blok ULANGI.',grid:{rows:['....H','.....','.....','R....'],facing:3},palette:['fwd','left','right','loop'],
+  intro:'Alby menghadap ke atas. Pola langkahnya berulang — temukan dulu polanya, baru masukkan ke loop.',
+  hints:['Amati polanya: MAJU, PUTARKANAN, MAJU, PUTARKIRI — lalu ulangi dari awal.','Masukkan keempat blok itu ke dalam ULANGI, atur menjadi 3 kali.','Setelah loop, tambahkan PUTARKANAN lalu MAJU sekali lagi menuju rumah.','ULANGI 3x [MAJU, PUTARKANAN, MAJU, PUTARKIRI] + PUTARKANAN + MAJU. Jalankan!'],
+  success:'Loop berisi banyak blok — begitulah cara membuat pola panjang dengan program pendek. Hemat dan pintar!',
+  challenge:'Hitung: kalau tanpa loop, berapa blok yang harus kamu susun?'});
+def({id:'w2m3',world:2,type:'notes',title:'Konser Nada Ceria',xp:50,concepts:['sound','event','loop'],
+  story:'Saat malam tiba, Desa Coding mengadakan konser! Alby tampil dengan keyboard ajaib. Susun nada-nada menjadi lagu pendek — dan gunakan ULANGI supaya lagunya berulang!',
+  goal:'Buat lagu dengan minimal 4 nada dan satu blok ULANGI.',palette:['note_do','note_re','note_mi','note_sol','loop'],
+  intro:'Setiap blok nada akan mengeluarkan bunyi sungguhan saat program dijalankan. Susun lagumu, ya!',
+  hints:['Klik beberapa blok nada — dengarkan bunyinya satu per satu.','Masukkan nada-nada itu ke dalam blok ULANGI.','Syaratnya: pakai ULANGI dan minimal 4 nada.','Contoh: ULANGI 2x berisi DO, MI, SOL — bunyinya seperti lagu!'],
+  success:'Konser sukses! Kamu tadi mengatur EVENT: setiap blok dipanggil, suara berbunyi. Begitulah tombol dan game bekerja.',
+  challenge:'Coba buat pola naik: DO, RE, MI, SOL. Lalu ulangi 3 kali. Apa yang kamu dengar?'});
+def({id:'w2m4',world:2,type:'debug',title:'Detektif Bug',xp:50,concepts:['debug','seq'],
+  story:'Aduh! Kiko sudah menulis program, tapi ada BUG: dua bloknya tertukar posisi, jadi programnya tidak berjalan seperti seharusnya. Menemukan bug bukan hal menakutkan — itu kerja detektif coding!',
+  goal:'Tukar posisi dua blok yang salah agar Alby sampai ke rumah.',grid:{rows:['R.*O.H'],facing:0},
+  correct:['fwd','fwd','jump','fwd'],broken:['fwd','jump','fwd','fwd'],
+  intro:'Program di bawah ini sudah jadi, tapi salah urutan. Tekan dua blok untuk menukarnya, lalu Jalankan.',
+  hints:['Jalankan dulu dan lihat: di mana Alby melakukan hal yang aneh?','LOMPAT dipakai untuk MELEWATI lubang, bukan untuk maju biasa.','Lompatan baru berguna SETELAH Alby melewati bintang.','Urutan yang benar: MAJU, MAJU, LOMPAT, MAJU.'],
+  success:'BUG DITEMUKAN DAN DIPERBAIKI! Programmer hebat bukan yang tidak pernah salah — tapi yang bisa mencari dan memperbaiki.',
+  challenge:'Kenapa MAJU, MAJU harus lebih dulu sebelum LOMPAT? Jelaskan dengan kata-katamu sendiri.'});
+def({id:'w2m5',world:2,type:'grid',boss:true,title:'RUTE PERAYAAN',xp:100,concepts:['algo','dir','seq','loop'],
+  story:'Tantangan Besar Desa Coding! Jalur perayaan penuh lubang, bintang, dan belokan. Semua yang sudah kamu pelajari harus bekerja sama di sini.',
+  goal:'Bawa Alby sampai ke rumah lewat rute perayaan.',grid:{rows:['R.O..','....*','.HO..'],facing:0},palette:['fwd','jump','left','right','loop'],
+  intro:'Misi besar! Rencanakan dulu di kepalamu, susun programnya, lalu jalankan. Kamu sudah kuat, Alby!',
+  hints:['Mulai: MAJU sekali, lalu LOMPAT melewati lubang pertama.','Lanjut: MAJU sekali lagi ke ujung kanan, lalu PUTARKANAN menghadap bawah.','MAJU 2 kali — bintangnya di tengah! Lalu PUTARKANAN lagi menghadap kiri.','Akhir: MAJU sekali, lalu LOMPAT melewati lubang terakhir — mendarat tepat di rumah! Programnya 9 blok.'],
+  success:'DESAAAA! Kamu menuntaskan Desa Coding dengan algoritma 9 langkah. Hutan dan desa sudah kamu taklukkan!',
+  challenge:'Bagian mana dari rute ini yang bisa dibuat dengan blok ULANGI? Bayangkan versi barunya.'});
+
+/* ---- DUNIA 3 ---- */
+def({id:'w3m1',world:3,type:'game',title:'Tangkap Bintang!',xp:50,concepts:['game','event'],
+  story:'Selamat datang di Planet Game! Di sini kamu bukan hanya pemain — kamu PEMBUAT game. Atur aturan di mesin game, lalu uji langsung ciptaanmu.',
+  goal:'Setel aturannya, lalu capai target skor di game buatanmu sendiri.',
+  cfg:{bombs:false,rule:false,speedSel:true,targetSel:true,time:40,targetDef:5},
+  intro:'Atur kecepatan bintang dan target skormu, lalu tekan UJI GAME. Ingat: kamu yang membuat aturannya!',
+  hints:['Mulai dengan kecepatan LAMBAT dan target 5.','Gerakkan Alby dengan menggeser jari di arena, atau tombol panah.','Bintang yang jatuh ditangkap dengan kepala Alby.','Belum tercapai? Atur ulang lalu UJI lagi. Gagal itu bagian dari membuat game!'],
+  success:'GAME PERTAMAMU BERHASIL! Kamu tadi menyetel parameter — angka yang mengubah perilaku game.',
+  challenge:'Naikkan target ke 10. Apakah game-mu jadi lebih seru atau lebih melelahkan?'});
+def({id:'w3m2',world:3,type:'game',title:'Awas Bomb!',xp:50,concepts:['cond','game','event'],
+  story:'Sekarang ada bomb jatuh! Di sinilah KONDISI bekerja: JIKA Alby menyentuh bomb, MAKA apa yang terjadi? Kamu yang memilih aturannya.',
+  goal:'Pilih aturan kondisi bomb, lalu capai target skor.',
+  cfg:{bombs:true,rule:true,speedSel:true,targetSel:true,time:45,targetDef:8},
+  intro:'Aturan kondisi: JIKA kena bomb, MAKA kehilangan 1 nyawa ATAU langsung selesai. Mana yang kamu pilih?',
+  hints:['Baca kartu aturannya: JIKA … MAKA … — itulah kondisi.','Aturan minus 1 nyawa lebih ramah: kamu punya 3 kesempatan.','Bomb boleh dihindari — jangan berdiri di bawahnya!','Target 8 bintang sebelum waktu habis. Kamu pasti bisa!'],
+  success:'Kamu baru saja memakai KONDISI — otak pengambilan keputusan di dalam game. JIKA ini, MAKA itu!',
+  challenge:'Menurutmu, kapan pembuat game memilih aturan minus 1 nyawa, dan kapan langsung selesai?'});
+def({id:'w3m3',world:3,type:'game',boss:true,title:'BADAI BINTANG',xp:100,concepts:['cond','game','algo'],
+  story:'Tantangan Besar Planet Game: BADAI BINTANG! Bomb berhamburan, bintang berjatuhan cepat, dan waktunya singkat. Buat game terberikmu — lalu taklukkan!',
+  goal:'Kumpulkan 5 bintang sebelum waktu habis, di tengah badai bomb.',
+  cfg:{bombs:true,rule:true,speedSel:true,targetSel:false,time:30,targetDef:5,forceSpeed:'cepat',forceBombs:'banyak'},
+  intro:'Ini dia! Game tersulit buatanmu sendiri: cepat, banyak bomb, waktu 30 detik. Fokus!',
+  hints:['Dengarkan ritmenya: bomb dan bintang jatuh berselang-seling.','Bergerak sedikit saja — jangan panik bolak-balik.','Posisikan Alby di antara dua aliran bintang.','Kalau kalah, coba lagi! XP Gigih menantimu.'],
+  success:'BADAI TERTAKLUKKAN! Kamu sudah bisa membuat dan menyelesaikan game sungguhan. Selamat, Pembuat Game!',
+  challenge:'Kalau kamu bisa menambah SATU aturan baru di game ini, aturan apa yang kamu tambahkan?'});
+
+/* ---- DUNIA 4 ---- */
+def({id:'w4m1',world:4,type:'story',title:'Cerita Pertamaku',xp:50,concepts:['story','seq','create'],branch:false,
+  story:'Coding bukan hanya untuk game — coding bisa bercerita! Rakit tiga adegan: pilih latar, tulis apa yang Alby katakan, lalu putar ceritamu seperti film mini.',
+  goal:'Susun 3 adegan dengan dialog, lalu putar ceritamu sampai selesai.',
+  intro:'Setiap adegan punya latar dan dialog. Tulis kalimatmu — boleh kocak, boleh hangat. Ini ceritamu!',
+  hints:['Klik latar untuk mengganti tempat kejadiannya.','Tulis dialog di kotak, atau tekan tombol Ide untuk saran kalimat.','Setelah 3 adegan siap, tekan Putar Cerita dan tonton sampai akhir.','Cerita selesai diputar = misi selesai!'],
+  success:'Ceritamu tayang! Kamu baru saja membuat program yang menyampaikan sesuatu — itu inti dari aplikasi dan film.',
+  challenge:'Kalau adegan ketiga diputar 3 kali seperti loop, ceritanya jadi seperti apa?'});
+def({id:'w4m2',world:4,type:'story',branch:true,title:'Pilihan Sang Pahlawan',xp:50,concepts:['story','cond','create'],
+  story:'Cerita yang hebat punya PILIHAN. Di adegan terakhir, pembaca memilih jalan A atau B — dan setiap pilihan punya ending sendiri. Itu percabangan: JIKA pilih A MAKA ending A!',
+  goal:'Buat cerita dengan dua ending, lalu mainkan KEDUA jalurnya.',branch:true,
+  intro:'Tulis dua pilihan untuk pembaca, lalu tulis ending untuk masing-masing. Dua cabang, dua akhir!',
+  hints:['Pilihan A dan B ditulis dengan kata-katamu sendiri.','Tulis ending A dan ending B — keduanya boleh sangat berbeda!','Putar ceritamu dua kali: sekali pilih A, sekali pilih B.','Kedua ending sudah terlihat = misi selesai!'],
+  success:'Dua ending dari satu cerita — itulah PERCABANGAN. Game, aplikasi, dan robot bekerja dengan cabang seperti ini!',
+  challenge:'Berapa ending yang mungkin kalau ceritamu punya 2 titik pilihan berurutan? Hitung dan heran-halah.'});
+
+/* ---- DUNIA 5 ---- */
+def({id:'w5m1',world:5,type:'counter',title:'Mesin Penghitung Skor',xp:50,concepts:['vars','event','ui','app'],
+  story:'Aplikasi itu: tombol + aturan + variabel. Rakit mesin penghitungmu: pasang tampilan skor, tombol penambah, dan atur nilainya. Lalu jalankan hingga skor tepat 10!',
+  goal:'Rakit aplikasinya, lalu buat skor tepat 10 — lihat Kotak Variabel berubah!',
+  intro:'Variabel itu kotak penyimpan angka. Setiap tombol dipencet, isi kotaknya berubah. Itulah variabel!',
+  hints:['Pasang Tampilan Skor dan beberapa tombol ke aplikasimu.','Tombol plus 2 menambah 2 setiap kali ditekan. Coba kombinasikan tombolnya.','Perhatikan Kotak Variabel di samping — angkanya berubah setiap klik!','Contoh: plus 5 dua kali = 10, atau plus 2 lima kali. Banyak caranya!'],
+  success:'APLIKASI PERTAMAMU JALAN! Variabel, tombol (event), dan aturan — tiga bahan utama semua aplikasi di dunia.',
+  challenge:'Temukan minimal 2 kombinasi tombol berbeda untuk mencapai tepat 10.'});
+def({id:'w5m2',world:5,type:'card',title:'Kartu Ucapan Digital',xp:50,concepts:['create','ui','app'],
+  story:'Buat hadiah digital untuk seseorang yang kamu sayangi: pilih warna, stiker, tulis pesanmu — lalu buka kartunya dengan kejutan meriah!',
+  goal:'Rancang kartu ucapan, lalu tekan Buka Kartu.',
+  intro:'Desain bebas! Penerima boleh siapa saja: Ibu, Ayah, sahabat, atau guru kesayangan.',
+  hints:['Ketik nama penerima dan pilih pesan, atau tulis sendiri.','Coba-coba warna dan stiker sampai terasa wah.','Tekan BUKA KARTU untuk melihat kejutannya.','Kartu yang dibuka otomatis tersimpan di museum Karyamu.'],
+  success:'Hadiah digital selesai! Kamu tadi merancang antarmuka — sesuatu yang dilihat dan disentuh orang lain.',
+  challenge:'Kalau kartumu punya tombol ganti warna seperti di Pulau Web, apa yang harus ditambahkan?'});
+
+/* ---- DUNIA 6 ---- */
+def({id:'w6m1',world:6,type:'web',title:'Halaman Pribadi Alby',xp:50,concepts:['html','ui','create'],
+  story:'Selamat datang di Pulau Web! Setiap website di dunia dibuat dengan HTML. Sekarang giliranmu: rakit halaman pribadimu dari elemen asli — dan lihat kode HTML sungguhannya!',
+  goal:'Buat halaman dengan minimal satu Judul dan satu Tombol.',
+  intro:'Judul, teks, stiker, tombol — semuanya elemen HTML. Susun, lihat hasilnya, lalu intip kode aslinya!',
+  hints:['Tambahkan elemen JUDUL dulu — itu tulisan terbesar di halamanmu.','Tombol butuh AKSI: pilih aksi sapa supaya dia menyapa pengunjung.','Tekan Intip Kode untuk melihat HTML yang kamu buat — persis seperti programmer!','Ada Judul dan ada tombol = misi selesai.'],
+  success:'HALAMAN WEB PERTAMAMU JADI! Kamu baru saja menulis HTML — bahasa yang dipakai semua website di dunia.',
+  challenge:'Tambahkan satu elemen lagi dan tulis kalimatmu sendiri. Halaman ini halamanmu!'});
+def({id:'w6m2',world:6,type:'web',title:'Tombol Ajaib',xp:50,concepts:['html','js','event'],
+  story:'Tombol di web punya kekuatan: dipencet, sesuatu TERJADI. Itu JavaScript bekerja! Coba semua aksi tombol: menyapa, mengganti warna halaman, dan menghitung klik.',
+  goal:'Buat halaman dengan tombol ajaib yang bekerja, lalu periksa.',
+  intro:'Setiap klik adalah EVENT, dan setiap event bisa dipasangi aksi. Tiga tombol, tiga keajaiban!',
+  hints:['Tambahkan tiga tombol: satu beraksi sapa, satu ganti warna, satu hitung klik.','Tekan masing-masing di pratinjau dan amati apa yang berubah.','Tombol Hitung Klik menyimpan angka — itu variabel di dalam web!','Intip kodenya: temukan kata function dan onclick.'],
+  success:'Tombol-tombolmu hidup! Sapa, ubah warna, hitung klik — semua itu JavaScript, bahasa yang membuat web bergerak.',
+  challenge:'Tombol mana yang paling seru? Kalau bisa menambah aksi keempat, aksinya apa?'});
+
+/* ---- DUNIA 7 ---- */
+def({id:'w7m1',world:7,type:'jsslots',title:'Jembatan ke Kode',xp:50,concepts:['js','seq'],
+  story:'Ini dia: JEMBATAN dari blok ke kode asli! Program yang selama ini kamu susun dengan blok, sekarang ditulis sebagai teks JavaScript. Isi bagian kosongnya, lalu jalankan.',
+  goal:'Lengkapi kodenya agar robot di papan sampai ke rumah.',
+  intro:'Lihat: maju(2) artinya MAJU dua kali. Kode adalah blok yang ditulis! Lengkapi slot yang kosong.',
+  hints:['Hitung petaknya: Alby harus maju 2 kali ke kanan dulu.','Setelah itu Alby harus menghadap ke bawah — blok putar mana artinya itu di kode?','Di kode, putarKanan() sama dengan blok PUTARKANAN.','maju(2), putarKanan(), maju(2) — jalankan!'],
+  success:'KAMU MENULIS KODE ASLI! Blok dan teks adalah dua bahasa untuk hal yang sama — dan kamu menguasai keduanya.',
+  challenge:'Kalau rumahnya pindah, kode apa yang harus ditulis? Susun dulu di kepalamu.'});
+def({id:'w7m2',world:7,type:'varbox',title:'Kotak Ajaib Variabel',xp:50,concepts:['vars','loop','js'],
+  story:'Misi terakhir sebelum Kota Creator! Variabel menyimpan angka, dan loop menambahkannya berulang kali. Pilih angka-angkanya supaya skor AKHIRNYA tepat 14.',
+  goal:'Jalankan langkah demi langkah dan buat skor akhir tepat 14.',
+  intro:'skor = skor + 2 artinya: ambil isi kotak, tambah 2, simpan kembali. Jalankan dan saksikan kotaknya berubah!',
+  hints:['Mulai: skor = 0. Setelah baris kedua, isinya jadi angka pilihanmu.','Bagian ULANGI dijalankan berulang: setiap putaran menambah angka pilihanmu.','Contoh: mulai 2, lalu ulangi 3 kali tambah 4. Hasilnya 2 + 12 = 14!','Ada banyak kombinasi yang benar. Coba dua cara berbeda!'],
+  success:'TEPAT 14! Variabel + loop = kekuatan menghitung komputer. Galaksi JavaScript selesai kamu jelajahi!',
+  challenge:'Coba buat kombinasi lain yang hasilnya juga 14. Kalau targetnya 100, kira-kira bagaimana?'});
+
+/* ---- STUDI KARYA ---- */
+var STUDIOS=[
+  {t:'game',name:'Game',icon:'pad',color:'#12B5A5',desc:'Setel aturan & mainkan game-mu'},
+  {t:'web',name:'Website',icon:'globe',color:'#3E8DDD',desc:'Halaman web buatanmu sendiri'},
+  {t:'story',name:'Cerita Interaktif',icon:'book',color:'#E85D75',desc:'Adegan, dialog & cabang cerita'},
+  {t:'card',name:'Kartu Ucapan',icon:'heart',color:'#FF7A45',desc:'Hadiah digital untuk yang tersayang'},
+  {t:'quiz',name:'Kuis',icon:'bulb',color:'#7C5CE0',desc:'Pertanyaan buatanmu, dijawab orang lain'},
+  {t:'anim',name:'Animasi',icon:'note',color:'#F2B01E',desc:'Gerakkan karakter dengan program'}
+];
+var STUDIO_CONCEPTS={game:['game','cond'],web:['html','create'],story:['story','cond'],card:['ui','create'],quiz:['create','ui'],anim:['event','sound','create']};
+
+/* ---- KURIKULUM 104 AKTIVITAS (dokumen orang tua) ---- */
+var CURRICULUM={
+ 'Dunia 1 — Hutan Logika (dasar berpikir komputasional)':['Kenalan dengan Alby: tekan tombol, lihat reaksi','Instruksi tunggal: MAJU','Urutan 2 langkah','Urutan 3 langkah','Arah: kanan, kiri, atas, bawah','Putar badan robot: kiri & kanan','Merencanakan sebelum bergerak','Membaca papan petak','Pola bintang di jalur','Melanjutkan pola yang terputus','Petak panah: sebab-akibat otomatis','Tombol & gerbang: sebab-akibat dua tahap','Menyusun algoritma 5+ langkah','TANTANGAN BESAR: labirin selamatkan kucing'],
+ 'Dunia 2 — Desa Coding (blok, loop & debugging)':['Kenalan blok coding','Blok gerak & putar','Menjalankan program pertama','Konsep loop: mengapa berulang','Blok Ulangi: menyetel angka','Lompat 5 kali dengan loop','Pola tangga dengan loop multi-blok','Menggabungkan loop & gerakan','Nada & suara sebagai perintah','Membuat lagu dengan loop','Apa itu bug?','Menemukan blok yang salah','Menukar blok: debugging','Mengetes ulang setelah memperbaiki','Memprediksi hasil program','TANTANGAN BESAR: rute perayaan'],
+ 'Dunia 3 — Planet Game (menjadi pembuat game)':['Apa itu game? Siapa yang mengatur aturan?','Kenalan mesin game','Aturan: tangkap bintang, skor bertambah','Parameter: kecepatan benda','Parameter: target skor','Uji game pertamamu','Kondisi: JIKA maka','Aturan bomb: minus 1 nyawa','Aturan bomb: langsung selesai','Membandingkan dua aturan kondisi','Menyetel tingkat kesulitan','Bermain & menilai game buatan sendiri','Memperbaiki aturan yang terlalu sulit','TANTANGAN BESAR: Badai Bintang'],
+ 'Dunia 4 — Lembah Cerita (coding untuk bercerita)':['Coding bisa bercerita','Adegan: latar & karakter','Menulis dialog','Menyusun 3 adegan berurutan','Memutar ceritamu','Pilihan: apa itu cabang cerita','JIKA pilih A maka, JIKA pilih B maka','Menulis dua ending','Memilih kata untuk titik pilihan','Memperkaya cerita dengan detail','Mendengarkan ceritamu dibacakan','TANTANGAN: cerita dengan cabang'],
+ 'Dunia 5 — Kota Aplikasi (aplikasi mini)':['Apa itu aplikasi?','Tombol & kejadian (event)','Variabel: kotak penyimpan angka','Menambah angka: plus 1, 2, 5','Tombol reset','Menetapkan target angka','Menjalankan mesin penghitung','Kartu ucapan: pesan & penerima','Mengatur tampilan: warna & stiker','Pratinjau & perbaikan','Mencoba aplikasi sebagai pengguna','KARYA: aplikasi mini milikmu sendiri'],
+ 'Dunia 6 — Pulau Web (HTML & CSS)':['Apa itu halaman web?','HTML: kerangka halaman','Judul (h1)','Paragraf (p)','Menambah gambar/stiker','Mengatur warna latar','CSS: membimbing tampilan','Tombol di web','Kejadian klik','Aksi tombol: menyapa','Aksi tombol: ganti warna','Aksi tombol: hitung klik','Membaca kode aslimu','KARYA: halaman pribadi interaktif'],
+ 'Dunia 7 — Galaksi JavaScript (dari blok ke teks)':['Dari blok ke teks: kenalan JavaScript','Perintah maju(2)','Memanggil fungsi putarKanan()','Membaca kode sederhana','Menjalankan kode & mengamati','Memperbaiki kode yang salah','Variabel: skor = 0','Menambah variabel: skor = skor + 2','Mengulang dengan loop angka','Memprediksi hasil variabel','Operator tambah dan sama dengan','Memecahkan teka-teki angka','Komentar di kode','TANTANGAN BESAR: buat skor tepat 14'],
+ 'Dunia 8 — Kota Creator (proyek mandiri)':['Memilih proyek pertamamu','Bengkel Game: mengubah aturan sendiri','Bengkel Cerita: menulis cabangmu','Bengkel Kartu: hadiah digital','Bengkel Kuis: membuat pertanyaan','Bengkel Animasi: menggerakkan karakter','Bengkel Web: halaman buatanmu','ALBY BIG CREATION: proyek pilihan sendiri']
+};
+
+/* ============ KEMAJUAN ============ */
+function mrec(id){ if(!S.missions[id]) S.missions[id]={done:false,stars:0,tries:0,hints:0}; return S.missions[id]; }
+function isDone(id){ return !!(S.missions[id]&&S.missions[id].done); }
+function doneCount(){ return Object.keys(S.missions).filter(function(k){ return S.missions[k].done; }).length; }
+function totalStars(){ var t=0; Object.keys(S.missions).forEach(function(k){ t+=S.missions[k].stars||0; }); return t; }
+function worldUnlocked(w){
+  if(w.id===1||w.id===8) return true;
+  if(S.placement&&S.placement.done&&w.id<=(S.placement.startWorld||1)) return true;
+  return isDone(WORLDS[w.id-2].boss);
+}
+function worldMissions(w){ return Object.keys(M).map(function(k){ return M[k]; }).filter(function(m){ return m.world===w.id; }); }
+function worldProgress(w){ var ms=worldMissions(w); return ms.filter(function(m){ return isDone(m.id); }).length+'/'+ms.length; }
+function evalProgress(w){ var ms=worldMissions(w); if(!ms.length) return Math.min(100,S.creations.length*20); return Math.round(100*ms.filter(function(m){ return isDone(m.id); }).length/ms.length); }
+function findNext(){
+  var start=(S.placement&&S.placement.done)?Math.max(1,Math.min(3,S.placement.startWorld||1)):1;
+  for(var i=start-1;i<WORLDS.length;i++){
+    var w=WORLDS[i];
+    if(!worldUnlocked(w)) continue;
+    var ms=worldMissions(w);
+    for(var j=0;j<ms.length;j++){ if(!isDone(ms[j].id)) return ms[j]; }
+  }
+  return null;
+}
+function adaptiveTip(){
+  var entries=Object.keys(S.mastery).filter(function(k){ return S.mastery[k]>0; });
+  if(!entries.length) return {text:'Ayo mulai dari Hutan Logika! Kiko akan menemanimu di setiap langkah.',wid:1};
+  entries.sort(function(a,b){ return S.mastery[a]-S.mastery[b]; });
+  var weakest=entries[0];
+  var strongest=entries[entries.length-1];
+  var map={seq:1,dir:1,pattern:1,cause:1,algo:2,loop:2,debug:2,sound:2,event:3,cond:3,game:3,story:4,vars:5,app:5,ui:5,html:6,js:7,create:8};
+  return {text:'Kamu sudah kuat di <b>'+CONCEPTS[strongest]+'</b>. Sekarang saatnya mengasah <b>'+CONCEPTS[weakest]+'</b>! Aku antar ke dunia yang tepat, ya.',wid:map[weakest]||1};
+}
+
+/* ============ TOAST / OVERLAY / KONFETI ============ */
+var toastT=null;
+function toast(msg){
+  var t=document.getElementById('toast');
+  if(!t){ t=document.createElement('div'); t.id='toast'; t.className='toast'; document.body.appendChild(t); }
+  t.textContent=msg;
+  requestAnimationFrame(function(){ t.classList.add('show'); });
+  clearTimeout(toastT);
+  toastT=setTimeout(function(){ t.classList.remove('show'); },2300);
+}
+function showOverlay(html){
+  closeOverlay();
+  var o=document.createElement('div'); o.className='overlay'; o.id='ov';
+  o.innerHTML='<div class="ov-card">'+html+'</div>';
+  document.body.appendChild(o);
+}
+function closeOverlay(){ var o=document.getElementById('ov'); if(o) o.remove(); }
+function speak(text){
+  try{
+    speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(text); u.lang='id-ID'; u.rate=.95;
+    speechSynthesis.speak(u);
+  }catch(e){ toast('Suara belum tersedia di perangkat ini'); }
+}
+function confetti(n){
+  n=n||120;
+  var host=document.getElementById('fx');
+  var colors=['#FF7A45','#FFC531','#3DAE5B','#12B5A5','#E85D75','#7C5CE0','#3E8DDD'];
+  for(var i=0;i<n;i++){
+    var b=document.createElement('div'); b.className='conf-bit';
+    var shape=Math.random(), col=colors[i%colors.length], size=7+Math.random()*8;
+    if(shape<.4){ b.style.cssText+='width:'+size+'px;height:'+size+'px;border-radius:50%;background:'+col; }
+    else if(shape<.75){ b.style.cssText+='width:0;height:0;border-left:'+(size/1.6)+'px solid transparent;border-right:'+(size/1.6)+'px solid transparent;border-bottom:'+(size*1.5)+'px solid '+col; }
+    else { b.style.cssText+='width:'+(size*1.7)+'px;height:'+(size*.7)+'px;border-radius:3px;background:'+col; }
+    b.style.left=(50+(Math.random()*30-15))+'vw'; b.style.top=(30+Math.random()*20)+'vh';
+    host.appendChild(b);
+    var dx=(Math.random()-.5)*70, dy=60+Math.random()*50, rot=(Math.random()-.5)*720, dur=1400+Math.random()*1200;
+    b.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:'translate('+dx+'vw,'+dy+'vh) rotate('+rot+'deg)',opacity:0}],{duration:dur,easing:'cubic-bezier(.2,.6,.4,1)'}).onfinish=(function(el){ return function(){ el.remove(); }; })(b);
+  }
+}
+
+/* ============ NAVIGASI ============ */
+var CURRENT=null;
+var GE=null;
+var GMR=null, STORY=null, CNT=null, CARD=null, WEB=null;
+function stopAll(){ if(CURRENT&&CURRENT.engine&&CURRENT.engine.dispose){ try{ CURRENT.engine.dispose(); }catch(e){} } }
+var A={
+  go:function(name){
+    var args=Array.prototype.slice.call(arguments,1);
+    stopAll(); closeOverlay();
+    SCREENS[name].apply(null,args);
+    window.scrollTo(0,0); save();
+  },
+  splash:function(){
+    var inp=document.getElementById('nameIn');
+    S.name=(inp&&inp.value.trim())||'Alby'; S.seen=true; save(); startPlacement();
+  },
+  toggleSound:function(){ S.sound=!S.sound; muted=!S.sound; save(); renderSoundBtns(); toast(S.sound?'Suara nyala':'Suara mati'); },
+  openWorld:function(i){
+    if(i===8){ A.go('lab'); return; }
+    var w=WORLDS[i-1];
+    if(!worldUnlocked(w)){ toast('Selesaikan Tantangan Besar dunia sebelumnya dulu!'); sfx.fail(); return; }
+    A.go('world',w.id);
+  },
+  startMission:function(id){ if(M[id]) A.go('brief',id); },
+  hint:function(){
+    if(!CURRENT||!CURRENT.m) return;
+    var h=CURRENT.m.hints||[];
+    if(CURRENT.hintIdx<h.length){
+      CURRENT.hintIdx++;
+      var d=document.createElement('div'); d.className='hint-step';
+      d.innerHTML='<b style="color:var(--teal)">Petunjuk '+CURRENT.hintIdx+'</b><br>'+esc(h[CURRENT.hintIdx-1]);
+      var box=document.getElementById('hintSteps');
+      if(box) box.appendChild(d);
+      kikoSay(h[CURRENT.hintIdx-1],true); sfx.pop();
+    }
+  },
+  closeOverlay:function(){ closeOverlay(); },
+  backWorld:function(wid){ A.go('world',wid); },
+  parent:function(){ A.parentGate(); },
+  parentGate:function(){
+    var a=3+Math.floor(Math.random()*6), b=4+Math.floor(Math.random()*5);
+    showOverlay('<h2 style="font-size:22px">Pintu Orang Tua</h2>'
+      +'<p style="font-weight:700;color:var(--ink2);margin:8px 0 14px">Jawab untuk membuka area orang tua:</p>'
+      +'<div style="font-family:Baloo 2;font-size:34px;font-weight:800;margin-bottom:12px">'+a+' + '+b+' = ?</div>'
+      +'<input id="gateIn" type="number" inputmode="numeric" style="width:120px;border:3px solid var(--ink);border-radius:14px;padding:10px;font-size:22px;font-weight:800;text-align:center;font-family:Baloo 2">'
+      +'<div style="display:flex;gap:10px;justify-content:center;margin-top:16px">'
+      +'<button class="btn btn-sm" onclick="A.closeOverlay()">Batal</button>'
+      +'<button class="btn btn-coral" id="gateBtn">Buka</button></div>');
+    document.getElementById('gateBtn').onclick=function(){
+      var v=parseInt(document.getElementById('gateIn').value,10);
+      if(v===a+b){ A.go('parentHome','ringkasan'); }
+      else { sfx.fail(); toast('Hmm, coba hitung lagi ya'); }
+    };
+  },
+  openStudio:function(t){ A.go('studio',t,null); },
+  openCreation:function(id){
+    var c=null;
+    S.creations.forEach(function(x){ if(x.id===id) c=x; });
+    if(c) A.go('studio',c.type,c);
+  },
+  confirmDel:function(id){
+    showOverlay('<h3 style="font-size:20px">Hapus karya ini?</h3>'
+      +'<p style="font-weight:700;color:var(--ink2);margin:8px 0 16px">Karya yang dihapus tidak bisa kembali.</p>'
+      +'<div style="display:flex;gap:10px;justify-content:center">'
+      +'<button class="btn btn-sm" onclick="A.closeOverlay()">Jangan</button>'
+      +'<button class="btn btn-coral" id="delBtn">'+ic('trash')+' Hapus</button></div>');
+    document.getElementById('delBtn').onclick=function(){
+      S.creations=S.creations.filter(function(c){ return c.id!==id; });
+      save(); closeOverlay(); A.go('creations'); toast('Karya dihapus');
+    };
+  }
+};
+function topbar(){
+  var li=levelIdx();
+  return '<div class="topbar">'
+  +'<div class="avatar-wrap">'+robotSVG(64)+'<div class="avatar-badge">'+ic(LEVELS[li].icon)+'</div></div>'
+  +'<div class="hello"><h1>Hai, '+esc(S.name)+'!</h1><p>Level kamu: '+LEVELS[li].name+'</p></div>'
+  +'<div class="xp-wrap"><div class="xp-bar"><div class="xp-fill" id="xpfill"></div></div><div class="xp-num" id="xpnum">'+S.xp+' XP</div></div>'
+  +'<button class="btn btn-icon" onclick="A.toggleSound()"><span class="snd-on '+(S.sound?'':'hide')+'">'+ic('vol')+'</span><span class="snd-off '+(S.sound?'hide':'')+'">'+ic('mute')+'</span></button>'
+  +'</div>';
+}
+function updateTopbarXP(){
+  var f=document.getElementById('xpfill'), n=document.getElementById('xpnum');
+  if(!f) return;
+  var li=levelIdx(), cur=LEVELS[li], nx=LEVELS[li+1];
+  var pct=nx?Math.min(100,((S.xp-cur.min)/(nx.min-cur.min))*100):100;
+  f.style.width=pct+'%'; n.textContent=S.xp+' XP';
+}
+function renderSoundBtns(){
+  var on=document.querySelectorAll('.snd-on'), off=document.querySelectorAll('.snd-off');
+  for(var i=0;i<on.length;i++) on[i].classList.toggle('hide',!S.sound);
+  for(var j=0;j<off.length;j++) off[j].classList.toggle('hide',S.sound);
+}
+function nav(active){
+  return '<nav class="nav"><div class="nav-inner">'
+  +'<button class="nav-btn '+(active==='home'?'on':'')+'" onclick="A.go(\'home\')">'+ic('home')+'Beranda</button>'
+  +'<button class="nav-btn '+(active==='map'?'on':'')+'" onclick="A.go(\'map\')">'+ic('map')+'Peta</button>'
+  +'<button class="nav-fab" onclick="A.go(\'lab\')">'+ic('spark')+'BIKIN</button>'
+  +'<button class="nav-btn '+(active==='creations'?'on':'')+'" onclick="A.go(\'creations\')">'+ic('box')+'Karya</button>'
+  +'<button class="nav-btn" onclick="A.parent()">'+ic('shield')+'Ortu</button>'
+  +'</div></nav>';
+}
+
+/* ============ PETUALANGAN PERTAMA ALBY ============ */
+var DIAG=[
+  {q:'Alby ada di kiri dan rumah di kanan. Pilih urutan yang paling tepat.',o:['MAJU, MAJU, MAJU','PUTAR KIRI, LOMPAT','MAJU, PUTAR KANAN, PUTAR KIRI'],a:0,skill:'Urutan'},
+  {q:'Alby menghadap ke atas. Agar menghadap kanan, perintah mana yang dipakai?',o:['PUTAR KIRI','PUTAR KANAN','MAJU'],a:1,skill:'Arah'},
+  {q:'Ada 5 lubang yang sama. Mana yang lebih hemat?',o:['LOMPAT 5 kali satu-satu','ULANGI 5 kali berisi LOMPAT','Hanya LOMPAT sekali'],a:1,skill:'Perulangan'},
+  {q:'Kalau Alby menyentuh bomb, lalu kehilangan nyawa, pola berpikirnya adalah…',o:['JIKA kena bomb, MAKA kehilangan nyawa','SELALU kehilangan nyawa','MAJU lalu selesai'],a:0,skill:'Kondisi'},
+  {q:'Apa hasil paling mungkin dari perintah: skor = 0 lalu ulangi 3 kali tambah 2?',o:['2','5','6'],a:2,skill:'Variabel & loop'}
+];
+function finishDiagnostic(){
+  var score=S.placement.score||0;
+  var start=score<=1?1:(score===2?2:3);
+  S.placement.done=true; S.placement.startWorld=start;
+  save();
+  showOverlay('<div class="wiggle" style="display:inline-block">'+robotSVG(90)+'</div>'
+    +'<h2 style="font-size:28px;margin-top:8px">Petualangan awal selesai!</h2>'
+    +'<p style="font-weight:800;color:var(--ink2)">Kiko sudah melihat cara ALBY berpikir. Kita mulai dari tempat yang pas — tanpa harus terburu-buru.</p>'
+    +'<div class="card" style="padding:14px;margin:14px 0;background:#FFF6D6">'
+    +'<b style="font-family:Baloo 2;font-size:18px">'+(score>=3?'ALBY sudah siap mencoba tantangan blok!':'ALBY akan membangun dasar logika dulu.')+'</b>'
+    +'<p style="font-weight:700;font-size:14px;margin-top:4px">Dunia awal: '+WORLDS[start-1].name+'</p></div>'
+    +'<button class="btn btn-coral" onclick="A.closeOverlay();A.go(\'home\')">'+ic('rocket')+' Mulai Dunia Alby</button>');
+}
+function runDiagnostic(i){
+  if(i>=DIAG.length){ finishDiagnostic(); return; }
+  var d=DIAG[i];
+  showOverlay('<div class="tag">Petualangan '+(i+1)+'/'+DIAG.length+'</div>'
+    +'<h2 style="font-size:23px;margin:12px 0">'+esc(d.skill)+'</h2>'
+    +'<p style="font-weight:800;font-size:17px;text-align:left;margin-bottom:14px">'+esc(d.q)+'</p>'
+    +'<div style="display:flex;flex-direction:column;gap:10px">'
+    +d.o.map(function(o,j){ return '<button class="btn" data-diag="'+j+'" style="justify-content:flex-start;text-align:left">'+esc(o)+'</button>'; }).join('')
+    +'</div>'
+    +'<button class="btn btn-sm" style="margin-top:14px" onclick="runDiagnostic('+DIAG.length+')">Lewati</button>');
+  var bs=document.querySelectorAll('#ov [data-diag]');
+  for(var b=0;b<bs.length;b++)(function(btn){btn.onclick=function(){
+    var j=+btn.dataset.diag; if(j===d.a) S.placement.score=(S.placement.score||0)+1; markActivity(); save(); sfx.good(); runDiagnostic(i+1);
+  };})(bs[b]);
+}
+function startPlacement(){
+  S.placement={done:false,score:0,startWorld:1,reader:S.placement?S.placement.reader:true};
+  showOverlay('<div class="tag">Langkah pertama</div>'
+    +'<h2 style="font-size:27px;margin:12px 0">ALBY sudah lancar membaca?</h2>'
+    +'<p style="font-weight:800;color:var(--ink2);margin-bottom:14px">Pilih yang paling sesuai. Ini membantu Kiko menyesuaikan pengalaman belajar.</p>'
+    +'<div style="display:flex;flex-direction:column;gap:10px">'
+    +'<button class="btn btn-coral" id="readerYes">Sudah lancar membaca</button>'
+    +'<button class="btn btn-sun" id="readerNo">Masih belajar membaca</button></div>');
+  document.getElementById('readerYes').onclick=function(){ S.placement.reader=true; save(); runDiagnostic(0); };
+  document.getElementById('readerNo').onclick=function(){ S.placement.reader=false; document.body.classList.add('pre-reader'); save(); runDiagnostic(0); };
+}
+
+/* ============ LAYAR: SPLASH ============ */
+var SCREENS={};
+SCREENS.splash=function(){
+  document.getElementById('app').innerHTML='<div class="splash">'
+  +'<div class="wiggle">'+robotSVG(130)+'</div>'
+  +'<h1>Dunia Belajar Coding <em>ALBY</em></h1>'
+  +'<p class="sub">Tempat bermain, berpikir, dan membuat karya dengan komputer. Petualanganmu dimulai dari sini!</p>'
+  +'<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">'
+  +'<input id="nameIn" type="text" maxlength="14" placeholder="Siapa namamu? (boleh kosong)" style="border:3px solid var(--ink);border-radius:16px;padding:12px 16px;font-weight:800;font-size:16px;width:min(300px,80vw);box-shadow:var(--sh2);background:#fff">'
+  +'<button class="btn btn-coral" style="font-size:19px" onclick="A.splash()">'+ic('rocket')+' Mulai Petualangan</button></div>'
+  +'<p style="font-size:12.5px;font-weight:700;color:var(--ink2);max-width:400px">Ramah anak: tanpa iklan, tanpa pesan publik, tanpa data pribadi. Semua progres tersimpan hanya di perangkat ini.</p>'
+  +'</div>';
+};
+
+/* ============ LAYAR: BERANDA ============ */
+SCREENS.home=function(){
+  var li=levelIdx(), next=findNext();
+  var w=next?WORLDS[next.world-1]:null;
+  var tip=adaptiveTip();
+  var earned=BADGES.filter(function(b){ return S.badges.indexOf(b.id)>=0; });
+  var cur=LEVELS[li], nx=LEVELS[li+1];
+  var pct=nx?Math.min(100,((S.xp-cur.min)/(nx.min-cur.min))*100):100;
+  var hero;
+  if(next){
+    hero='<div class="card hero-card" onclick="A.startMission(\''+next.id+'\')">'
+    +'<div class="hero-band" style="background:'+w.color+'"></div>'
+    +'<div class="hero-ico" style="background:'+w.color+'">'+ic(w.icon,'color:#fff')+'</div>'
+    +'<div style="position:relative"><div class="tag" style="background:'+w.color+';color:#fff">'+ic('map')+' '+w.name+'</div>'
+    +'<h2 style="font-size:clamp(20px,3vw,27px);margin:8px 0 4px">Lanjutkan Petualangan</h2>'
+    +'<p style="font-weight:800;font-size:16px">'+next.title+'</p>'
+    +'<p style="color:var(--ink2);font-weight:700;font-size:13.5px">'+(next.boss?'Tantangan Besar':'Misi berikutnya')+' · +'+next.xp+' XP</p></div>'
+    +'<div style="position:relative;margin-left:auto"><button class="btn btn-coral">'+ic('play')+' Mulai</button></div></div>';
+  } else {
+    hero='<div class="card hero-card" onclick="A.go(\'lab\')">'
+    +'<div class="hero-ico" style="background:var(--coral)">'+ic('spark','color:#fff')+'</div>'
+    +'<div><h2 style="font-size:26px">Semua misi selesai!</h2><p style="font-weight:800;color:var(--ink2)">Saatnya ALBY BIG CREATION — buat apa pun yang kamu mau.</p></div></div>';
+  }
+  var karya='';
+  if(S.creations.length){
+    karya='<div class="hscroll">'+S.creations.slice(-4).reverse().map(function(c){
+      var st=null; STUDIOS.forEach(function(s){ if(s.t===c.type) st=s; });
+      return '<div class="creation-card" style="width:190px;flex:none;cursor:pointer" onclick="A.openCreation(\''+c.id+'\')">'
+      +'<div class="creation-top" style="background:'+(st?st.color:'#999')+'">'+ic(st?st.icon:'box')+'</div>'
+      +'<div class="creation-body"><h4>'+esc(c.name)+'</h4><small>'+fmtDate(c.date)+'</small></div></div>';
+    }).join('')+'</div>';
+  } else {
+    karya='<div class="card" style="padding:18px;display:flex;gap:14px;align-items:center;cursor:pointer" onclick="A.go(\'lab\')">'
+    +'<div class="studio-ico" style="background:var(--coral);margin:0">'+ic('spark','color:#fff')+'</div>'
+    +'<div><b style="font-family:Baloo 2;font-size:17px">Museum karyamu menunggu karya pertama!</b>'
+    +'<p style="font-weight:700;color:var(--ink2);font-size:14px">Pilih satu studio di Laboratorium Karya dan ciptakan sesuatu hari ini.</p></div></div>';
+  }
+  document.getElementById('app').innerHTML=topbar()+hero
+  +'<div class="grid2">'
+  +'<div class="card" style="padding:18px"><div class="sec-title" style="margin:0 0 10px">'+ic('medal','color:var(--coral)')+'<h3 style="font-size:19px">Level Alby</h3></div>'
+  +'<div style="display:flex;align-items:center;gap:12px">'
+  +'<div style="width:54px;height:54px;border-radius:14px;border:3px solid var(--ink);background:var(--sun);display:flex;align-items:center;justify-content:center;box-shadow:var(--sh2)">'+ic(cur.icon,'width:26px;height:26px')+'</div>'
+  +'<div style="flex:1"><b style="font-family:Baloo 2;font-size:17px">'+cur.name+'</b>'
+  +'<div class="xp-bar" style="width:100%;margin-top:6px"><div class="xp-fill" style="width:'+pct+'%"></div></div>'
+  +'<small style="font-weight:800;color:var(--ink2)">'+S.xp+' XP '+(nx?('· '+(nx.min-S.xp)+' XP lagi menuju '+nx.name):'· level maksimal!')+'</small></div></div></div>'
+  +'<div class="card" style="padding:18px"><div class="sec-title" style="margin:0 0 10px">'+ic('star','color:var(--coral)')+'<h3 style="font-size:19px">Pencapaianku</h3></div>'
+  +'<p style="font-weight:800;margin-bottom:8px">'+earned.length+' dari '+BADGES.length+' lencana · '+totalStars()+' bintang misi</p>'
+  +'<div class="hscroll" style="padding-bottom:2px">'+BADGES.map(function(b){
+    var on=S.badges.indexOf(b.id)>=0;
+    return '<div class="badge-card '+(on?'':'locked')+'"><div class="badge-ico" style="background:'+(on?'var(--sun)':'#E8DFC9')+'">'+ic(b.icon)+'</div><h4>'+b.name+'</h4><small>'+b.desc+'</small></div>';
+  }).join('')+'</div></div></div>'
+  +'<div class="sec-title">'+ic('brush','color:var(--coral)')+'<h3 style="font-size:20px">Karyaku</h3><span class="chip" style="margin-left:auto;cursor:pointer" onclick="A.go(\'lab\')">'+ic('plus')+' Bikin Karya</span></div>'+karya
+  +'<div class="card kiko-bubble-home">'+kikoSVG(58)
+  +'<div><div class="tag" style="margin-bottom:8px">'+ic('bulb')+' Pesan Kiko untukmu</div>'
+  +'<div class="bubble tip">'+tip.text+'</div>'
+  +'<button class="btn btn-sm btn-teal" style="margin-top:10px" onclick="A.openWorld('+tip.wid+')">'+ic('aright')+' Ke '+WORLDS[tip.wid-1].name+'</button></div></div>'
+  +nav('home');
+};
+
+/* ============ LAYAR: PETA ============ */
+SCREENS.map=function(){
+  document.getElementById('app').innerHTML=topbar()
+  +'<div class="sec-title" style="margin-top:4px">'+ic('map','color:var(--coral)')+'<h3 style="font-size:22px">Peta Petualangan Coding</h3></div>'
+  +'<p style="font-weight:700;color:var(--ink2);margin:-4px 0 18px">Setiap dunia terbuka setelah Tantangan Besarnya selesai. Kota Creator selalu terbuka untuk berkarya!</p>'
+  +'<div class="map-wrap" id="mapwrap"><svg class="map-line" id="mapline"></svg>'
+  +WORLDS.map(function(w,i){
+    var un=worldUnlocked(w);
+    return '<div class="world-node '+(un?'':'world-locked')+'" style="margin-left:'+(i%2?'auto':'0')+'" onclick="A.openWorld('+w.id+')">'
+    +'<div class="world-orb" style="background:'+w.color+'">'+ic(un?w.icon:'lock')+'</div>'
+    +'<div style="flex:1"><h3>'+w.name+'</h3><p>'+w.sub+'</p>'
+    +'<div class="prog-mini"><i style="width:'+evalProgress(w)+'%"></i></div></div>'
+    +(un?'<span class="chip">'+(w.id===8?S.creations.length+' karya':worldProgress(w))+'</span>':'<div class="lock-ribbon">'+ic('lock')+' Terkunci</div>')
+    +'</div>';
+  }).join('')+'</div>'+nav('map');
+  requestAnimationFrame(drawMapPath);
+};
+function drawMapPath(){
+  var wrap=document.getElementById('mapwrap'), svg=document.getElementById('mapline');
+  if(!wrap||!svg) return;
+  var wr=wrap.getBoundingClientRect();
+  svg.setAttribute('width',wr.width); svg.setAttribute('height',wr.height);
+  svg.style.width=wr.width+'px'; svg.style.height=wr.height+'px';
+  var orbs=wrap.querySelectorAll('.world-orb'), pts=[];
+  for(var i=0;i<orbs.length;i++){
+    var r=orbs[i].getBoundingClientRect();
+    pts.push({x:r.left-wr.left+r.width/2, y:r.top-wr.top+r.height/2});
+  }
+  if(pts.length<2) return;
+  var d='M '+pts[0].x+' '+pts[0].y;
+  for(var j=1;j<pts.length;j++){
+    var a=pts[j-1], b=pts[j];
+    d+=' C '+a.x+' '+(a.y+(b.y-a.y)/2)+', '+b.x+' '+(b.y-(b.y-a.y)/2)+', '+b.x+' '+b.y;
+  }
+  svg.innerHTML='<path d="'+d+'" fill="none" stroke="#33283D" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round" opacity=".4"/>';
+}
+
+/* ============ LAYAR: DUNIA ============ */
+SCREENS.world=function(wid){
+  var w=WORLDS[wid-1], ms=worldMissions(w);
+  document.getElementById('app').innerHTML=''
+  +'<button class="btn btn-sm" onclick="A.go(\'map\')">'+ic('back')+' Peta</button>'
+  +'<div class="world-head" style="background:'+w.color+';margin-top:14px">'+ic(w.icon)
+  +'<div><h2 style="font-size:clamp(22px,3.5vw,30px)">'+w.name+'</h2><p style="font-weight:800;opacity:.92">'+w.sub+'</p></div>'
+  +'<span class="chip" style="margin-left:auto;background:#fff">'+worldProgress(w)+'</span></div>'
+  +ms.map(function(m,i){
+    var unlocked=(i===0)||isDone(ms[i-1].id);
+    var rec=mrec(m.id);
+    return '<div class="mission-row '+(unlocked?'':'locked')+' '+(m.boss?'boss':'')+' '+(rec.done?'done':'')+'" '+(unlocked?'onclick="A.startMission(\''+m.id+'\')"':'')+'>'
+    +'<div class="mnode">'+(rec.done?ic('check','color:#fff'):(unlocked?(i+1):ic('lock')))+'</div>'
+    +'<div style="flex:1"><b style="font-family:Baloo 2;font-size:16.5px">'+m.title+'</b>'
+    +(m.boss?' <span class="tag">'+ic('star')+' Tantangan Besar</span>':'')
+    +'<p style="font-size:13px;font-weight:700;color:var(--ink2)">'+m.concepts.map(function(c){ return CONCEPTS[c]; }).join(' · ')+'</p></div>'
+    +'<div class="mstars">'+[1,2,3].map(function(k){ return '<svg class="ic '+(k<=rec.stars?'f':'')+'"><use href="#i-star"/></svg>'; }).join('')+'</div></div>';
+  }).join('')+nav('map');
+};
+
+/* ============ LAYAR: BRIEF ============ */
+SCREENS.brief=function(id){
+  var m=M[id], w=WORLDS[m.world-1];
+  document.getElementById('app').innerHTML=''
+  +'<button class="btn btn-sm" onclick="A.backWorld('+m.world+')">'+ic('back')+' '+w.name+'</button>'
+  +'<div class="brief-grid"><div><div class="card story-card" style="border-top:12px solid '+w.color+'">'
+  +'<div class="tag" style="background:'+w.color+';color:#fff;margin-bottom:10px">'+(m.boss?ic('star')+' Tantangan Besar':ic('flag')+' Misi')+' · '+w.name+'</div>'
+  +'<h2 style="font-size:clamp(22px,3.4vw,30px);margin-bottom:10px">'+m.title+'</h2>'
+  +'<p id="briefstory">'+m.story+'</p>'
+  +'<button class="btn btn-sm" style="margin-top:12px" onclick="speak(document.getElementById(\'briefstory\').textContent)">'+ic('vol')+' Bacakan</button>'
+  +'<div style="border-top:3px dashed var(--line);margin:16px 0"></div>'
+  +'<h3 style="font-size:18px;margin-bottom:6px">'+ic('flag','color:var(--coral)')+' Misi-mu</h3>'
+  +'<p style="font-weight:800">'+m.goal+'</p>'
+  +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">'
+  +m.concepts.map(function(c){ return '<span class="chip" style="background:#FFF3D6">'+CONCEPTS[c]+'</span>'; }).join('')
+  +'<span class="chip" style="background:var(--sun)">'+ic('star')+' +'+m.xp+' XP</span></div>'
+  +'<button class="btn btn-coral" style="font-size:19px;width:100%;margin-top:18px" onclick="A.go(\'play\',\''+m.id+'\')">'+ic('play')+' Mulai Misi</button>'
+  +'</div></div>'
+  +'<div class="card kiko-panel"><div style="display:flex;gap:12px;align-items:flex-start">'+kikoSVG(56)
+  +'<div class="bubble" style="flex:1">'+m.intro+'</div></div>'
+  +'<div class="bubble tip" style="background:#EFFAEE">Kalau programnya belum jalan seperti harapan, jangan khawatir — itu bagian dari coding! Aku punya petunjuk bertahap kapan pun kamu mau.</div></div></div>'
+  +nav('map');
+};
+
+/* ============ LAYAR: PLAY ============ */
+SCREENS.play=function(id){
+  var m=M[id];
+  CURRENT={m:m,hintIdx:0};
+  document.getElementById('app').innerHTML=''
+  +'<div class="stage-head" style="margin-bottom:14px">'
+  +'<button class="btn btn-sm" onclick="A.backWorld('+m.world+')">'+ic('back')+'</button>'
+  +'<h3 style="font-size:19px">'+m.title+'</h3>'
+  +'<span class="chip">'+m.concepts.map(function(c){ return CONCEPTS[c]; }).join(' · ')+'</span>'
+  +'<button class="btn btn-icon" style="margin-left:auto" onclick="A.toggleSound()"><span class="snd-on '+(S.sound?'':'hide')+'">'+ic('vol')+'</span><span class="snd-off '+(S.sound?'hide':'')+'">'+ic('mute')+'</span></button></div>'
+  +'<div class="play-grid"><div class="card stage" id="stage"></div><div class="card kiko-panel" id="mentor"></div></div>'
+  +nav('');
+  document.getElementById('mentor').innerHTML=''
+  +'<div style="display:flex;gap:12px;align-items:flex-start" id="kikoWrap">'+kikoSVG(56)
+  +'<div class="bubble" style="flex:1" id="kikoSay">'+m.intro+'</div></div>'
+  if(S.placement&&S.placement.reader===false){ setTimeout(function(){ speak(m.intro+' '+m.goal); },300); }
+  +'<div class="hint-steps" id="hintSteps"></div>'
+  +'<button class="btn btn-sm btn-teal" onclick="A.hint()">'+ic('bulb')+' Minta Petunjuk</button>';
+  if(m.type==='grid'||m.type==='debug') initGridEngine(m);
+  else if(m.type==='notes') initNotesEngine(m);
+  else if(m.type==='game') initGameEngine(m.cfg,null);
+  else if(m.type==='story') initStoryEngine(m,null);
+  else if(m.type==='counter') initCounterEngine();
+  else if(m.type==='card') initCardEngine(null);
+  else if(m.type==='web') initWebEngine(null);
+  else if(m.type==='jsslots') initJsSlots();
+  else if(m.type==='varbox') initVarBox();
+};
+function kikoSay(text,tip){
+  var el=document.getElementById('kikoSay');
+  if(!el) return;
+  el.textContent=text;
+  el.classList.toggle('tip',!!tip);
+  var wrap=document.getElementById('kikoWrap');
+  if(wrap){ wrap.classList.remove('mentor-fail'); void wrap.offsetWidth; wrap.classList.add('mentor-fail'); }
+}
+var failKind='short';
+function mentorFail(kind){
+  var msgs={
+    wall:'Hmm… Alby menabrak batu! Menurutmu, bagian mana dari program yang membuatnya menabrak?',
+    pit:'Aduh, Alby jatuh ke lubang! Lubang hanya bisa dilewati dengan LOMPAT, lho.',
+    gate:'Gerbangnya masih tertutup. Ada yang harus terjadi DULU sebelum lewat, apa hayo?',
+    out:'Hampir keluar papan! Alby butuh instruksi putar sebelum jalan lurus lagi.',
+    short:'Programnya sudah selesai dijalankan, tapi Alby belum sampai tujuan. Yuk periksa urutannya bersama-sama.'
+  };
+  kikoSay(msgs[kind]||msgs.short,true); sfx.fail();
+  if(CURRENT&&CURRENT.m&&CURRENT.m.id&&!CURRENT.won){
+    var rec=mrec(CURRENT.m.id);
+    rec.tries=(rec.tries||0)+1;
+    rec.failures=(rec.failures||0)+1;
+    if(rec.tries<=4){ addXP(5,true); S.retries=(S.retries||0)+1; toast('+5 XP Gigih — berani mencoba lagi!'); }
+    if(CURRENT.m.concepts){
+      CURRENT.m.concepts.forEach(function(c){
+        if(!S.masteryEvidence[c]) S.masteryEvidence[c]={successes:0,failures:0,hints:0,variations:0,lastAt:null};
+        S.masteryEvidence[c].failures=(S.masteryEvidence[c].failures||0)+1;
+      });
+    }
+    save();
+  }
+}
+function winMission(){
+  if(!CURRENT||!CURRENT.m||CURRENT.won) return;
+  if(!CURRENT.m.id){
+    sfx.win(); confetti(80);
+    if(CURRENT.m.studioType==='game'&&GMR){
+      saveCreation('game','Game Buatan '+S.name,{speed:GMR.speed,target:GMR.target,bombs:GMR.bombs,rule:GMR.rule});
+      toast('Game tersimpan di Karyamu!');
+    }
+    CURRENT.won=true; return;
+  }
+  var m=CURRENT.m, rec=mrec(m.id);
+  var previousStars=rec.stars||0;
+  var stars=CURRENT.hintIdx===0?3:(CURRENT.hintIdx<=2?2:1);
+  var firstCompletion=!rec.done;
+  rec.done=true;
+  rec.stars=Math.max(previousStars,stars);
+  rec.tries=rec.tries||0;
+  rec.hints=Math.max(rec.hints||0,CURRENT.hintIdx||0);
+
+  /* Mastery diberikan berdasarkan kualitas bukti, bukan sekadar menyelesaikan layar. */
+  var masteryGain=firstCompletion?(stars===3?22:(stars===2?14:8)):(stars>previousStars?5:0);
+  if(rec.tries===0&&CURRENT.hintIdx===0) masteryGain+=5;
+  if(masteryGain>0){
+    addMastery(m.concepts,masteryGain,{successes:1,hints:CURRENT.hintIdx||0,failures:rec.failures||0,variations:firstCompletion?1:0});
+  }
+
+  var fresh=checkBadges();
+  save(); sfx.win(); confetti(m.boss?180:120);
+
+  if(firstCompletion){
+    addXP(m.xp+(stars===3?20:0));
+  } else if(stars>previousStars){
+    addXP(10,true);
+    toast('Bintangmu naik! +10 XP');
+  } else {
+    toast('Latihan berhasil! XP utama sudah didapat sebelumnya.');
+  }
+
+  showOverlay('<h2 style="font-size:26px">'+(m.boss?'Tantangan Besar Selesai!':'Misi Selesai!')+'</h2>'
+  +'<div class="big-stars">'+[1,2,3].map(function(k){ return '<svg class="ic '+(k<=stars?'f':'')+'"><use href="#i-star"/></svg>'; }).join('')+'</div>'
+  +'<p style="font-weight:800;font-size:15.5px">'+m.success+'</p>'
+  +'<div class="tag" style="margin-top:10px">'+ic('bulb')+' '+(m.masteryText||'Penguasaan')+': '+m.concepts.map(function(c){ return CONCEPTS[c]; }).join(' · ')+'</div>'
+  +(fresh.length?'<div class="tag" style="margin-top:12px">'+ic(fresh[0].icon)+' Lencana baru: '+fresh[0].name+'!</div>':'')
+  +'<div class="bubble tip" style="margin-top:14px">'+ic('spark')+' <b>Tantangan lanjutan:</b> '+m.challenge+'</div>'
+  +'<div style="display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap">'
+  +'<button class="btn btn-coral" onclick="A.backWorld('+m.world+')">'+ic('map')+' Kembali ke Misi</button>'
+  +'<button class="btn" onclick="A.go(\'map\')">'+ic('map')+' Peta Dunia</button></div>');
+  CURRENT.won=true;
+}
+
+/* ============ BLOK & PROGRAM ============ */
+var BLOCKDEF={
+  fwd:{label:'MAJU',bg:'#3DAE5B',fg:'#fff'},
+  jump:{label:'LOMPAT',bg:'#2E8F4B',fg:'#fff'},
+  left:{label:'PUTARKIRI',bg:'#3E8DDD',fg:'#fff'},
+  right:{label:'PUTARKANAN',bg:'#5B9EE5',fg:'#fff'},
+  loop:{label:'ULANGI',bg:'#7C5CE0',fg:'#fff'},
+  note_do:{label:'DO',bg:'#E85D75',fg:'#fff'},
+  note_re:{label:'RE',bg:'#FF7A45',fg:'#fff'},
+  note_mi:{label:'MI',bg:'#FFC531',fg:'#33283D'},
+  note_sol:{label:'SOL',bg:'#3DAE5B',fg:'#fff'}
+};
+function chipHTML(b,key){
+  var d=BLOCKDEF[b.t];
+  return '<span class="blk" data-key="'+key+'" style="background:'+d.bg+';color:'+d.fg+';min-height:42px;font-size:14px">'+d.label
+  +(GE&&GE.debug?'':'<span class="x" data-rm="'+key+'">'+ic('x')+'</span>')+'</span>';
+}
+function renderProgram(){
+  var box=document.getElementById('progbox');
+  if(!box||!GE) return;
+  var html='';
+  for(var i=0;i<GE.program.length;i++){
+    var b=GE.program[i];
+    if(b.t==='loop'){
+      html+='<span class="loopbox'+(GE.inside===b?' active':'')+'">'
+      +'<span class="loop-head">ULANGI'
+      +'<span class="stepper"><button data-ln="-1" data-li="'+i+'">−</button><b>'+b.n+'×</b><button data-ln="1" data-li="'+i+'">+</button></span>'
+      +(GE.inside===b?'<button class="btn btn-sm" style="min-height:30px;padding:2px 10px;font-size:12px" data-close="1">Tutup</button>':'')
+      +(GE.debug?'':'<span class="x" data-rm="'+i+'">'+ic('x')+'</span>')
+      +'</span><span class="loop-kids'+(b.kids.length?'':' empty')+'">';
+      for(var j=0;j<b.kids.length;j++) html+=chipHTML(b.kids[j],i+'-'+j);
+      if(GE.inside===b&&!b.kids.length) html+='<i class="looptip">klik blok untuk mengisi loop…</i>';
+      html+='</span></span>';
+    } else html+=chipHTML(b,''+i);
+  }
+  box.innerHTML=html||'<i class="emptymsg">Program masih kosong — klik blok di bawah!</i>';
+}
+function addBlock(t){
+  sfx.click();
+  if(t==='loop'){ var L={t:'loop',n:2,kids:[]}; GE.program.push(L); GE.inside=L; }
+  else if(GE.inside) GE.inside.kids.push({t:t});
+  else GE.program.push({t:t});
+  renderProgram();
+}
+document.addEventListener('click',function(e){
+  if(!GE) return;
+  var rm=e.target.closest('[data-rm]');
+  if(rm){
+    var k=rm.dataset.rm.split('-'); sfx.click();
+    if(k.length===1) GE.program.splice(+k[0],1);
+    else if(GE.program[+k[0]]) GE.program[+k[0]].kids.splice(+k[1],1);
+    GE.inside=null; renderProgram(); return;
+  }
+  var ln=e.target.closest('[data-ln]');
+  if(ln){
+    var l=GE.program[+ln.dataset.li];
+    if(l){ l.n=Math.max(1,Math.min(10,l.n+ +ln.dataset.ln)); sfx.click(); renderProgram(); }
+    return;
+  }
+  if(e.target.closest('[data-close]')){ GE.inside=null; renderProgram(); return; }
+  if(GE.debug){
+    var chip=e.target.closest('#progbox .blk');
+    if(chip) debugSwap(chip);
+    return;
+  }
+  var pb=e.target.closest('[data-blk]');
+  if(pb) addBlock(pb.dataset.blk);
+});
+function debugSwap(chip){
+  var idx=+chip.dataset.key;
+  if(GE.swap<0){ GE.swap=idx; chip.style.outline='4px solid var(--sun)'; sfx.click(); }
+  else{
+    var t=GE.program[GE.swap].t;
+    GE.program[GE.swap].t=GE.program[idx].t; GE.program[idx].t=t;
+    GE.swap=-1; sfx.pop(); renderProgram();
+  }
+}
+function expandProg(list,out){
+  for(var i=0;i<list.length;i++){
+    if(out.length>300) return;
+    if(list[i].t==='loop'){ for(var k=0;k<list[i].n;k++) expandProg(list[i].kids,out); }
+    else out.push(list[i].t);
+  }
+}
+function setRunBtns(run){
+  var r=document.getElementById('runBtn'), s=document.getElementById('stopBtn');
+  if(r) r.disabled=run;
+  if(s) s.disabled=!run;
+}
+async function runBlocks(){
+  if(!GE||GE.running) return;
+  var acts=[]; expandProg(GE.program,acts);
+  if(!acts.length){ kikoSay('Programnya masih kosong. Tambahkan blok dulu, ya!',true); return; }
+  GE.running=true; setRunBtns(true);
+  var reached=false, failed=false;
+  for(var i=0;i<acts.length;i++){
+    if(!GE.running) break;
+    var ok=await gridStep(acts[i]);
+    if(!ok){ mentorFail(failKind); failed=true; break; }
+    if(GE.pos.x===GE.goal.x&&GE.pos.y===GE.goal.y){ reached=true; break; }
+  }
+  GE.running=false; setRunBtns(false);
+  if(reached){ sfx.good(); await sleep(300); winMission(); }
+  else if(!failed&&GE) mentorFail('short');
+}
+
+/* ============ ENGINE PAPAN PETAK ============ */
+var TS=64;
+function newGE(m,holder){
+  var g=m.grid;
+  GE={m:m,rows:g.rows.map(function(r){ return r.split(''); }),dir:g.facing,program:[],inside:null,
+      running:false,debug:(m.type==='debug'),holder:holder,swap:-1};
+  var start=null, goal=null, stars=0;
+  GE.rows.forEach(function(row,y){
+    row.forEach(function(ch,x){
+      if(ch==='R') start={x:x,y:y};
+      if(ch==='H'||ch==='C') goal={x:x,y:y};
+      if(ch==='*') stars++;
+    });
+  });
+  GE.start={x:start.x,y:start.y}; GE.pos={x:start.x,y:start.y};
+  GE.goal=goal; GE.starsTotal=stars; GE.starsGot=0; GE.gateOpen=false;
+}
+function drawBoard(){
+  var holder=GE.holder;
+  if(!holder) return;
+  var rows=GE.rows, cols=rows[0].length, cells='';
+  rows.forEach(function(row,y){
+    row.forEach(function(ch,x){
+      var cx=x*TS+TS/2, cy=y*TS+TS/2, inner='';
+      if(ch==='#') inner='<circle cx="'+cx+'" cy="'+cy+'" r="20" fill="#8C7F97" stroke="#33283D" stroke-width="3"/><circle cx="'+(cx-6)+'" cy="'+(cy-6)+'" r="5" fill="#B3A8BC"/>';
+      else if(ch==='T') inner='<path d="M'+cx+' '+(cy-24)+' L'+(cx-17)+' '+(cy+2)+' L'+(cx+17)+' '+(cy+2)+' Z" fill="#3DAE5B" stroke="#33283D" stroke-width="3"/><rect x="'+(cx-4)+'" y="'+(cy+2)+'" width="8" height="12" rx="3" fill="#8A5A2B" stroke="#33283D" stroke-width="2.5"/>';
+      else if(ch==='*') inner='<g id="star'+x+'-'+y+'"><path transform="translate('+cx+','+cy+') scale(.95)" d="M0 -13 3.6 -4.4 12.7 -3.8 5.8 2.2 7.9 11.2 0 6.4 -7.9 11.2 -5.8 2.2 -12.7 -3.8 -3.6 -4.4 Z" fill="#FFC531" stroke="#33283D" stroke-width="2.6"/></g>';
+      else if(ch==='H') inner='<path d="M'+(cx-18)+' '+(cy+14)+' v-14 l18 -13 18 13 v14 h-12 v-8 h-12 v8 z" fill="#FF7A45" stroke="#33283D" stroke-width="3" stroke-linejoin="round"/>';
+      else if(ch==='C') inner='<g stroke="#33283D" stroke-width="2.6"><path d="M'+(cx-13)+' '+(cy-9)+' l1.5 7 M'+(cx+13)+' '+(cy-9)+' l-1.5 7" fill="none"/><circle cx="'+cx+'" cy="'+(cy+2)+'" r="12" fill="#F2B01E"/><circle cx="'+(cx-4.5)+'" cy="'+cy+'" r="1.6" fill="#33283D" stroke="none"/><circle cx="'+(cx+4.5)+'" cy="'+cy+'" r="1.6" fill="#33283D" stroke="none"/><path d="M'+(cx-2.5)+' '+(cy+6)+' q2.5 2.4 5 0" fill="none"/></g>';
+      else if(ch==='S') inner='<circle cx="'+cx+'" cy="'+cy+'" r="13" fill="#E85D75" stroke="#33283D" stroke-width="3"/><circle cx="'+cx+'" cy="'+cy+'" r="5" fill="#fff"/>';
+      else if(ch==='G') inner='<g id="gate"><rect x="'+(cx-19)+'" y="'+(cy-16)+'" width="38" height="32" rx="6" fill="#8A5A2B" stroke="#33283D" stroke-width="3"/><path d="M'+(cx-12)+' '+cy+' h24 M'+cx+' '+(cy-10)+' v20" stroke="#33283D" stroke-width="4"/></g>';
+      else if(ch==='O') inner='<ellipse cx="'+cx+'" cy="'+cy+'" rx="19" ry="11" fill="#4A3B52"/><ellipse cx="'+(cx-5)+'" cy="'+(cy-3)+'" rx="6" ry="3" fill="#5E4C68"/>';
+      else if('v^<>'.indexOf(ch)>=0) inner='<g transform="translate('+cx+','+cy+') rotate('+({'>':0,'v':90,'<':180,'^':270}[ch])+')"><path d="M-9 -8 L6 0 L-9 8" fill="none" stroke="#E85D75" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g>';
+      cells+='<rect x="'+(x*TS+3)+'" y="'+(y*TS+3)+'" width="'+(TS-6)+'" height="'+(TS-6)+'" rx="12" fill="#FFF9EF" stroke="#E4D6BB" stroke-width="2.5"/>'+inner;
+    });
+  });
+  cells+='<g id="botwrap" class="robot-wrap"><g id="botrot" class="robot-rot"><g id="bothop"><g transform="translate(-24,-26)">'+robotSVG(48)+'</g></g></g></g>';
+  holder.innerHTML='<svg width="'+(cols*TS)+'" height="'+(rows.length*TS)+'" viewBox="0 0 '+(cols*TS)+' '+(rows.length*TS)+'">'+cells+'</svg>';
+  var bw=document.getElementById('botwrap');
+  bw.style.transition='none';
+  bw.style.transform='translate('+(GE.pos.x*TS+TS/2)+'px,'+(GE.pos.y*TS+TS/2)+'px)';
+  setRot();
+  requestAnimationFrame(function(){ bw.style.transition=''; });
+}
+function setRot(){ var r=document.getElementById('botrot'); if(r) r.style.transform='rotate('+(GE.dir*90)+'deg)'; }
+function moveRobot(hop){
+  var w=document.getElementById('botwrap');
+  if(!w) return;
+  w.style.transform='translate('+(GE.pos.x*TS+TS/2)+'px,'+(GE.pos.y*TS+TS/2)+'px)';
+  if(hop){
+    var hp=document.getElementById('bothop');
+    if(hp) hp.animate([{transform:'translateY(0)'},{transform:'translateY(-16px)'},{transform:'translateY(0)'}],{duration:380,easing:'ease'});
+  }
+}
+function inb(x,y){ return y>=0&&y<GE.rows.length&&x>=0&&x<GE.rows[0].length; }
+function landTile(t){
+  if(t==='S'&&!GE.gateOpen){
+    GE.gateOpen=true; sfx.pop(); toast('Klik! Tombol ditekan — gerbang terbuka!');
+    var g=document.getElementById('gate');
+    if(g){ var r=g.querySelector('rect'); if(r) r.setAttribute('fill','#C9E8C5'); }
+  }
+  if(t==='*'){
+    GE.starsGot++; sfx.pop();
+    var s=document.getElementById('star'+GE.pos.x+'-'+GE.pos.y);
+    if(s) s.remove();
+    var c=document.getElementById('starchip');
+    if(c) c.innerHTML=ic('star')+' '+GE.starsGot+'/'+GE.starsTotal;
+  }
+  if(t==='v'){ GE.dir=1; setRot(); }
+  if(t==='>'){ GE.dir=0; setRot(); }
+  if(t==='<'){ GE.dir=2; setRot(); }
+  if(t==='^'){ GE.dir=3; setRot(); }
+}
+async function gridStep(a){
+  var dx=[1,0,-1,0][GE.dir], dy=[0,1,0,-1][GE.dir];
+  if(a==='left'){ GE.dir=(GE.dir+3)%4; setRot(); await sleep(320); return true; }
+  if(a==='right'){ GE.dir=(GE.dir+1)%4; setRot(); await sleep(320); return true; }
+  if(a.slice(0,5)==='note_'){ tone(NOTES[a.slice(5)],.3,'triangle',.2); await sleep(330); return true; }
+  var hop=(a==='jump');
+  var nx=GE.pos.x+dx, ny=GE.pos.y+dy;
+  if(!inb(nx,ny)){ failKind='out'; return false; }
+  if(GE.rows[ny][nx]==='#'){ failKind='wall'; return false; }
+  if(GE.rows[ny][nx]==='O'){ failKind='pit'; return false; }
+  if(GE.rows[ny][nx]==='G'&&!GE.gateOpen){ failKind='gate'; return false; }
+  if(hop){
+    var lx=GE.pos.x+dx*2, ly=GE.pos.y+dy*2;
+    if(!inb(lx,ly)){ failKind='out'; return false; }
+    var land=GE.rows[ly][lx];
+    if(land==='#'){ failKind='wall'; return false; }
+    if(land==='O'){ failKind='pit'; return false; }
+    if(land==='G'&&!GE.gateOpen){ failKind='gate'; return false; }
+    GE.pos={x:lx,y:ly};
+  } else {
+    GE.pos={x:nx,y:ny};
+  }
+  landTile(GE.rows[GE.pos.y][GE.pos.x]);
+  moveRobot(hop);
+  await sleep(hop?420:360);
+  return true;
+}
+function initGridEngine(m){
+  newGE(m,document.getElementById('stage'));
+  var stage=GE.holder;
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Papan Misi</h3><span class="chip" id="starchip">'+ic('star')+' 0/'+GE.starsTotal+'</span></div>'
+  +'<div class="board-holder" id="boardholder"></div>'
+  +'<div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">'
+  +'<b style="font-family:Baloo 2;font-size:16px">Programku</b>'
+  +(m.palette?'<button class="btn btn-sm" style="margin-left:auto" id="clearBtn">'+ic('trash')+' Kosongkan</button>':'')+'</div>'
+  +'<div class="program-box" id="progbox"></div>'
+  +(m.palette?'<div style="margin-top:10px"><b style="font-family:Baloo 2;font-size:14px;color:var(--ink2)">Blok yang tersedia — klik untuk menambah</b>'
+  +'<div class="palette" id="palette" style="margin-top:8px">'
+  +m.palette.map(function(t){ return '<button class="blk" data-blk="'+t+'" style="background:'+BLOCKDEF[t].bg+';color:'+BLOCKDEF[t].fg+'">'+BLOCKDEF[t].label+'</button>'; }).join('')
+  +'</div></div>':'')
+  +'</div>'
+  +'<div class="runbar">'
+  +'<button class="btn btn-leaf" id="runBtn" style="flex:1">'+ic('play')+' Jalankan</button>'
+  +'<button class="btn" id="stopBtn" disabled>'+ic('stop')+' Berhenti</button></div>';
+  GE.holder=document.getElementById('boardholder');
+  drawBoard();
+  if(m.type==='debug') GE.program=m.broken.map(function(t){ return {t:t}; });
+  renderProgram();
+  document.getElementById('runBtn').onclick=runBlocks;
+  document.getElementById('stopBtn').onclick=function(){ GE.running=false; };
+  var cb=document.getElementById('clearBtn');
+  if(cb) cb.onclick=function(){
+    if(GE.debug) return;
+    GE.program=[]; GE.inside=null; renderProgram(); sfx.click();
+  };
+}
+
+/* ============ ENGINE NADA ============ */
+function initNotesEngine(m){
+  GE={program:[],inside:null,running:false,debug:false,swap:-1};
+  var stage=document.getElementById('stage');
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Panggung Konser</h3><span class="chip">'+ic('note')+' Pakai ULANGI & 4 nada</span></div>'
+  +'<div class="board-holder" style="background:#2F2B52;padding:26px;position:relative">'
+  +'<div id="singer" style="transition:transform .2s">'+robotSVG(96)+'</div>'
+  +'<div id="notefloat" style="position:absolute;top:20%;font-family:Baloo 2;font-weight:800;font-size:26px;color:#FFC531;opacity:0;pointer-events:none"></div></div>'
+  +'<div><b style="font-family:Baloo 2">Laguku</b><div class="program-box" id="progbox"></div>'
+  +'<div class="palette" style="margin-top:8px">'
+  +m.palette.map(function(t){ return '<button class="blk" data-blk="'+t+'" style="background:'+BLOCKDEF[t].bg+';color:'+BLOCKDEF[t].fg+'">'+BLOCKDEF[t].label+'</button>'; }).join('')
+  +'</div></div>'
+  +'<div class="runbar"><button class="btn btn-leaf" id="runBtn" style="flex:1">'+ic('play')+' Tampilkan!</button></div>';
+  renderProgram();
+  document.getElementById('runBtn').onclick=async function(){
+    if(GE.running) return;
+    var acts=[]; expandProg(GE.program,acts);
+    if(!acts.length){ kikoSay('Panggungnya masih sepi! Tambahkan nada dulu.',true); return; }
+    GE.running=true;
+    var singer=document.getElementById('singer'), nf=document.getElementById('notefloat');
+    var notes=0, loops=0;
+    GE.program.forEach(function(b){
+      if(b.t==='loop'){ loops++; b.kids.forEach(function(k){ if(k.t.slice(0,5)==='note_') notes+=b.n; }); }
+      else if(b.t.slice(0,5)==='note_') notes++;
+    });
+    for(var i=0;i<acts.length;i++){
+      if(!GE.running) break;
+      var a=acts[i];
+      if(a.slice(0,5)==='note_'){
+        tone(NOTES[a.slice(5)],.32,'triangle',.22);
+        singer.style.transform='translateY(-14px)';
+        setTimeout(function(){ singer.style.transform='translateY(0)'; },180);
+        nf.textContent=a.slice(5).toUpperCase(); nf.style.opacity=1;
+        nf.animate([{transform:'translateY(0)',opacity:1},{transform:'translateY(-42px)',opacity:0}],{duration:600}).onfinish=function(){ nf.style.opacity=0; };
+        await sleep(360);
+      } else await sleep(150);
+    }
+    GE.running=false;
+    if(loops>=1&&notes>=4) winMission();
+    else kikoSay('Suaramu bagus! Tapi syarat konsernya: minimal 4 nada dan satu blok ULANGI. Coba lagi, ya!',true);
+  };
+}
+
+/* ============ ENGINE GAME ============ */
+function initGameEngine(cfg,saved){
+  GMR={
+    speed:(saved&&saved.speed)||cfg.forceSpeed||'sedang',
+    target:(saved&&saved.target)||cfg.targetDef||5,
+    bombs:(saved&&saved.bombs)||cfg.forceBombs||(cfg.bombs?'sedikit':'tidak'),
+    rule:(saved&&saved.rule)||'life'
+  };
+  var stage=document.getElementById('stage');
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Mesin Game — Atur Aturanmu</h3></div>'
+  +'<div class="rule-card"><h4>'+ic('bolt')+' Kecepatan benda jatuh</h4>'
+  +'<div class="seg" data-key="speed">'+['lambat','sedang','cepat'].map(function(s){
+    var dis=cfg.forceSpeed&&s!==cfg.forceSpeed;
+    return '<button data-v="'+s+'" class="'+(GMR.speed===s?'on':'')+'" '+(dis?'disabled':'')+'>'+s.charAt(0).toUpperCase()+s.slice(1)+'</button>';
+  }).join('')+'</div></div>'
+  +'<div class="rule-card" style="margin-top:10px"><h4>'+ic('star')+' Target skor</h4>'
+  +'<div class="seg" data-key="target">'+[5,8,10].map(function(t){
+    var dis=(!cfg.targetSel&&t!==cfg.targetDef);
+    return '<button data-v="'+t+'" class="'+(GMR.target===t?'on':'')+'" '+(dis?'disabled':'')+'>'+t+' bintang</button>';
+  }).join('')+'</div></div>'
+  +(cfg.bombs
+    ?'<div class="rule-card" style="margin-top:10px"><h4>'+ic('shield')+' Jumlah bomb</h4>'
+     +'<div class="seg" data-key="bombs">'+['sedikit','banyak'].map(function(b){
+       var dis=cfg.forceBombs&&b!==cfg.forceBombs;
+       return '<button data-v="'+b+'" class="'+(GMR.bombs===b?'on':'')+'" '+(dis?'disabled':'')+'>'+b.charAt(0).toUpperCase()+b.slice(1)+'</button>';
+     }).join('')+'</div></div>'
+    +'<div class="rule-card" style="margin-top:10px"><h4>'+ic('code')+' Aturan kondisi — JIKA kena bomb MAKA…</h4>'
+     +'<div class="seg" data-key="rule"><button data-v="life" class="'+(GMR.rule==='life'?'on':'')+'">Kehilangan 1 nyawa</button><button data-v="over" class="'+(GMR.rule==='over'?'on':'')+'">Langsung selesai</button></div></div>'
+    :'')
+  +'<div class="gm-canvas-wrap" style="margin-top:14px">'
+  +'<canvas id="gmc" width="640" height="380" style="display:block;width:100%;touch-action:none"></canvas>'
+  +'<div class="gm-hud"><span id="hudS">Skor 0</span><span id="hudL"></span><span style="margin-left:auto" id="hudT"></span></div>'
+  +'<div class="gm-over hide" id="gmOver"></div></div>'
+  +'<div class="runbar"><button class="btn btn-coral" id="gmGo" style="flex:1">'+ic('play')+' UJI GAME!</button></div>';
+  stage.addEventListener('click',function(e){
+    var b=e.target.closest('.seg button');
+    if(!b||b.disabled) return;
+    var seg=b.closest('.seg'), key=seg.dataset.key, v=b.dataset.v;
+    var btns=seg.querySelectorAll('button');
+    for(var i=0;i<btns.length;i++) btns[i].classList.remove('on');
+    b.classList.add('on');
+    GMR[key]=(key==='target')?+v:v; sfx.click();
+  });
+  document.getElementById('gmGo').onclick=function(){ startGame(cfg); };
+}
+function startGame(cfg){
+  var cv=document.getElementById('gmc');
+  if(!cv) return;
+  var ctx=cv.getContext('2d');
+  var W=cv.width, H=cv.height;
+  var speedV={lambat:2.1,sedang:3.1,cepat:4.3}[GMR.speed];
+  var bombEvery=GMR.bombs==='tidak'?0:(GMR.bombs==='sedikit'?3:1.6);
+  var livesMax=GMR.rule==='life'?3:1;
+  var st={score:0,lives:livesMax,t:cfg.time,px:W/2,ptx:W/2,items:[],spawn:0,over:false,raf:0,last:0};
+  var ov=document.getElementById('gmOver');
+  ov.classList.add('hide');
+  function onMove(e){
+    var r=cv.getBoundingClientRect();
+    var cx=e.touches?e.touches[0].clientX:e.clientX;
+    st.ptx=(cx-r.left)/r.width*W;
+  }
+  function onKey(e){
+    if(e.key==='ArrowLeft') st.ptx=Math.max(40,st.px-46);
+    if(e.key==='ArrowRight') st.ptx=Math.min(W-40,st.px+46);
+  }
+  cv.addEventListener('pointermove',onMove);
+  cv.addEventListener('touchmove',onMove,{passive:true});
+  window.addEventListener('keydown',onKey);
+  var iv=null;
+  function cleanup(){
+    cancelAnimationFrame(st.raf);
+    if(iv) clearInterval(iv);
+    cv.removeEventListener('pointermove',onMove);
+    cv.removeEventListener('touchmove',onMove);
+    window.removeEventListener('keydown',onKey);
+  }
+  CURRENT.engine={dispose:cleanup};
+  function updHud(){
+    var hs=document.getElementById('hudS'); if(hs) hs.textContent='Skor '+st.score;
+    var hl=document.getElementById('hudL'); if(hl) hl.textContent=cfg.bombs?('Nyawa: '+st.lives):'';
+    var ht=document.getElementById('hudT'); if(ht) ht.textContent='Waktu '+Math.max(0,Math.ceil(st.t))+' dtk';
+  }
+  function spawnItem(){
+    var isBomb=bombEvery&&(st.spawn%Math.round(bombEvery+1)===Math.round(bombEvery));
+    st.items.push({x:40+Math.random()*(W-80),y:-24,bomb:isBomb,vy:speedV*(0.9+Math.random()*.35)});
+    st.spawn++;
+  }
+  function roundRect(x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r);
+    ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r);
+    ctx.closePath();
+  }
+  function drawRobot(x,y){
+    ctx.save(); ctx.translate(x,y);
+    ctx.fillStyle='#FF7A45'; ctx.strokeStyle='#fff'; ctx.lineWidth=3;
+    roundRect(-26,-18,52,36,12); ctx.fill(); ctx.stroke();
+    ctx.fillStyle='#33283D'; roundRect(-19,-11,38,20,8); ctx.fill();
+    ctx.fillStyle='#fff';
+    ctx.beginPath(); ctx.arc(-7,-2,4.5,0,7); ctx.fill();
+    ctx.beginPath(); ctx.arc(8,-2,4.5,0,7); ctx.fill();
+    ctx.fillStyle='#12B5A5'; roundRect(-12,18,24,8,4); ctx.fill();
+    ctx.restore();
+  }
+  function drawStar(x,y,r){
+    ctx.save(); ctx.translate(x,y); ctx.beginPath();
+    for(var i=0;i<10;i++){
+      var a=Math.PI/5*i-Math.PI/2, rr=i%2?r*.45:r;
+      if(i) ctx.lineTo(Math.cos(a)*rr,Math.sin(a)*rr); else ctx.moveTo(Math.cos(a)*rr,Math.sin(a)*rr);
+    }
+    ctx.closePath(); ctx.fillStyle='#FFC531'; ctx.fill();
+    ctx.strokeStyle='#33283D'; ctx.lineWidth=2.4; ctx.stroke(); ctx.restore();
+  }
+  function drawBomb(x,y){
+    ctx.fillStyle='#4A3B52'; ctx.strokeStyle='#33283D'; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.arc(x,y,16,0,7); ctx.fill(); ctx.stroke();
+    ctx.strokeStyle='#C9B8A0';
+    ctx.beginPath(); ctx.moveTo(x+6,y-12); ctx.quadraticCurveTo(x+16,y-24,x+10,y-30); ctx.stroke();
+    ctx.fillStyle='#FF7A45'; ctx.beginPath(); ctx.arc(x+10,y-31,3.5,0,7); ctx.fill();
+  }
+  function endGame(won,msg){
+    st.over=true; cleanup();
+    ov.classList.remove('hide');
+    if(won){
+      ov.innerHTML='<h2 style="font-family:Baloo 2;font-size:30px">SASARAN TERCAPAI!</h2>'
+      +'<p style="font-weight:700">Game buatanmu berhasil dimenangkan!</p>'
+      +'<button class="btn btn-sun" id="gmDone">Lanjutkan Misi</button>';
+      document.getElementById('gmDone').onclick=function(){ ov.classList.add('hide'); winMission(); };
+    } else {
+      ov.innerHTML='<h2 style="font-family:Baloo 2;font-size:26px">'+(msg||'Belum berhasil')+'</h2>'
+      +'<p style="font-weight:700">Pembuat game hebat selalu menyetel ulang aturannya. Coba lagi!</p>'
+      +'<div style="display:flex;gap:10px;margin-top:8px">'
+      +'<button class="btn btn-sun" id="gmRetry">'+ic('redo')+' Coba Lagi</button>'
+      +'<button class="btn" id="gmSetel">Setel Aturan</button></div>';
+      document.getElementById('gmRetry').onclick=function(){ ov.classList.add('hide'); startGame(cfg); };
+      document.getElementById('gmSetel').onclick=function(){ ov.classList.add('hide'); };
+      mentorFail('short');
+    }
+  }
+  function loop(ts){
+    if(st.over) return;
+    var dt=Math.min(40,ts-(st.last||ts)); st.last=ts;
+    st.t-=dt/1000;
+    st.px+=(st.ptx-st.px)*.16;
+    if(st.t<=0){ endGame(false,'Waktu habis!'); return; }
+    st.items.forEach(function(it){ it.y+=it.vy*dt/16.7; });
+    st.items=st.items.filter(function(it){
+      var near=Math.abs(it.x-st.px)<34&&Math.abs(it.y-(H-38))<34;
+      if(near&&!it.bomb){ st.score++; sfx.pop(); updHud(); return false; }
+      if(near&&it.bomb){
+        sfx.fail();
+        if(GMR.rule==='over') st.lives=0; else st.lives--;
+        updHud();
+        if(st.lives<=0){ endGame(false,GMR.rule==='over'?'Kena bomb — aturanmu bilang: langsung selesai!':'Nyawa habis!'); return false; }
+        return false;
+      }
+      return it.y<H+30;
+    });
+    ctx.fillStyle='#10333B'; ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    for(var i=0;i<26;i++){ ctx.fillRect((i*97)%W,(i*53)%(H-80),2,2); }
+    ctx.fillStyle='#1E5A50'; ctx.fillRect(0,H-22,W,22);
+    st.items.forEach(function(it){ if(it.bomb) drawBomb(it.x,it.y); else drawStar(it.x,it.y,15); });
+    drawRobot(st.px,H-38);
+    if(st.score>=GMR.target){ endGame(true); return; }
+    st.raf=requestAnimationFrame(loop);
+  }
+  iv=setInterval(spawnItem,720);
+  updHud();
+  st.raf=requestAnimationFrame(loop);
+}
+
+/* ============ ENGINE CERITA ============ */
+var SCENES=[
+  {name:'Hutan',svg:'<rect width="100" height="60" fill="#BDE8C2"/><circle cx="82" cy="12" r="8" fill="#FFC531" stroke="#33283D" stroke-width="1.5"/><path d="M0 47 Q 25 37 50 47 T 100 47 V60 H0 Z" fill="#3DAE5B"/><path d="M8 47 L18 28 L28 47 Z M64 47 L76 24 L88 47 Z" fill="#2E8F4B"/>'},
+  {name:'Gua',svg:'<rect width="100" height="60" fill="#4A3B52"/><path d="M0 60 V24 Q 30 5 50 13 Q 70 5 100 24 V60 Z" fill="#5E4C68"/><circle cx="50" cy="35" r="6" fill="#FFC531" opacity=".9"/>'},
+  {name:'Pantai',svg:'<rect width="100" height="60" fill="#BEE6F5"/><circle cx="16" cy="11" r="7" fill="#FFC531" stroke="#33283D" stroke-width="1.5"/><rect y="37" width="100" height="23" fill="#3EB8C9"/><path d="M0 37 Q 12 35 24 37 T 48 37 T 72 37 T 100 37" stroke="#fff" stroke-width="1.6" fill="none" opacity=".8"/>'},
+  {name:'Luar Angkasa',svg:'<rect width="100" height="60" fill="#2F2B52"/><circle cx="20" cy="14" r="1.4" fill="#fff"/><circle cx="70" cy="8" r="1.2" fill="#fff"/><circle cx="84" cy="26" r="1.6" fill="#FFC531"/><circle cx="44" cy="20" r="1.1" fill="#fff"/><circle cx="60" cy="42" r="1.3" fill="#fff"/><circle cx="12" cy="38" r="1.2" fill="#fff"/>'}
+];
+function sceneSVG(i){
+  return '<svg class="scene" viewBox="0 0 100 60" preserveAspectRatio="xMidYMid slice">'+SCENES[i].svg+'</svg>';
+}
+function initStoryEngine(m,existing){
+  var isStudio=!m.id;
+  var saved=(existing&&existing.data)?existing.data:null;
+  if(saved){
+    STORY=JSON.parse(JSON.stringify(saved));
+  } else {
+    STORY={scenes:[{bg:0,text:''},{bg:1,text:''},{bg:2,text:''}],branch:m.branch,
+      choiceA:'Menyusuri jalan berkilau',choiceB:'Masuk ke dalam gua gelap',
+      endA:{bg:0,text:''},endB:{bg:3,text:''}};
+  }
+  STORY.branch=m.branch;
+  var IDEAS=['Halo! Aku Alby, robot penjelajah!','Wah, tempat ini aneh sekali…','Aku harus berani!','Siapa di sana?!','Peta ini berkilau… ajaib!','Terima kasih sudah menemanku!'];
+  var stage=document.getElementById('stage');
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Meja Penulis Cerita</h3><span class="chip">'+(m.branch?'Dengan cabang pilihan':'3 adegan berurutan')+'</span></div>'
+  +[0,1,2].map(function(i){
+    return '<div class="rule-card" style="margin-bottom:12px"><h4>'+ic('book')+' Adegan '+(i+1)+' — latar</h4>'
+    +'<div class="sticker-pick" style="margin-bottom:10px">'+SCENES.map(function(s,j){
+      return '<button class="swatch '+(STORY.scenes[i].bg===j?'on':'')+'" data-bg="'+i+'-'+j+'" title="'+s.name+'">'
+      +'<svg viewBox="0 0 100 60" style="width:40px;border-radius:6px">'+s.svg+'</svg></button>';
+    }).join('')+'</div>'
+    +'<div class="field" style="margin:0"><label>Apa yang Alby katakan?</label>'
+    +'<div style="display:flex;gap:8px"><input type="text" maxlength="70" data-dlg="'+i+'" placeholder="Tulis dialogmu di sini…" value="'+esc(STORY.scenes[i].text)+'">'
+    +'<button class="btn btn-sm" data-idea="'+i+'">'+ic('bulb')+' Ide</button></div></div></div>';
+  }).join('')
+  +(m.branch
+    ?'<div class="rule-card" style="margin-bottom:12px"><h4>'+ic('code')+' Pilihan Pembaca (adegan terakhir)</h4>'
+     +'<div class="field"><label>Pilihan A</label><input type="text" id="chA" maxlength="40" value="'+esc(STORY.choiceA)+'"></div>'
+     +'<div class="field"><label>Ending A — apa yang terjadi?</label><input type="text" id="enA" maxlength="70" placeholder="Tulis ending A…" value="'+esc(STORY.endA.text)+'"></div>'
+     +'<div class="field"><label>Pilihan B</label><input type="text" id="chB" maxlength="40" value="'+esc(STORY.choiceB)+'"></div>'
+     +'<div class="field" style="margin:0"><label>Ending B — apa yang terjadi?</label><input type="text" id="enB" maxlength="70" placeholder="Tulis ending B…" value="'+esc(STORY.endB.text)+'"></div></div>'
+    :'')
+  +'<div class="runbar"><button class="btn btn-coral" id="storyGo" style="flex:1">'+ic('play')+' Putar Cerita!</button></div>';
+  function sync(){
+    var dlg=stage.querySelectorAll('[data-dlg]');
+    for(var i=0;i<dlg.length;i++) STORY.scenes[+dlg[i].dataset.dlg].text=dlg[i].value;
+    if(m.branch){
+      var a=document.getElementById('chA'), b=document.getElementById('chB'), ea=document.getElementById('enA'), eb=document.getElementById('enB');
+      if(a&&a.value) STORY.choiceA=a.value;
+      if(b&&b.value) STORY.choiceB=b.value;
+      if(ea) STORY.endA.text=ea.value;
+      if(eb) STORY.endB.text=eb.value;
+    }
+  }
+  stage.addEventListener('click',function(e){
+    var bg=e.target.closest('[data-bg]');
+    if(bg){
+      var p=bg.dataset.bg.split('-'), i=+p[0], j=+p[1];
+      STORY.scenes[i].bg=j;
+      var sw=bg.parentElement.querySelectorAll('.swatch');
+      for(var k=0;k<sw.length;k++) sw[k].classList.remove('on');
+      bg.classList.add('on'); sfx.click(); return;
+    }
+    var idea=e.target.closest('[data-idea]');
+    if(idea){
+      var inp=stage.querySelector('[data-dlg="'+idea.dataset.idea+'"]');
+      inp.value=IDEAS[Math.floor(Math.random()*IDEAS.length)];
+      sync(); sfx.pop();
+    }
+  });
+  stage.addEventListener('input',sync);
+  function onDone(){
+    if(isStudio){
+      saveCreation('story','Cerita '+S.name,JSON.parse(JSON.stringify(STORY)));
+      toast('Cerita tersimpan di Karyamu!');
+    } else winMission();
+  }
+  document.getElementById('storyGo').onclick=function(){
+    sync();
+    var filled=STORY.scenes.every(function(s){ return s.text.trim(); });
+    if(!filled){ kikoSay('Masih ada dialog yang kosong. Setiap adegan butuh kata-kata, lho!',true); return; }
+    if(m.branch&&(!STORY.endA.text.trim()||!STORY.endB.text.trim())){ kikoSay('Tulis dulu kedua endingnya, ya — A dan B!',true); return; }
+    playStory(0,onDone);
+  };
+}
+function playStory(startIdx,onDone){
+  var endingsSeen={};
+  function countSeen(){ var n=0; for(var k in endingsSeen) n++; return n; }
+  function showEnding(end,label){
+    showOverlay('<div style="text-align:left"><div class="story-view">'+sceneSVG(end.bg)
+    +'<div class="dialog"><b style="color:var(--rose)">ENDING ('+esc(label)+'):</b> '+(esc(end.text)||'…')+'</div>'
+    +'<div class="story-choices">'
+    +(countSeen()<2?'<button class="btn btn-sun" id="againS">'+ic('redo')+' Pilih Jalur Lain</button>':'')
+    +'<button class="btn btn-leaf" id="finS">'+ic('check')+' Selesai</button></div></div></div>');
+    var ag=document.getElementById('againS');
+    if(ag) ag.onclick=function(){ sfx.click(); render(2); };
+    document.getElementById('finS').onclick=function(){ sfx.win(); closeOverlay(); onDone(); };
+  }
+  function render(i){
+    var s=STORY.scenes[i], isLast=(i===2), foot='';
+    if(isLast&&STORY.branch){
+      foot='<div class="story-choices">'
+      +'<button class="btn btn-teal" id="pickA">'+ic('aright')+' '+esc(STORY.choiceA)+'</button>'
+      +'<button class="btn btn-coral" id="pickB">'+ic('aright')+' '+esc(STORY.choiceB)+'</button></div>';
+    } else {
+      foot='<div class="story-choices"><button class="btn btn-sun" id="nextS">'+(i===2?'Selesai':ic('aright')+' Lanjut')+'</button></div>';
+    }
+    showOverlay('<div style="text-align:left"><div class="story-view">'+sceneSVG(s.bg)
+    +'<div class="dialog"><b style="color:var(--coral)">ALBY:</b> '+esc(s.text)+'</div>'+foot+'</div>'
+    +'<div style="display:flex;gap:8px;margin-top:12px;align-items:center"><span class="chip">Adegan '+(i+1)+'/3</span>'
+    +'<button class="btn btn-sm" style="margin-left:auto" onclick="speak(this.closest(\'.ov-card\').querySelector(\'.dialog\').textContent)">'+ic('vol')+' Bacakan</button></div></div>');
+    var nx=document.getElementById('nextS');
+    if(nx) nx.onclick=function(){
+      if(i===2){ sfx.win(); closeOverlay(); onDone(); }
+      else { sfx.click(); render(i+1); }
+    };
+    var pa=document.getElementById('pickA'), pb=document.getElementById('pickB');
+    if(pa) pa.onclick=function(){ sfx.good(); endingsSeen.A=1; showEnding(STORY.endA,STORY.choiceA); };
+    if(pb) pb.onclick=function(){ sfx.good(); endingsSeen.B=1; showEnding(STORY.endB,STORY.choiceB); };
+  }
+  render(startIdx);
+}
+
+/* ============ ENGINE PENGHITUNG ============ */
+function initCounterEngine(){
+  CNT={comps:[],val:0};
+  var stage=document.getElementById('stage');
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Bengkel Aplikasi</h3><span class="chip">'+ic('star')+' Target: skor tepat 10</span></div>'
+  +'<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start">'
+  +'<div style="flex:1;min-width:230px"><b style="font-family:Baloo 2">Komponen — klik untuk memasang</b>'
+  +'<div class="palette" style="margin-top:8px">'
+  +'<button class="blk" data-c="disp" style="background:#FFC531">Tampilan Skor</button>'
+  +'<button class="blk" data-c="1" style="background:#3DAE5B;color:#fff">Tombol +1</button>'
+  +'<button class="blk" data-c="2" style="background:#12B5A5;color:#fff">Tombol +2</button>'
+  +'<button class="blk" data-c="5" style="background:#3E8DDD;color:#fff">Tombol +5</button>'
+  +'<button class="blk" data-c="reset" style="background:#E85D75;color:#fff">Tombol Reset</button></div>'
+  +'<b style="font-family:Baloo 2;display:block;margin-top:14px">Aplikasiku</b>'
+  +'<div class="program-box" id="appbox" style="min-height:90px"></div></div>'
+  +'<div style="text-align:center"><div class="varbox"><b id="varval">0</b><small>Kotak Variabel "skor"</small></div>'
+  +'<p style="font-size:12.5px;font-weight:800;color:var(--ink2);max-width:150px;margin-top:8px">Nilai variabel berubah setiap tombol dipencet. Itulah variabel!</p></div></div>'
+  +'<div class="runbar"><button class="btn btn-coral" id="cntGo" style="flex:1">'+ic('play')+' Jalankan Aplikasi</button></div>';
+  function renderApp(){
+    document.getElementById('appbox').innerHTML=CNT.comps.length?CNT.comps.map(function(c,i){
+      if(c==='disp') return '<span class="blk" style="background:#FFC531">SKOR: <b id="dval">'+CNT.val+'</b></span>';
+      if(c==='reset') return '<button class="blk" data-a="reset" style="background:#E85D75;color:#fff">RESET</button>';
+      return '<button class="blk" data-a="'+c+'" style="background:#3DAE5B;color:#fff">+'+c+'</button>';
+    }).join(' '):'<i class="emptymsg">Pasang komponen dari palet…</i>';
+  }
+  stage.addEventListener('click',function(e){
+    var c=e.target.closest('[data-c]');
+    if(c){ CNT.comps.push(c.dataset.c); sfx.click(); renderApp(); return; }
+    var a=e.target.closest('[data-a]');
+    if(a){
+      if(a.dataset.a==='reset') CNT.val=0; else CNT.val+=+a.dataset.a;
+      sfx.pop();
+      var vv=document.getElementById('varval'), dv=document.getElementById('dval');
+      if(vv){ vv.textContent=CNT.val; vv.animate([{transform:'scale(1.3)'},{transform:'scale(1)'}],{duration:220}); }
+      if(dv) dv.textContent=CNT.val;
+      if(CNT.val===10){ sfx.win(); confetti(90); winMission(); }
+    }
+  });
+  document.getElementById('cntGo').onclick=function(){
+    if(CNT.comps.indexOf('disp')<0){ kikoSay('Pasang dulu Tampilan Skor, supaya kita bisa melihat variabelnya berubah!',true); return; }
+    var hasBtn=CNT.comps.some(function(c){ return c!=='disp'&&c!=='reset'; });
+    if(!hasBtn){ kikoSay('Tambahkan tombol angka, ya. Aplikasi butuh tombol untuk berinteraksi!',true); return; }
+    kikoSay('Aplikasi berjalan! Pencet tombolnya dan kejar angka 10 di Kotak Variabel.',true);
+  };
+  renderApp();
+}
+
+/* ============ KARTU ============ */
+var CARDCOL=['#FFC531','#BEE6F5','#FFD9E8','#CDEFD2'];
+var CARDMSG=['Selamat ulang tahun! Semoga harimu secerah senyummu.','Terima kasih sudah menemaniku belajar coding!','Kamu hebat! Semangat terus setiap hari!','Meti! Aku buat kartu ini dengan coding, lho!'];
+function initCardEngine(existing){
+  CARD=existing?JSON.parse(JSON.stringify(existing.data)):{to:'',msg:CARDMSG[0],col:0,st:'heart'};
+  var stage=document.getElementById('stage');
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Bengkel Kartu</h3></div>'
+  +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">'
+  +'<div><div class="field"><label>Untuk siapa kartu ini?</label><input type="text" id="cTo" maxlength="20" placeholder="Ibu / Ayah / Sahabat…" value="'+esc(CARD.to||'')+'"></div>'
+  +'<div class="field"><label>Pilih pesan (atau tulismu sendiri)</label><input type="text" id="cMsg" maxlength="80" value="'+esc(CARD.msg||CARDMSG[0])+'"></div>'
+  +'<div class="field"><label>Warna kartu</label><div class="swatches" id="cCol">'
+  +CARDCOL.map(function(c,i){ return '<button class="swatch '+(i===CARD.col?'on':'')+'" data-col="'+i+'" style="background:'+c+'"></button>'; }).join('')
+  +'</div></div><div class="field" style="margin:0"><label>Stiker</label><div class="sticker-pick" id="cSt">'
+  +['heart','star','note','spark'].map(function(s){ return '<button class="swatch '+(s===CARD.st?'on':'')+'" data-st="'+s+'">'+ic(s)+'</button>'; }).join('')
+  +'</div></div></div>'
+  +'<div style="display:flex;flex-direction:column;gap:12px;align-items:center">'
+  +'<div class="kartu" id="kartuPrev" style="width:100%;background:'+CARDCOL[CARD.col||0]+'">'
+  +'<div id="kSticker">'+ic(CARD.st||'heart','width:44px;height:44px;color:var(--rose)')+'</div>'
+  +'<div class="pesan" id="kMsg">'+esc(CARD.msg||CARDMSG[0])+'</div>'
+  +'<div class="untuk" id="kTo">Untuk: '+esc(CARD.to||'…')+'</div></div>'
+  +'<div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">'
+  +'<button class="btn btn-coral" id="cOpen">'+ic('spark')+' Buka Kartu!</button>'
+  +'<button class="btn btn-sun" id="cSave">'+ic('box')+' Simpan ke Karya</button></div></div></div>';
+  function sync(){
+    CARD.to=document.getElementById('cTo').value;
+    CARD.msg=document.getElementById('cMsg').value||CARDMSG[0];
+    document.getElementById('kMsg').textContent=CARD.msg;
+    document.getElementById('kTo').textContent='Untuk: '+(CARD.to||'…');
+  }
+  document.getElementById('cTo').addEventListener('input',sync);
+  document.getElementById('cMsg').addEventListener('input',sync);
+  document.getElementById('cCol').addEventListener('click',function(e){
+    var b=e.target.closest('[data-col]'); if(!b) return;
+    CARD.col=+b.dataset.col;
+    var sw=this.querySelectorAll('.swatch');
+    for(var i=0;i<sw.length;i++) sw[i].classList.remove('on');
+    b.classList.add('on');
+    document.getElementById('kartuPrev').style.background=CARDCOL[CARD.col]; sfx.click();
+  });
+  document.getElementById('cSt').addEventListener('click',function(e){
+    var b=e.target.closest('[data-st]'); if(!b) return;
+    CARD.st=b.dataset.st;
+    var sw=this.querySelectorAll('.swatch');
+    for(var i=0;i<sw.length;i++) sw[i].classList.remove('on');
+    b.classList.add('on');
+    document.getElementById('kSticker').innerHTML=ic(CARD.st,'width:44px;height:44px;color:var(--rose)'); sfx.click();
+  });
+  document.getElementById('cOpen').onclick=function(){
+    sync();
+    var k=document.getElementById('kartuPrev');
+    k.animate([{transform:'rotateY(0) scale(.6)',opacity:.2},{transform:'rotateY(360deg) scale(1)',opacity:1}],{duration:700,easing:'cubic-bezier(.34,1.4,.64,1)'});
+    sfx.win(); confetti(70);
+    saveCreation('card','Kartu untuk '+(CARD.to||'Orang Tersayang'),JSON.parse(JSON.stringify(CARD)));
+    kikoSay('Wah, penerima kartu ini pasti tersenyum lebar! Kartunya sudah tersimpan di Karyamu.',true);
+    if(CURRENT&&CURRENT.m&&CURRENT.m.id==='w5m2') winMission();
+  };
+  document.getElementById('cSave').onclick=function(){
+    sync();
+    saveCreation('card','Kartu untuk '+(CARD.to||'Orang Tersayang'),JSON.parse(JSON.stringify(CARD)));
+    toast('Kartu tersimpan di Karyamu!');
+  };
+}
+
+/* ============ WEB BUILDER ============ */
+function initWebEngine(existing){
+  WEB=(existing&&existing.data)?JSON.parse(JSON.stringify(existing.data)):{elems:[],bg:'#FFF6E0'};
+  var WCOLS=['#FFF6E0','#E4F4E0','#E0EEFA','#FDE8EE'];
+  var stage=document.getElementById('stage');
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Meja Web</h3><span class="chip">'+ic('code')+' HTML asli!</span></div>'
+  +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">'
+  +'<div><b style="font-family:Baloo 2">Elemen — klik untuk menambah</b>'
+  +'<div class="palette" style="margin-top:8px">'
+  +'<button class="blk" data-w="h1" style="background:#3E8DDD;color:#fff">Judul</button>'
+  +'<button class="blk" data-w="p" style="background:#3DAE5B;color:#fff">Paragraf</button>'
+  +'<button class="blk" data-w="img" style="background:#FFC531">Stiker</button>'
+  +'<button class="blk" data-w="btn" style="background:#FF7A45;color:#fff">Tombol Ajaib</button></div>'
+  +'<div class="field" style="margin-top:12px"><label>Warna halaman (CSS)</label><div class="swatches" id="wCol">'
+  +WCOLS.map(function(c){ return '<button class="swatch '+(c===WEB.bg?'on':'')+'" data-col="'+c+'" style="background:'+c+'"></button>'; }).join('')
+  +'</div></div><b style="font-family:Baloo 2;display:block;margin-top:6px">Elemen halamanmu</b>'
+  +'<div class="program-box" id="wList" style="min-height:80px"></div></div>'
+  +'<div><b style="font-family:Baloo 2">Pratinjau langsung</b>'
+  +'<iframe class="web-frame" id="wFrame" style="margin-top:8px" title="Pratinjau web"></iframe>'
+  +'<div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">'
+  +'<button class="btn btn-sm" id="wCode">'+ic('code')+' Intip Kode</button>'
+  +'<button class="btn btn-leaf" id="wDone" style="flex:1">'+ic('check')+' Selesai & Periksa</button></div></div></div>';
+  function sync(){
+    renderWebList();
+    document.getElementById('wFrame').srcdoc=webDoc(WEB);
+  }
+  stage.addEventListener('click',function(e){
+    var w=e.target.closest('[data-w]');
+    if(w){
+      var t=w.dataset.w;
+      var base={h1:{t:'h1',text:'Halo, aku '+S.name+'!'},p:{t:'p',text:'Ini halaman web buatanku sendiri.'},img:{t:'img',text:''},btn:{t:'btn',text:'Pencet aku!',act:'sapa'}}[t];
+      WEB.elems.push(JSON.parse(JSON.stringify(base))); sfx.click(); sync(); return;
+    }
+    var c=e.target.closest('[data-col]');
+    if(c){ WEB.bg=c.dataset.col;
+      var sw=document.querySelectorAll('#wCol .swatch');
+      for(var i=0;i<sw.length;i++) sw[i].classList.remove('on');
+      c.classList.add('on'); sfx.click(); sync(); return;
+    }
+    var rm=e.target.closest('[data-wrm]');
+    if(rm){ WEB.elems.splice(+rm.dataset.wrm,1); sfx.click(); sync(); }
+  });
+  stage.addEventListener('input',function(e){
+    var i=e.target.dataset.wi;
+    if(i!==undefined){ WEB.elems[+i].text=e.target.value; document.getElementById('wFrame').srcdoc=webDoc(WEB); }
+    var a=e.target.dataset.wa;
+    if(a!==undefined){ WEB.elems[+a].act=e.target.value; document.getElementById('wFrame').srcdoc=webDoc(WEB); }
+  });
+  document.getElementById('wCode').onclick=function(){
+    showOverlay('<h3 style="font-size:20px;margin-bottom:4px">Kode HTML buatanmu</h3>'
+    +'<p style="font-weight:700;color:var(--ink2);font-size:13.5px;margin-bottom:10px">Inilah teks asli yang kamu tulis dengan rakit elemen. Setiap baris punya arti!</p>'
+    +'<div class="code-view">'+esc(webDoc(WEB))+'</div>'
+    +'<button class="btn btn-coral" style="margin-top:14px" onclick="A.closeOverlay()">'+ic('check')+' Keren!</button>');
+  };
+  document.getElementById('wDone').onclick=function(){
+    var hasH1=WEB.elems.some(function(e){ return e.t==='h1'; });
+    var hasBtn=WEB.elems.some(function(e){ return e.t==='btn'; });
+    if(!hasH1||!hasBtn){ kikoSay('Halamanmu butuh minimal satu JUDUL dan satu TOMBOL. Tambahkan dulu, ya!',true); return; }
+    saveCreation('web','Halaman Pribadi '+S.name,JSON.parse(JSON.stringify(WEB)));
+    winMission();
+  };
+  sync();
+}
+function webDoc(w){
+  var acts=w.elems.filter(function(e){ return e.t==='btn'; });
+  var body='';
+  w.elems.forEach(function(e){
+    if(e.t==='h1') body+='  <!-- Judul besar halaman -->\n  <h1>'+esc(e.text)+'</h1>\n\n';
+    if(e.t==='p') body+='  <!-- Paragraf teks -->\n  <p>'+esc(e.text)+'</p>\n\n';
+    if(e.t==='img') body+='  <!-- Stiker -->\n  <div class="stiker"></div>\n\n';
+    if(e.t==='btn') body+='  <!-- Tombol: saat diklik, lakukan '+e.act+' -->\n  <button onclick="'+(e.act==='sapa'?'sapa()':e.act==='warna'?'gantiWarna()':'hitung()')+'">'+esc(e.text)+'</button>\n\n';
+  });
+  var script='';
+  if(acts.length){
+    var js='';
+    if(acts.some(function(a){ return a.act==='hitung'; })) js+='  let klik = 0; // variabel untuk menyimpan angka\n';
+    if(acts.some(function(a){ return a.act==='warna'; })) js+='  let warna = 0; // variabel posisi warna\n';
+    if(acts.some(function(a){ return a.act==='sapa'; })) js+='  function sapa() {\n    document.getElementById("pesan").textContent = "Halo! Terima kasih sudah mengunjungi halamanku!";\n  }\n';
+    if(acts.some(function(a){ return a.act==='warna'; })) js+='  function gantiWarna() {\n    warna = warna + 1;\n    const daftar = ["#FFF6E0", "#E4F4E0", "#E0EEFA", "#FDE8EE"];\n    document.body.style.background = daftar[warna % 4];\n  }\n';
+    if(acts.some(function(a){ return a.act==='hitung'; })) js+='  function hitung() {\n    klik = klik + 1; // ambil isi kotak, tambah 1, simpan kembali\n    document.getElementById("angka").textContent = klik;\n  }\n';
+    script='<script>\n'+js+'<\/script>';
+  }
+  var ps='';
+  if(acts.some(function(a){ return a.act==='sapa'; })) ps+='  <p id="pesan"></p>\n\n';
+  if(acts.some(function(a){ return a.act==='hitung'; })) ps+='  <p>Jumlah klik: <b id="angka">0</b></p>\n\n';
+  return '<!DOCTYPE html>\n<html>\n<head>\n  <style>\n'
+  +'    body { font-family: sans-serif; text-align: center; background: '+w.bg+'; padding: 30px; }\n'
+  +'    h1 { color: #FF7A45; }\n'
+  +'    .stiker { width: 70px; height: 70px; margin: 12px auto;\n      background: #FFC531; border: 3px solid #33283D; border-radius: 50%;\n      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }\n'
+  +'    button { font-size: 17px; padding: 10px 18px; margin: 6px; border-radius: 12px;\n      border: 3px solid #33283D; background: #12B5A5; color: white; font-weight: bold; cursor: pointer; }\n'
+  +'  </style>\n</head>\n<body>\n'+body+ps+script+'</body>\n</html>';
+}
+function renderWebList(){
+  var names={h1:'Judul',p:'Paragraf',img:'Stiker',btn:'Tombol'};
+  document.getElementById('wList').innerHTML=WEB.elems.length?WEB.elems.map(function(e,i){
+    return '<span class="blk" style="min-height:42px;font-size:13px;background:#fff">'
+    +'<b style="color:var(--coral)">'+names[e.t]+'</b>'
+    +(e.t==='img'?'':'<input value="'+esc(e.text)+'" data-wi="'+i+'" style="border:2px solid var(--line);border-radius:8px;padding:3px 7px;font-weight:700;max-width:130px">')
+    +(e.t==='btn'?'<select data-wa="'+i+'" style="border:2px solid var(--ink);border-radius:8px;padding:2px;font-weight:800;background:var(--sun)">'
+      +'<option value="sapa" '+(e.act==='sapa'?'selected':'')+'>aksi: sapa</option>'
+      +'<option value="warna" '+(e.act==='warna'?'selected':'')+'>aksi: ganti warna</option>'
+      +'<option value="hitung" '+(e.act==='hitung'?'selected':'')+'>aksi: hitung klik</option></select>':'')
+    +'<span class="x" data-wrm="'+i+'">'+ic('x')+'</span></span>';
+  }).join(' '):'<i class="emptymsg">Belum ada elemen — klik palet di kiri!</i>';
+}
+
+/* ============ JEMBATAN KODE ============ */
+function initJsSlots(){
+  var stage=document.getElementById('stage');
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Kode JavaScript</h3><span class="chip">Isi slot, lalu jalankan</span></div>'
+  +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">'
+  +'<div><div class="slotline"><span class="kw">maju</span>( <select id="s1"><option>1</option><option selected>2</option><option>3</option></select> )</div>'
+  +'<div class="slotline"><select id="s2"><option selected>putarKanan()</option><option>putarKiri()</option><option>maju(1)</option></select></div>'
+  +'<div class="slotline"><span class="kw">maju</span>( <select id="s3"><option>1</option><option selected>2</option><option>3</option></select> )</div>'
+  +'<div style="display:flex;gap:10px;margin-top:8px">'
+  +'<button class="btn btn-leaf" id="jsRun" style="flex:1">'+ic('play')+' Jalankan Kode</button></div>'
+  +'<p style="font-size:13px;font-weight:700;color:var(--ink2);margin-top:10px">Lihat: kode hanyalah blok yang ditulis! <b>maju(2)</b> = dua blok MAJU.</p></div>'
+  +'<div class="board-holder" id="jsboard" style="align-items:center"></div></div>';
+  var pseudo={id:null,world:7,type:'grid',grid:{rows:['R..','...','..H'],facing:0}};
+  newGE(pseudo,document.getElementById('jsboard'));
+  drawBoard();
+  document.getElementById('jsRun').onclick=async function(){
+    var btn=this; btn.disabled=true;
+    GE.running=true; GE.pos={x:GE.start.x,y:GE.start.y}; GE.dir=0;
+    moveRobot(false); await sleep(200);
+    var acts=[];
+    var i1;
+    for(i1=0;i1<+document.getElementById('s1').value;i1++) acts.push('fwd');
+    var s2=document.getElementById('s2').value;
+    acts.push(s2==='putarKanan()'?'right':(s2==='putarKiri()'?'left':'fwd'));
+    var i3;
+    for(i3=0;i3<+document.getElementById('s3').value;i3++) acts.push('fwd');
+    var reached=false;
+    for(var i=0;i<acts.length;i++){
+      var ok=await gridStep(acts[i]);
+      if(!ok){ mentorFail(failKind); break; }
+      if(GE.pos.x===GE.goal.x&&GE.pos.y===GE.goal.y){ reached=true; break; }
+    }
+    GE.running=false; btn.disabled=false;
+    if(reached){ sfx.good(); await sleep(300); winMission(); }
+  };
+}
+
+/* ============ KOTAK VARIABEL ============ */
+function initVarBox(){
+  var stage=document.getElementById('stage');
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Mesin Variabel</h3><span class="chip">'+ic('star')+' Target akhir: tepat 14</span></div>'
+  +'<div style="display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center">'
+  +'<div><div class="slotline"><span class="kw">skor</span> = 0</div>'
+  +'<div class="slotline"><span class="kw">skor</span> = <span class="kw">skor</span> + <select id="v1"><option>2</option><option>3</option><option>4</option><option>5</option></select></div>'
+  +'<div class="slotline"><span class="kw">ulangi</span> <select id="v2"><option>2</option><option>3</option><option>4</option></select> kali:</div>'
+  +'<div class="slotline" style="margin-left:26px"><span class="kw">skor</span> = <span class="kw">skor</span> + <select id="v3"><option>2</option><option>3</option><option>4</option><option>5</option></select></div>'
+  +'<div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">'
+  +'<button class="btn btn-leaf" id="vbRun">'+ic('play')+' Jalankan Langkah demi Langkah</button></div>'
+  +'<div id="vbLog" style="margin-top:12px;font-weight:800;color:var(--ink2);font-size:14px;min-height:44px"></div></div>'
+  +'<div style="text-align:center"><div class="varbox"><b id="vbVal">0</b><small>Variabel "skor"</small></div></div></div>';
+  document.getElementById('vbRun').onclick=async function(){
+    var a=+document.getElementById('v1').value;
+    var n=+document.getElementById('v2').value;
+    var b=+document.getElementById('v3').value;
+    var v=0, log=[];
+    function set(x){
+      var el=document.getElementById('vbVal');
+      el.textContent=x; el.animate([{transform:'scale(1.35)'},{transform:'scale(1)'}],{duration:250});
+    }
+    var btn=this; btn.disabled=true;
+    await sleep(250); set(0); log.push('skor = 0');
+    await sleep(500); v=a; set(v); log.push('skor = '+v);
+    for(var i=0;i<n;i++){ await sleep(600); v+=b; set(v); log.push('ulangi ke-'+(i+1)+': skor = '+v); }
+    document.getElementById('vbLog').textContent=log.join(' → ');
+    btn.disabled=false;
+    if(v===14){ sfx.win(); confetti(110); await sleep(500); winMission(); }
+    else { kikoSay('Skor akhirnya '+v+', bukan 14. Coba hitung mundur: berapa yang harus ditambah berulang? Ubah angkanya!',true); sfx.fail(); }
+  };
+}
+
+/* ============ SIMPAN KARYA ============ */
+function saveCreation(type,name,data){
+  var editId=CURRENT?(CURRENT.editId||CURRENT.createdId):null;
+  if(editId){
+    S.creations.forEach(function(c){ if(c.id===editId){ c.name=name; c.data=data; c.date=new Date().toISOString(); } });
+  } else {
+    var id=uid();
+    S.creations.push({id:id,type:type,name:name,date:new Date().toISOString(),data:data});
+    if(CURRENT) CURRENT.createdId=id;
+    addMastery(STUDIO_CONCEPTS[type]||['create'],20);
+    addXP(60); /* menciptakan bernilai lebih tinggi daripada menonton */
+    checkBadges();
+  }
+  save();
+}
+
+/* ============ PROJECT LAB & STUDI ============ */
+SCREENS.lab=function(){
+  document.getElementById('app').innerHTML=topbar()
+  +'<div class="card" style="padding:24px;background:var(--coral);color:#fff">'
+  +'<h2 style="font-size:clamp(24px,4vw,34px)">'+ic('spark')+' Laboratorium Karya</h2>'
+  +'<p style="font-weight:800;max-width:560px">Inilah ruang pencipta! Pilih satu studio, dapatkan template awal, lalu ubah sepuas hatimu. Semua karya tersimpan di museum Karya ALBY.</p></div>'
+  +'<div class="grid2" style="margin-top:18px">'
+  +STUDIOS.map(function(s){
+    return '<div class="studio-card" onclick="A.openStudio(\''+s.t+'\')">'
+    +'<div class="studio-ico" style="background:'+s.color+'">'+ic(s.icon)+'</div>'
+    +'<h3 style="font-size:19px">'+s.name+'</h3>'
+    +'<p style="font-weight:700;color:var(--ink2);font-size:14px">'+s.desc+'</p>'
+    +'<p style="margin-top:8px"><span class="chip" style="font-size:11.5px">'+(STUDIO_CONCEPTS[s.t]||[]).map(function(c){ return CONCEPTS[c]; }).join(' · ')+'</span></p></div>';
+  }).join('')+'</div>'+nav('');
+};
+SCREENS.studio=function(type,existing){
+  CURRENT={m:{id:null,world:8,title:'Studio '+type,studioType:type,concepts:STUDIO_CONCEPTS[type]||['create'],xp:0,boss:false,hints:[],
+    intro:'Mode bebas! Tidak ada jawaban benar atau salah — ini karyamu.'},hintIdx:0,editId:existing?existing.id:null};
+  var st=null; STUDIOS.forEach(function(s){ if(s.t===type) st=s; });
+  document.getElementById('app').innerHTML=''
+  +'<div class="stage-head" style="margin-bottom:14px">'
+  +'<button class="btn btn-sm" onclick="A.go(\'lab\')">'+ic('back')+' Lab</button>'
+  +'<h3 style="font-size:19px">Studio '+st.name+(existing?' — mengedit "'+esc(existing.name)+'"':'')+'</h3></div>'
+  +'<div class="play-grid"><div class="card stage" id="stage"></div>'
+  +'<div class="card kiko-panel"><div style="display:flex;gap:12px;align-items:flex-start">'+kikoSVG(56)
+  +'<div class="bubble" style="flex:1" id="kikoSay">'+(existing?'Lanjutkan karyamu! Ubah apa pun, lalu simpan lagi.':'Mode bebas! Tidak ada yang salah di sini — semua eksperimen itu belajar.')+'</div></div>'
+  +'<div class="bubble tip">Tekan tombol simpan untuk memajang karyamu di museum Karya ALBY. +60 XP untuk setiap karya baru!</div></div></div>'
+  +nav('');
+  if(type==='game') initGameEngine({bombs:true,rule:true,speedSel:true,targetSel:true,time:45,targetDef:8}, existing?existing.data:null);
+  else if(type==='web') initWebEngine(existing||null);
+  else if(type==='story') initStoryEngine({id:null,branch:true}, existing||null);
+  else if(type==='card') initCardEngine(existing||null);
+  else if(type==='quiz') initQuizEngine(existing||null);
+  else if(type==='anim') initAnimEngine(existing||null);
+};
+
+/* ---- studio kuis ---- */
+function initQuizEngine(existing){
+  var stage=document.getElementById('stage');
+  var qs=existing?JSON.parse(JSON.stringify(existing.data.qs)):[{q:'',o:['','',''],a:0},{q:'',o:['','',''],a:0},{q:'',o:['','',''],a:0}];
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Bengkel Kuis</h3><span class="chip">3 pertanyaan pilihan ganda</span></div>'
+  +qs.map(function(q,i){
+    return '<div class="rule-card" style="margin-bottom:12px"><h4>'+ic('bulb')+' Pertanyaan '+(i+1)+'</h4>'
+    +'<div class="field"><input type="text" data-qq="'+i+'" maxlength="80" placeholder="Tulis pertanyaanmu…" value="'+esc(q.q)+'"></div>'
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">'
+    +q.o.map(function(o,j){
+      return '<div style="display:flex;flex-direction:column;gap:4px">'
+      +'<input type="text" data-qo="'+i+'-'+j+'" maxlength="40" placeholder="Pilihan '+(j+1)+'" value="'+esc(o)+'" style="border:3px solid '+(q.a===j?'var(--leaf)':'var(--ink)')+';border-radius:12px;padding:8px 10px;font-weight:700">'
+      +'<label style="font-weight:800;font-size:12px;display:flex;gap:5px;align-items:center"><input type="radio" name="qa'+i+'" data-qa="'+i+'-'+j+'" '+(q.a===j?'checked':'')+'> jawaban benar</label></div>';
+    }).join('')+'</div></div>';
+  }).join('')
+  +'<div class="runbar"><button class="btn btn-coral" id="qGo" style="flex:1">'+ic('play')+' Mainkan Kuis</button>'
+  +'<button class="btn btn-sun" id="qSave">'+ic('box')+' Simpan Karya</button></div>';
+  function sync(){
+    var qq=stage.querySelectorAll('[data-qq]');
+    for(var i=0;i<qq.length;i++) qs[+qq[i].dataset.qq].q=qq[i].value;
+    var qo=stage.querySelectorAll('[data-qo]');
+    for(var j=0;j<qo.length;j++){ var p=qo[j].dataset.qo.split('-'); qs[+p[0]].o[+p[1]]=qo[j].value; }
+    var qa=stage.querySelectorAll('[data-qa]');
+    for(var k=0;k<qa.length;k++){
+      if(qa[k].checked){
+        var pp=qa[k].dataset.qa.split('-');
+        qs[+pp[0]].a=+pp[1];
+        var card=qa[k].closest('.rule-card');
+        var opts=card.querySelectorAll('[data-qo]');
+        for(var m=0;m<opts.length;m++){
+          var jj=+opts[m].dataset.qo.split('-')[1];
+          opts[m].style.borderColor=(jj===qs[+pp[0]].a)?'var(--leaf)':'var(--ink)';
+        }
+      }
+    }
+  }
+  stage.addEventListener('input',sync);
+  stage.addEventListener('change',sync);
+  function play(i,score){
+    var q=qs[i];
+    showOverlay('<div style="text-align:left"><span class="chip">Soal '+(i+1)+'/3 · Skor '+score+'</span>'
+    +'<h3 style="font-size:20px;margin:12px 0">'+(esc(q.q)||'…')+'</h3>'
+    +'<div style="display:flex;flex-direction:column;gap:10px">'
+    +q.o.map(function(o,j){ return '<button class="btn" data-pick="'+j+'" style="justify-content:flex-start">'+(esc(o)||'—')+'</button>'; }).join('')
+    +'</div></div>');
+    var btns=document.querySelectorAll('#ov [data-pick]');
+    for(var b=0;b<btns.length;b++){
+      (function(btn){
+        btn.onclick=function(){
+          var j=+btn.dataset.pick;
+          if(j===q.a){ score++; sfx.good(); btn.style.background='var(--leaf)'; btn.style.color='#fff'; }
+          else { sfx.fail(); btn.style.background='var(--rose)'; btn.style.color='#fff'; }
+          setTimeout(function(){
+            if(i<2) play(i+1,score);
+            else {
+              sfx.win(); confetti(80);
+              showOverlay('<h2 style="font-size:24px">Kuis selesai!</h2><p style="font-weight:800;margin:10px 0">Skor: '+score+'/3 '+(score===3?'— sempurna!':'')+'</p>'
+              +'<button class="btn btn-coral" onclick="A.closeOverlay()">'+ic('check')+' Asyik!</button>');
+              kikoSay(score===3?'Kuis-mu berfungsi sempurna!':'Kuis-mu jalan! Kalau ada jawaban yang janggal, tinggal edit dan simpan lagi.',true);
+            }
+          },700);
+        };
+      })(btns[b]);
+    }
+  }
+  document.getElementById('qGo').onclick=function(){
+    sync();
+    var bad=qs.some(function(q){ return !q.q.trim()||q.o.some(function(o){ return !o.trim(); }); });
+    if(bad){ kikoSay('Lengkapi dulu semua pertanyaan dan pilihannya, ya!',true); return; }
+    play(0,0);
+  };
+  document.getElementById('qSave').onclick=function(){
+    sync();
+    saveCreation('quiz','Kuis Buatan '+S.name,{qs:qs});
+    toast('Kuis tersimpan di Karyamu!');
+  };
+}
+
+/* ---- studio animasi ---- */
+function initAnimEngine(existing){
+  var stage=document.getElementById('stage');
+  var prog=existing?existing.data.prog.slice():[];
+  var lbl={jump:'LONCAT',spin:'PUTAR',wig:'GOYANG',star:'BINTANG',ndo:'NADA DO',nmi:'NADA MI',nsol:'NADA SOL'};
+  stage.innerHTML=''
+  +'<div class="stage-head"><h3>Panggung Animasi</h3><span class="chip">Program gerakan</span></div>'
+  +'<div class="board-holder" style="background:#2F2B52;padding:30px;justify-content:center"><div id="anChar">'+robotSVG(110)+'</div></div>'
+  +'<div><b style="font-family:Baloo 2">Program animasiku</b><div class="program-box" id="anProg"></div>'
+  +'<div class="palette" style="margin-top:8px">'
+  +'<button class="blk" data-a="jump" style="background:#3DAE5B;color:#fff">LONCAT</button>'
+  +'<button class="blk" data-a="spin" style="background:#3E8DDD;color:#fff">PUTAR</button>'
+  +'<button class="blk" data-a="wig" style="background:#E85D75;color:#fff">GOYANG</button>'
+  +'<button class="blk" data-a="star" style="background:#FFC531">BINTANG</button>'
+  +'<button class="blk" data-a="ndo" style="background:#FF7A45;color:#fff">NADA DO</button>'
+  +'<button class="blk" data-a="nmi" style="background:#FF7A45;color:#fff">NADA MI</button>'
+  +'<button class="blk" data-a="nsol" style="background:#FF7A45;color:#fff">NADA SOL</button></div></div>'
+  +'<div class="runbar"><button class="btn btn-leaf" id="anRun" style="flex:1">'+ic('play')+' Jalankan Animasi</button>'
+  +'<button class="btn btn-sm" id="anClear">'+ic('trash')+' Kosongkan</button>'
+  +'<button class="btn btn-sun" id="anSave">'+ic('box')+' Simpan Karya</button></div>';
+  function render(){
+    document.getElementById('anProg').innerHTML=prog.length?prog.map(function(a,i){
+      return '<span class="blk" style="min-height:40px;background:#fff;font-size:13px">'+lbl[a]+'<span class="x" data-x="'+i+'">'+ic('x')+'</span></span>';
+    }).join(' '):'<i class="emptymsg">Susun gerakannya di sini!</i>';
+  }
+  render();
+  stage.addEventListener('click',function(e){
+    var a=e.target.closest('[data-a]');
+    if(a&&prog.length<14){ prog.push(a.dataset.a); sfx.click(); render(); return; }
+    var x=e.target.closest('[data-x]');
+    if(x){ prog.splice(+x.dataset.x,1); sfx.click(); render(); }
+  });
+  document.getElementById('anClear').onclick=function(){ prog=[]; render(); };
+  document.getElementById('anRun').onclick=async function(){
+    if(!prog.length){ kikoSay('Panggungnya masih kosong! Tambahkan aksi dulu.',true); return; }
+    var ch=document.getElementById('anChar');
+    for(var i=0;i<prog.length;i++){
+      var a=prog[i];
+      if(a==='jump'){ ch.animate([{transform:'translateY(0)'},{transform:'translateY(-34px)'},{transform:'translateY(0)'}],{duration:420,easing:'ease'}); await sleep(440); }
+      else if(a==='spin'){ ch.animate([{transform:'rotate(0)'},{transform:'rotate(360deg)'}],{duration:520,easing:'ease-in-out'}); await sleep(540); }
+      else if(a==='wig'){ ch.animate([{transform:'rotate(-12deg)'},{transform:'rotate(12deg)'},{transform:'rotate(0)'}],{duration:420}); await sleep(440); }
+      else if(a==='star'){ confetti(24); sfx.pop(); await sleep(340); }
+      else if(a==='ndo'||a==='nmi'||a==='nsol'){
+        tone(NOTES[a.slice(1)],.32,'triangle',.22);
+        ch.animate([{transform:'translateY(0)'},{transform:'translateY(-12px)'},{transform:'translateY(0)'}],{duration:300});
+        await sleep(340);
+      }
+    }
+    kikoSay('Animasimu tayang! Coba susun ulang urutannya — urutan mengubah segalanya.',true);
+  };
+  document.getElementById('anSave').onclick=function(){
+    if(!prog.length){ toast('Tambahkan aksi dulu sebelum menyimpan'); return; }
+    saveCreation('anim','Animasi '+S.name,{prog:prog});
+    toast('Animasi tersimpan di Karyamu!');
+  };
+}
+
+/* ============ LAYAR: KARYA ============ */
+SCREENS.creations=function(){
+  var body;
+  if(S.creations.length){
+    body='<div class="grid2">'+S.creations.slice().reverse().map(function(c){
+      var st=null; STUDIOS.forEach(function(s){ if(s.t===c.type) st=s; });
+      return '<div class="creation-card"><div class="creation-top" style="background:'+(st?st.color:'#999')+'">'+ic(st?st.icon:'box')+'</div>'
+      +'<div class="creation-body"><h4>'+esc(c.name)+'</h4>'
+      +'<small>'+fmtDate(c.date)+' · '+(st?st.name:c.type)+' · '+(STUDIO_CONCEPTS[c.type]||[]).map(function(x){ return CONCEPTS[x]; }).join(', ')+'</small>'
+      +'<div class="creation-acts">'
+      +'<button class="btn btn-sm btn-leaf" style="flex:1" onclick="A.openCreation(\''+c.id+'\')">'+ic('play')+' Buka</button>'
+      +'<button class="btn btn-sm" onclick="A.confirmDel(\''+c.id+'\')">'+ic('trash')+'</button></div></div></div>';
+    }).join('')+'</div>';
+  } else {
+    body='<div class="card" style="padding:34px;text-align:center">'
+    +'<div class="wiggle" style="display:inline-block">'+robotSVG(90)+'</div>'
+    +'<h3 style="font-size:21px;margin-top:8px">Museum masih menunggu!</h3>'
+    +'<p style="font-weight:700;color:var(--ink2);max-width:420px;margin:8px auto 16px">Karya pertama biasanya yang paling berkesan. Pilih satu studio dan ciptakan sesuatu!</p>'
+    +'<button class="btn btn-coral" onclick="A.go(\'lab\')">'+ic('spark')+' Ke Laboratorium Karya</button></div>';
+  }
+  document.getElementById('app').innerHTML=topbar()
+  +'<div class="sec-title" style="margin-top:4px">'+ic('box','color:var(--coral)')+'<h3 style="font-size:22px">Karya ALBY — Museum Karya</h3></div>'
+  +'<p style="font-weight:700;color:var(--ink2);margin:-4px 0 18px">Setiap karya adalah bukti kemampuanmu. Terus tambahkan koleksinya!</p>'
+  +body+nav('creations');
+};
+
+/* ============ LAYAR: ORANG TUA ============ */
+SCREENS.parentHome=function(tab){
+  tab=tab||'ringkasan';
+  var days=Object.keys(S.days).sort().slice(-7).map(function(d){ return [d,S.days[d]]; });
+  var maxMin=Math.max(10,Math.max.apply(null,days.map(function(d){ return d[1]; }).concat([10])));
+  var tip=adaptiveTip();
+  var masteryRows=Object.keys(CONCEPTS).filter(function(k){ return S.mastery[k]>0; });
+  var worldsDone=WORLDS.filter(function(w){ return w.boss&&isDone(w.boss); }).length;
+  var content;
+  if(tab==='ringkasan'){
+    content='<div class="grid2">'
+    +'<div class="card" style="padding:18px"><h3 style="font-size:17px;margin-bottom:10px">'+ic('clock','color:var(--sky)')+' Waktu belajar 7 hari terakhir</h3>'
+    +'<div class="daybar" style="margin-bottom:26px">'
+    +(days.length?days.map(function(d){ return '<div style="height:'+Math.max(5,d[1]/maxMin*100)+'%"><span>'+d[0].slice(8)+'/'+d[0].slice(5,7)+'</span></div>'; }).join(''):'<p style="font-weight:700;color:var(--ink2)">Belum ada data.</p>')
+    +'</div><p style="font-weight:800;font-size:14px">Total: '+Object.keys(S.days).reduce(function(a,d){ return a+S.days[d]; },0)+' menit</p></div>'
+    +'<div class="card" style="padding:18px"><h3 style="font-size:17px;margin-bottom:10px">'+ic('flag','color:var(--leaf)')+' Perkembangan</h3>'
+    +'<p style="font-weight:800;font-size:15px;margin-bottom:8px">Misi selesai: <b>'+doneCount()+'/'+Object.keys(M).length+'</b> · XP: <b>'+S.xp+'</b> · Level: <b>'+LEVELS[levelIdx()].name+'</b></p>'
+    +'<p style="font-weight:800;font-size:14px;margin-bottom:6px">Dunia tuntas: '+worldsDone+'/7</p>'
+    +'<p style="font-weight:800;font-size:14px">Karya tersimpan: <b>'+S.creations.length+'</b></p><p style="font-weight:800;font-size:14px;color:var(--ink2)">Titik mulai adaptif: Dunia '+((S.placement&&S.placement.startWorld)||1)+'</p></div></div>'
+    +'<div class="grid2">'
+    +'<div class="card" style="padding:18px"><h3 style="font-size:17px;margin-bottom:12px">'+ic('bulb','color:var(--violet)')+' Penguasaan konsep (mastery)</h3>'
+    +(masteryRows.length?masteryRows.map(function(k){
+      return '<div class="mastery-row"><span>'+CONCEPTS[k]+'</span><div class="mastery-bar"><i style="width:'+S.mastery[k]+'%"></i></div><b style="font-size:12.5px">'+S.mastery[k]+'%</b><small style="min-width:110px;font-weight:800;color:var(--ink2)">'+masteryLabel(S.mastery[k])+'</small></div>';
+    }).join(''):'<p style="font-weight:700;color:var(--ink2)">Belum ada — mulai dari Hutan Logika!</p>')+'</div>'
+    +'<div class="card" style="padding:18px"><h3 style="font-size:17px;margin-bottom:10px">'+ic('spark','color:var(--coral)')+' Rekomendasi sistem</h3>'
+    +'<div class="bubble tip">'+tip.text+'</div>'
+    +'<h3 style="font-size:17px;margin:14px 0 8px">'+ic('box','color:var(--teal)')+' Karya terakhir</h3>'
+    +(S.creations.length?'<ul style="padding-left:18px">'+S.creations.slice(-4).reverse().map(function(c){ return '<li style="font-weight:700;font-size:14px;margin-bottom:4px">'+esc(c.name)+' — '+fmtDate(c.date)+'</li>'; }).join('')+'</ul>':'<p style="font-weight:700;color:var(--ink2)">Belum ada karya.</p>')
+    +'</div></div>';
+  } else if(tab==='kurikulum'){
+    content='<div class="card" style="padding:20px">'
+    +'<h3 style="font-size:19px">Kurikulum ALBY — 104 aktivitas</h3>'
+    +'<p style="font-weight:700;color:var(--ink2);font-size:14px;margin:6px 0 16px">Filosofi: <b>KONSEP → EKSPERIMEN → TANTANGAN → KARYA</b>. Ini adalah peta 104 aktivitas kurikulum; misi yang sudah tersedia sebagai pengalaman interaktif berjalan melalui mesin permainan di bawahnya.</p>'
+    +Object.keys(CURRICULUM).map(function(w){
+      return '<h4 style="font-size:16px;margin:16px 0 8px;color:var(--coral)">'+w+' <span class="chip" style="font-size:11px">'+CURRICULUM[w].length+' aktivitas</span></h4>'
+      +'<ul class="curr-list">'+CURRICULUM[w].map(function(a,i){ return '<li><b>'+(i+1)+'.</b> '+a+'</li>'; }).join('')+'</ul>';
+    }).join('')+'</div>';
+  } else {
+    content='<div class="card" style="padding:20px;max-width:640px">'
+    +'<h3 style="font-size:19px;margin-bottom:10px">Praktik keamanan yang diterapkan</h3>'
+    +'<ul style="padding-left:20px;line-height:1.9;font-weight:700;font-size:14.5px">'
+    +'<li>Tidak ada pendaftaran, email, atau data pribadi yang dikumpulkan.</li>'
+    +'<li>Seluruh progres tersimpan <b>hanya di perangkat ini</b> (localStorage).</li>'
+    +'<li>Tidak ada iklan, tautan keluar, atau pembelian apa pun.</li>'
+    +'<li>Tidak ada obrolan atau interaksi publik — tidak ada kontak dengan orang asing.</li>'
+    +'<li>Tidak ada leaderboard publik; kemajuan bersifat pribadi.</li>'
+    +'<li>Tidak ada mekanisme tekanan (streak, FOMO, loot box, notifikasi nagging).</li>'
+    +'<li>Area orang tua dilindungi gerbang sederhana agar anak tidak masuk tanpa sengaja.</li>'
+    +'<li>Pesan kepada anak selalu suportif; kesalahan dibingkai sebagai bagian dari coding.</li>'
+    +'</ul></div>';
+  }
+  document.getElementById('app').innerHTML=''
+  +'<div class="stage-head" style="margin-bottom:16px">'
+  +'<h3 style="font-size:22px;flex:1">'+ic('shield','color:var(--teal)')+' Area Orang Tua</h3>'
+  +'<button class="btn btn-sm" onclick="A.go(\'home\')">'+ic('back')+' Kembali ke Dunia Alby</button></div>'
+  +'<div class="parent-tab">'
+  +'<button class="'+(tab==='ringkasan'?'on':'')+'" onclick="A.go(\'parentHome\',\'ringkasan\')">Ringkasan</button>'
+  +'<button class="'+(tab==='kurikulum'?'on':'')+'" onclick="A.go(\'parentHome\',\'kurikulum\')">Rencana Belajar (104 aktivitas)</button>'
+  +'<button class="'+(tab==='aman'?'on':'')+'" onclick="A.go(\'parentHome\',\'aman\')">Keamanan & Privasi</button></div>'
+  +content+nav('');
+};
+
+/* ============ BOOT ============ */
+function boot(){
+  try{
+    muted=!S.sound;
+    if(S.seen){
+      if(!S.placement||!S.placement.done){ startPlacement(); }
+      else { if(S.placement.reader===false) document.body.classList.add('pre-reader'); SCREENS.home(); }
+    } else SCREENS.splash();
+  }catch(err){
+    showFatal(err.message);
+  }
+}
+window.addEventListener('resize',function(){ if(document.getElementById('mapline')) drawMapPath(); });
+boot();
+</script>
+</body>
+</html>
