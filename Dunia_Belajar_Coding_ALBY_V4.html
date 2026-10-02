@@ -607,20 +607,20 @@ def({id:'w3m1',world:3,type:'game',title:'Tangkap Bintang!',xp:50,concepts:['gam
   hints:['Mulai dengan kecepatan LAMBAT dan target 5.','Gerakkan Alby dengan menggeser jari di arena, atau tombol panah.','Bintang yang jatuh ditangkap dengan kepala Alby.','Belum tercapai? Atur ulang lalu UJI lagi. Gagal itu bagian dari membuat game!'],
   success:'GAME PERTAMAMU BERHASIL! Kamu tadi menyetel parameter — angka yang mengubah perilaku game.',
   challenge:'Naikkan target ke 10. Apakah game-mu jadi lebih seru atau lebih melelahkan?'});
-def({id:'w3m2',world:3,type:'game',title:'Awas Bomb!',xp:50,concepts:['cond','game','event'],
-  story:'Sekarang ada bomb jatuh! Di sinilah KONDISI bekerja: JIKA Alby menyentuh bomb, MAKA apa yang terjadi? Kamu yang memilih aturannya.',
-  goal:'Pilih aturan kondisi bomb, lalu capai target skor.',
+def({id:'w3m2',world:3,type:'game',title:'Awas Rintangan!',xp:50,concepts:['cond','game','event'],
+  story:'Sekarang ada rintangan jatuh! Di sinilah KONDISI bekerja: JIKA Alby menyentuh rintangan, MAKA apa yang terjadi? Kamu yang mengatur aturannya.',
+  goal:'Pilih aturan kondisi rintangan, lalu capai target skor.',
   cfg:{bombs:true,rule:true,speedSel:true,targetSel:true,time:45,targetDef:8},
-  intro:'Aturan kondisi: JIKA kena bomb, MAKA kehilangan 1 nyawa ATAU langsung selesai. Mana yang kamu pilih?',
-  hints:['Baca kartu aturannya: JIKA … MAKA … — itulah kondisi.','Aturan minus 1 nyawa lebih ramah: kamu punya 3 kesempatan.','Bomb boleh dihindari — jangan berdiri di bawahnya!','Target 8 bintang sebelum waktu habis. Kamu pasti bisa!'],
-  success:'Kamu baru saja memakai KONDISI — otak pengambilan keputusan di dalam game. JIKA ini, MAKA itu!',
-  challenge:'Menurutmu, kapan pembuat game memilih aturan minus 1 nyawa, dan kapan langsung selesai?'});
+  intro:'Aturan kondisi: JIKA terkena rintangan, MAKA apa yang sebaiknya terjadi? Cobalah dua aturan dan lihat bedanya.',
+  hints:['Baca kartu aturannya: JIKA … MAKA … — itulah kondisi.','Mulailah dengan aturan yang memberi kesempatan untuk memperbaiki kesalahan.','Rintangan boleh dihindari — perhatikan gerak benda yang jatuh.','Target 8 bintang sebelum waktu habis. Coba lagi dengan aturan yang berbeda!'],
+  success:'Kamu baru saja memakai KONDISI — aturan yang membuat game mengambil keputusan. JIKA ini, MAKA itu!',
+  challenge:'Menurutmu, aturan apa yang membuat pemain merasa tertantang tetapi tetap punya kesempatan belajar dari kesalahan?'});
 def({id:'w3m3',world:3,type:'game',boss:true,title:'BADAI BINTANG',xp:100,concepts:['cond','game','algo'],
-  story:'Tantangan Besar Planet Game: BADAI BINTANG! Bomb berhamburan, bintang berjatuhan cepat, dan waktunya singkat. Buat game terberikmu — lalu taklukkan!',
-  goal:'Kumpulkan 5 bintang sebelum waktu habis, di tengah badai bomb.',
+  story:'Tantangan Besar Planet Game: BADAI BINTANG! Rintangan berhamburan, bintang berjatuhan cepat, dan waktunya singkat. Atur permainanmu dengan cerdas — lalu taklukkan!',
+  goal:'Kumpulkan 5 bintang sebelum waktu habis, di tengah badai rintangan.',
   cfg:{bombs:true,rule:true,speedSel:true,targetSel:false,time:30,targetDef:5,forceSpeed:'cepat',forceBombs:'banyak'},
-  intro:'Ini dia! Game tersulit buatanmu sendiri: cepat, banyak bomb, waktu 30 detik. Fokus!',
-  hints:['Dengarkan ritmenya: bomb dan bintang jatuh berselang-seling.','Bergerak sedikit saja — jangan panik bolak-balik.','Posisikan Alby di antara dua aliran bintang.','Kalau kalah, coba lagi! XP Gigih menantimu.'],
+  intro:'Ini dia! Tantangan terbesarmu: benda bergerak cepat, banyak rintangan, dan waktu 30 detik. Fokus dan atur gerakanmu!',
+  hints:['Perhatikan ritmenya: rintangan dan bintang jatuh bergantian.','Bergerak sedikit saja — gerakan kecil biasanya lebih mudah dikendalikan.','Posisikan Alby di jalur bintang sambil menjaga jarak dari rintangan.','Kalau belum berhasil, ubah cara bermain lalu coba lagi.'],
   success:'BADAI TERTAKLUKKAN! Kamu sudah bisa membuat dan menyelesaikan game sungguhan. Selamat, Pembuat Game!',
   challenge:'Kalau kamu bisa menambah SATU aturan baru di game ini, aturan apa yang kamu tambahkan?'});
 
@@ -890,29 +890,30 @@ function nav(active){
 
 /* ============ PETUALANGAN PERTAMA ALBY ============ */
 var DIAG=[
-  {q:'Alby ada di kiri dan rumah di kanan. Pilih urutan yang paling tepat.',o:['MAJU, MAJU, MAJU','PUTAR KIRI, LOMPAT','MAJU, PUTAR KANAN, PUTAR KIRI'],a:0,skill:'Urutan'},
-  {q:'Alby menghadap ke atas. Agar menghadap kanan, perintah mana yang dipakai?',o:['PUTAR KIRI','PUTAR KANAN','MAJU'],a:1,skill:'Arah'},
-  {q:'Ada 5 lubang yang sama. Mana yang lebih hemat?',o:['LOMPAT 5 kali satu-satu','ULANGI 5 kali berisi LOMPAT','Hanya LOMPAT sekali'],a:1,skill:'Perulangan'},
-  {q:'Kalau Alby menyentuh bomb, lalu kehilangan nyawa, pola berpikirnya adalah…',o:['JIKA kena bomb, MAKA kehilangan nyawa','SELALU kehilangan nyawa','MAJU lalu selesai'],a:0,skill:'Kondisi'},
-  {q:'Apa hasil paling mungkin dari perintah: skor = 0 lalu ulangi 3 kali tambah 2?',o:['2','5','6'],a:2,skill:'Variabel & loop'}
+  {q:'Alby ingin sampai ke rumah di depan. Perintah mana yang paling masuk akal?',o:['MAJU, MAJU, MAJU','PUTAR KIRI, LOMPAT','PUTAR KANAN, PUTAR KIRI'],a:0,skill:'Urutan langkah'},
+  {q:'Alby sedang menghadap ke atas. Agar menghadap ke kanan, pilih perintah yang tepat.',o:['PUTAR KIRI','PUTAR KANAN','MAJU'],a:1,skill:'Arah gerak'},
+  {q:'Ada 5 petak yang harus dilompati dengan cara yang sama. Cara mana yang lebih rapi?',o:['LOMPAT 5 kali satu-satu','ULANGI 5 kali berisi LOMPAT','Cukup LOMPAT sekali'],a:1,skill:'Ulangi pola'},
+  {q:'Sebuah tombol ditekan. Setelah itu lampu menyala. Cara berpikir yang paling tepat adalah…',o:['JIKA tombol ditekan, MAKA lampu menyala','Lampu selalu menyala sejak awal','Tekan tombol lalu hapus tombolnya'],a:0,skill:'Aturan JIKA–MAKA'},
+  {q:'Kotak skor mulai dari 0. Setiap mendapat 1 bintang, skor bertambah 1. Setelah 3 bintang, berapa skornya?',o:['1','2','3'],a:2,skill:'Kotak skor'}
 ];
 function finishDiagnostic(){
   var score=S.placement.score||0;
-  var start=score<=1?1:(score===2?2:3);
+  var start=score<=1?1:(score<=3?2:3);
   S.placement.done=true; S.placement.startWorld=start;
   save();
+  var note=score>=4?'ALBY siap mencoba tantangan blok dan mulai belajar membuat sesuatu.':(score>=2?'ALBY punya dasar yang bagus. Kita akan memperkuat logika sambil mulai mengenal blok coding.':'ALBY akan membangun dasar logika dengan pelan-pelan.');
   showOverlay('<div class="wiggle" style="display:inline-block">'+robotSVG(90)+'</div>'
     +'<h2 style="font-size:28px;margin-top:8px">Petualangan awal selesai!</h2>'
-    +'<p style="font-weight:800;color:var(--ink2)">Kiko sudah melihat cara ALBY berpikir. Kita mulai dari tempat yang pas — tanpa harus terburu-buru.</p>'
+    +'<p style="font-weight:800;color:var(--ink2)">Ini bukan ujian dan tidak ada jawaban yang memalukan. Kiko hanya mencari titik mulai yang nyaman untuk ALBY.</p>'
     +'<div class="card" style="padding:14px;margin:14px 0;background:#FFF6D6">'
-    +'<b style="font-family:Baloo 2;font-size:18px">'+(score>=3?'ALBY sudah siap mencoba tantangan blok!':'ALBY akan membangun dasar logika dulu.')+'</b>'
-    +'<p style="font-weight:700;font-size:14px;margin-top:4px">Dunia awal: '+WORLDS[start-1].name+'</p></div>'
+    +'<b style="font-family:Baloo 2;font-size:18px">'+note+'</b>'
+    +'<p style="font-weight:700;font-size:14px;margin-top:4px">Kiko memilih titik mulai di <b>'+WORLDS[start-1].name+'</b> supaya ALBY bisa belajar dengan nyaman.</p></div>'
     +'<button class="btn btn-coral" onclick="A.closeOverlay();A.go(\'home\')">'+ic('rocket')+' Mulai Dunia Alby</button>');
 }
 function runDiagnostic(i){
   if(i>=DIAG.length){ finishDiagnostic(); return; }
   var d=DIAG[i];
-  showOverlay('<div class="tag">Petualangan '+(i+1)+'/'+DIAG.length+'</div>'
+  showOverlay('<div class="tag">Petualangan kenalan · langkah '+(i+1)+' dari '+DIAG.length+'</div>'
     +'<h2 style="font-size:23px;margin:12px 0">'+esc(d.skill)+'</h2>'
     +'<p style="font-weight:800;font-size:17px;text-align:left;margin-bottom:14px">'+esc(d.q)+'</p>'
     +'<div style="display:flex;flex-direction:column;gap:10px">'
@@ -920,6 +921,11 @@ function runDiagnostic(i){
     +'</div>'
     +'<button class="btn btn-sm" style="margin-top:14px" onclick="runDiagnostic('+DIAG.length+')">Lewati</button>');
   var bs=document.querySelectorAll('#ov [data-diag]');
+  if(S.placement && S.placement.reader===false){
+    setTimeout(function(){
+      speak('Pertanyaan '+(i+1)+'. '+d.skill+'. '+d.q+' Pilih salah satu: '+d.o.join(', ')+' Jika bingung, boleh pilih yang menurutmu paling masuk akal.');
+    },180);
+  }
   for(var b=0;b<bs.length;b++)(function(btn){btn.onclick=function(){
     var j=+btn.dataset.diag; if(j===d.a) S.placement.score=(S.placement.score||0)+1; markActivity(); save(); sfx.good(); runDiagnostic(i+1);
   };})(bs[b]);
@@ -1487,7 +1493,7 @@ function initGameEngine(cfg,saved){
     speed:(saved&&saved.speed)||cfg.forceSpeed||'sedang',
     target:(saved&&saved.target)||cfg.targetDef||5,
     bombs:(saved&&saved.bombs)||cfg.forceBombs||(cfg.bombs?'sedikit':'tidak'),
-    rule:(saved&&saved.rule)||'life'
+    rule:(saved&&saved.rule)||'pause'
   };
   var stage=document.getElementById('stage');
   stage.innerHTML=''
@@ -1503,13 +1509,13 @@ function initGameEngine(cfg,saved){
     return '<button data-v="'+t+'" class="'+(GMR.target===t?'on':'')+'" '+(dis?'disabled':'')+'>'+t+' bintang</button>';
   }).join('')+'</div></div>'
   +(cfg.bombs
-    ?'<div class="rule-card" style="margin-top:10px"><h4>'+ic('shield')+' Jumlah bomb</h4>'
+    ?'<div class="rule-card" style="margin-top:10px"><h4>'+ic('shield')+' Jumlah rintangan</h4>'
      +'<div class="seg" data-key="bombs">'+['sedikit','banyak'].map(function(b){
        var dis=cfg.forceBombs&&b!==cfg.forceBombs;
        return '<button data-v="'+b+'" class="'+(GMR.bombs===b?'on':'')+'" '+(dis?'disabled':'')+'>'+b.charAt(0).toUpperCase()+b.slice(1)+'</button>';
      }).join('')+'</div></div>'
-    +'<div class="rule-card" style="margin-top:10px"><h4>'+ic('code')+' Aturan kondisi — JIKA kena bomb MAKA…</h4>'
-     +'<div class="seg" data-key="rule"><button data-v="life" class="'+(GMR.rule==='life'?'on':'')+'">Kehilangan 1 nyawa</button><button data-v="over" class="'+(GMR.rule==='over'?'on':'')+'">Langsung selesai</button></div></div>'
+    +'<div class="rule-card" style="margin-top:10px"><h4>'+ic('code')+' Aturan kondisi — JIKA terkena rintangan MAKA…</h4>'
+     +'<div class="seg" data-key="rule"><button data-v="pause" class="'+(GMR.rule==='pause'?'on':'')+'">Waktu berkurang 2 detik</button><button data-v="center" class="'+(GMR.rule==='center'?'on':'')+'">Kembali ke tengah</button></div></div>'
     :'')
   +'<div class="gm-canvas-wrap" style="margin-top:14px">'
   +'<canvas id="gmc" width="640" height="380" style="display:block;width:100%;touch-action:none"></canvas>'
@@ -1534,8 +1540,7 @@ function startGame(cfg){
   var W=cv.width, H=cv.height;
   var speedV={lambat:2.1,sedang:3.1,cepat:4.3}[GMR.speed];
   var bombEvery=GMR.bombs==='tidak'?0:(GMR.bombs==='sedikit'?3:1.6);
-  var livesMax=GMR.rule==='life'?3:1;
-  var st={score:0,lives:livesMax,t:cfg.time,px:W/2,ptx:W/2,items:[],spawn:0,over:false,raf:0,last:0};
+  var st={score:0,t:cfg.time,px:W/2,ptx:W/2,items:[],spawn:0,over:false,raf:0,last:0};
   var ov=document.getElementById('gmOver');
   ov.classList.add('hide');
   function onMove(e){
@@ -1561,7 +1566,7 @@ function startGame(cfg){
   CURRENT.engine={dispose:cleanup};
   function updHud(){
     var hs=document.getElementById('hudS'); if(hs) hs.textContent='Skor '+st.score;
-    var hl=document.getElementById('hudL'); if(hl) hl.textContent=cfg.bombs?('Nyawa: '+st.lives):'';
+    var hl=document.getElementById('hudL'); if(hl) hl.textContent=cfg.bombs?('Aturan: '+(GMR.rule==='pause'?'waktu -2 dtk':'kembali ke tengah')):'';
     var ht=document.getElementById('hudT'); if(ht) ht.textContent='Waktu '+Math.max(0,Math.ceil(st.t))+' dtk';
   }
   function spawnItem(){
@@ -1596,12 +1601,14 @@ function startGame(cfg){
     ctx.closePath(); ctx.fillStyle='#FFC531'; ctx.fill();
     ctx.strokeStyle='#33283D'; ctx.lineWidth=2.4; ctx.stroke(); ctx.restore();
   }
-  function drawBomb(x,y){
-    ctx.fillStyle='#4A3B52'; ctx.strokeStyle='#33283D'; ctx.lineWidth=3;
-    ctx.beginPath(); ctx.arc(x,y,16,0,7); ctx.fill(); ctx.stroke();
-    ctx.strokeStyle='#C9B8A0';
-    ctx.beginPath(); ctx.moveTo(x+6,y-12); ctx.quadraticCurveTo(x+16,y-24,x+10,y-30); ctx.stroke();
-    ctx.fillStyle='#FF7A45'; ctx.beginPath(); ctx.arc(x+10,y-31,3.5,0,7); ctx.fill();
+  function drawHazard(x,y){
+    ctx.save(); ctx.translate(x,y);
+    ctx.fillStyle='#B8A58F'; ctx.strokeStyle='#33283D'; ctx.lineWidth=3;
+    ctx.beginPath();
+    ctx.moveTo(-17,7); ctx.lineTo(-13,-9); ctx.lineTo(-3,-16); ctx.lineTo(10,-11); ctx.lineTo(17,2); ctx.lineTo(8,15); ctx.lineTo(-8,17); ctx.closePath();
+    ctx.fill(); ctx.stroke();
+    ctx.fillStyle='#E6D4BA'; ctx.beginPath(); ctx.arc(-5,-5,4,0,7); ctx.fill();
+    ctx.restore();
   }
   function endGame(won,msg){
     st.over=true; cleanup();
@@ -1634,9 +1641,9 @@ function startGame(cfg){
       if(near&&!it.bomb){ st.score++; sfx.pop(); updHud(); return false; }
       if(near&&it.bomb){
         sfx.fail();
-        if(GMR.rule==='over') st.lives=0; else st.lives--;
+        if(GMR.rule==='pause'){ st.t=Math.max(0,st.t-2); }
+        else { st.ptx=W/2; st.px=W/2; }
         updHud();
-        if(st.lives<=0){ endGame(false,GMR.rule==='over'?'Kena bomb — aturanmu bilang: langsung selesai!':'Nyawa habis!'); return false; }
         return false;
       }
       return it.y<H+30;
@@ -1645,7 +1652,7 @@ function startGame(cfg){
     ctx.fillStyle='rgba(255,255,255,.5)';
     for(var i=0;i<26;i++){ ctx.fillRect((i*97)%W,(i*53)%(H-80),2,2); }
     ctx.fillStyle='#1E5A50'; ctx.fillRect(0,H-22,W,22);
-    st.items.forEach(function(it){ if(it.bomb) drawBomb(it.x,it.y); else drawStar(it.x,it.y,15); });
+    st.items.forEach(function(it){ if(it.bomb) drawHazard(it.x,it.y); else drawStar(it.x,it.y,15); });
     drawRobot(st.px,H-38);
     if(st.score>=GMR.target){ endGame(true); return; }
     st.raf=requestAnimationFrame(loop);
